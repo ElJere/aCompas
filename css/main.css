@@ -1,3 +1,51 @@
+.play {
+  -webkit-transition: all 1s ease 0s;
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
+  background: #ffffff;
+  border: 10px solid #F7F7F7;
+  border-radius: 50%;
+  color: #777;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 104px;
+  margin: 0.1em 0.2em;
+  outline: none;
+  vertical-align: top;
+  width: 104px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.play:hover {
+  border-color: tomato;
+}
+
+.play:active, .play.active {
+  position:relative;
+  top:1px; left: 1px;
+  border-color: tomato;
+}
+
+.bar {
+  display: inline-block;
+}
+
+.tab-pane {
+  padding-top: 20px;
+}
+
+#title {
+  color: tomato;
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.text-danger {
+  opacity: 0;
+}
+
 
 
 

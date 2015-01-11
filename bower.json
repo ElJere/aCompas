@@ -1,0 +1,29 @@
+{
+  "name": "acompass",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ElJere/aCompas",
+  "description": "A flamenco metronome for the Web",
+  "main": "index.html",
+  "keywords": [
+    "flamenco",
+    "webaudio",
+    "metronome"
+  ],
+  "authors": [
+    "El Jere"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery-knob": "~1.2.11",
+    "jquery": "~2.1.3",
+    "velocity": "~1.2.1"
+  }
+}
