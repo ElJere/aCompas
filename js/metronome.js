@@ -900,7 +900,7 @@ $(document).ready(function() {
             var _txtDiv = $('#buleria .text-danger');
 
             if ( v >= 270 ) {
-            	_txt = "Warning ! Your rhythm is very quick...";
+            	_txt = "Your rhythm is very quick...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -909,7 +909,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v <= 120 ) {
-            	_txt = "Warning ! Your rhythm is very slow...";
+            	_txt = "Your rhythm is very slow...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -968,7 +968,7 @@ $(document).ready(function() {
             var _txtDiv = $('#solea .text-danger');
 
             if ( v >= 180 ) {
-            	_txt = "Warning ! Your rhythm is very quick...";
+            	_txt = "Your rhythm is very quick...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -977,7 +977,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v >= 120 && v <= 180 ) {
-             	_txt = "Warning ! Your tempo is solea por buleria or alegria";
+             	_txt = "Your tempo is solea por buleria or alegria";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -986,7 +986,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}           	
             } else if ( v <= 60 ) {
-            	_txt = "Warning ! Your rhythm is very slow...";
+            	_txt = "Your rhythm is very slow...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1045,7 +1045,7 @@ $(document).ready(function() {
             var _txtDiv = $('#siguiriya .text-danger');
 
             if ( v >= 160 ) {
-            	_txt = "Warning ! Your rhythm is very quick...";
+            	_txt = "Your rhythm is very quick...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1054,7 +1054,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v <= 60 ) {
-            	_txt = "Warning ! Your rhythm is very slow...";
+            	_txt = "Your rhythm is very slow...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1113,7 +1113,7 @@ $(document).ready(function() {
             var _txtDiv = $('#fandangos .text-danger');
 
             if ( v >= 200 ) {
-            	_txt = "Warning ! Your rhythm is very quick...";
+            	_txt = "Your rhythm is very quick...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1122,7 +1122,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v <= 90 ) {
-            	_txt = "Warning ! Your rhythm is very slow...";
+            	_txt = "Your rhythm is very slow...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1181,7 +1181,7 @@ $(document).ready(function() {
             var _txtDiv = $('#tangos .text-danger');
 
             if ( v >= 180 ) {
-            	_txt = "Warning ! Your rhythm is por rumba";
+            	_txt = "Your rhythm is por rumba";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -1190,7 +1190,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v <= 90 ) {
-            	_txt = "Warning ! Your rhythm is por tientos";
+            	_txt = "Your rhythm is por tientos";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
