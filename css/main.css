@@ -9,7 +9,10 @@ a {
 	color: tomato;
 	text-decoration: none;
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 a:hover {
 	color: firebrick;
 	text-decoration: none;
@@ -54,8 +57,9 @@ a:hover {
 }
 
 #title {
+  font-family: 'Playball';
   color: tomato;
-  font-size: 64px;
+  font-size: 84px;
   font-weight: bold;
 }
 
@@ -63,6 +67,11 @@ a:hover {
   opacity: 0;
 }
 
+footer {
+	border-top: 1px solid #e5e5e5;
+	padding: 40px 0;
+	text-align: center;
+}
 
 
 
