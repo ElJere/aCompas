@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'Playball';
+    src: url('Playball/Playball-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+	color: tomato;
+	text-decoration: none;
+}
+
+a:hover {
+	color: firebrick;
+	text-decoration: none;
+}
+
 .play {
   -webkit-transition: all 1s ease 0s;
   -moz-transition: all 1s ease 0s;
