@@ -20,6 +20,15 @@ var timerWorker = null;     		// The Web Worker used to fire timer messages
 
 var numberOfTimes = 12;				// Default rhythm times
 var container = $('svg.visualizer');// Select the drawing svg container
+// List of all the palos' slugs
+var palos = [
+    "buleria-6",
+    "buleria-12",
+    "solea",
+    "siguiriya",
+    "fandangos",
+    "tangos"
+];
 
 // Set functions
 function playSound(buffer, start, vol, callback) {
@@ -358,6 +367,28 @@ $(document).ready(function() {
 
     });
 
+    // Set volume button for each tab
+	$.each(palos, function(paloIndex, paloSlug) {
+	    $('#' + paloSlug + ' .masterVolume').knob({
+	        width:104,
+	        height:104,            
+	        min:0,
+	        max:100,
+	        step:1,
+	        angleArc:360,
+	        displayInput:true,
+	        thickness:'.2',
+	        inputColor:'#777',
+	        font:'arial',
+	        fontWeight:'normal',
+	        fgColor:'tomato',             
+	        release:function (v) { 
+	            masterVolume = v;
+	            console.log('new masterVolume = ' + v);
+	        }
+	    });
+	});
+    
     $(window).on("orientationchange", resetDraw);
     $(window).on("resize", resetDraw); 
 

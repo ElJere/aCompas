@@ -203,23 +203,4 @@ $(document).ready(function() {
             }
         }
     });
-    // Set volume button
-    $('#siguiriya .masterVolume').knob({
-        width:104,
-        height:104,            
-        min:0,
-        max:100,
-        step:1,
-        angleArc:360,
-        displayInput:true,
-        thickness:'.2',
-        inputColor:'#777',
-        font:'arial',
-        fontWeight:'normal',
-        fgColor:'tomato',             
-        release:function (v) { 
-            masterVolume = v;
-            console.log('new masterVolume = ' + v);
-        }
-    });
 });
