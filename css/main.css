@@ -15,25 +15,6 @@ a:hover {
 	text-decoration: none;
 }
 
-body > section.container {
-	border-radius: 10px;
-	border: 1px solid #ddd;
-	padding-top: 4px;
-	margin-bottom: 15px;
-	padding-left: 6px;
-	padding-right: 6px;
-}
-
-#palos > li.active > a {
-	border-color: #ddd;
-	border-radius: 10px 10px 0px 0px;
-}
-
-body > section.container .tab-content {
-	padding-left: 16px;
-	padding-right: 16px;
-}
-
 .play {
   -webkit-transition: all 1s ease 0s;
   -moz-transition: all 1s ease 0s;
