@@ -3,8 +3,9 @@ var audioContext = null;
 var isPlaying = false;      		// Are we currently playing?
 var startTime;              		// The start time of the entire sequence.
 var currentNote;        			// What note is currently last scheduled?
-var tempo = $('.tempo').val() / 2;	// Set default tempo
-var masterVolume = 80;				// Set default master volume
+var palo = 'buleria';				// Default rhythm style
+var tempo =  parseInt($('#' + palo + ' .tempo').val()) / 2; // Set default tempo
+var masterVolume = parseInt($('#' + palo + " .masterVolume").val()); // Set default master volume
 var lookahead = 25.0;       		// How frequently to call scheduling function 
                             		//(in milliseconds)
 var scheduleAheadTime = 0.1;    	// How far ahead to schedule audio (sec)
@@ -16,8 +17,6 @@ var clapType = 0;					// Default clap = light claps
 var notesInQueue = [];      		// the notes that have been put into the web audio,
                             		// and may or may not have played yet. {note, time}
 var timerWorker = null;     		// The Web Worker used to fire timer messages
-
-var palo = 'buleria';				// Default rhythm style
 
 var numberOfTimes = 12;				// Default rhythm times
 var container = $('svg.visualizer');// Select the drawing svg container
@@ -857,7 +856,7 @@ $(document).ready(function() {
 
     timerWorker.onmessage = function(e) {
         if (e.data == "tick") {
-            console.log("tick!");
+//            console.log("tick!");
             scheduler();
         }
         else
@@ -893,9 +892,11 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',
+        release:function (v) {
+			tempo = v / 2;
+			console.log('new tempo = ' + (v / 2) );
+        },
         change:function (v) { 
-            tempo = v / 2;
-            console.log('new tempo = ' + (v / 2) );
             var _txt = null;
             var _txtDiv = $('#buleria .text-danger');
 
@@ -941,7 +942,7 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',             
-        change:function (v) { 
+        release:function (v) { 
             masterVolume = v;
             console.log('new masterVolume = ' + v);
         }
@@ -961,9 +962,11 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',
-        change:function (v) { 
-            tempo = v / 2;
+        release:function (v) {
+        	tempo = v / 2;
             console.log('new tempo = ' + (v / 2) );
+        },
+        change:function (v) { 
             var _txt = null;
             var _txtDiv = $('#solea .text-danger');
 
@@ -1018,7 +1021,7 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',             
-        change:function (v) { 
+        release:function (v) { 
             masterVolume = v;
             console.log('new masterVolume = ' + v);
         }
@@ -1038,9 +1041,11 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',
-        change:function (v) { 
-            tempo = v / 2;
+        release:function (v) {
+        	tempo = v / 2;
             console.log('new tempo = ' + (v / 2) );
+        },
+        change:function (v) {
             var _txt = null;
             var _txtDiv = $('#siguiriya .text-danger');
 
@@ -1086,7 +1091,7 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',             
-        change:function (v) { 
+        release:function (v) { 
             masterVolume = v;
             console.log('new masterVolume = ' + v);
         }
@@ -1106,9 +1111,11 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',
+        release:function (v) {
+        	tempo = v / 2;
+        	console.log('new tempo = ' + (v / 2) );
+        },
         change:function (v) { 
-            tempo = v / 2;
-            console.log('new tempo = ' + (v / 2) );
             var _txt = null;
             var _txtDiv = $('#fandangos .text-danger');
 
@@ -1154,7 +1161,7 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',             
-        change:function (v) { 
+        release:function (v) { 
             masterVolume = v;
             console.log('new masterVolume = ' + v);
         }
@@ -1174,9 +1181,11 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',
-        change:function (v) { 
+        release:function (v) {
             tempo = v / 2;
             console.log('new tempo = ' + (v / 2) );
+        },
+        change:function (v) { 
             var _txt = null;
             var _txtDiv = $('#tangos .text-danger');
 
@@ -1222,7 +1231,7 @@ $(document).ready(function() {
         font:'arial',
         fontWeight:'normal',
         fgColor:'tomato',             
-        change:function (v) { 
+        release:function (v) { 
             masterVolume = v;
             console.log('new masterVolume = ' + v);
         }
@@ -1255,20 +1264,16 @@ $(document).ready(function() {
 		container = $('svg.visualizer'); 
 
 		// Set rhythm tempo
+		tempo = parseInt($("#" + palo + " .tempo").val()) / 2;
 		if ( palo == 'buleria' ) {
-			tempo = $('#buleria .tempo').val() / 2;
 			numberOfTimes = 12;
 		} else if ( palo == 'solea' ) {
-			tempo = $('#solea .tempo').val() / 2;
 			numberOfTimes = 24;
 		} else if ( palo == 'siguiriya' ) {
-			tempo = $('#siguiriya .tempo').val() / 2;
 			numberOfTimes = 24;
 		} else if ( palo == 'fandangos' ) {
-			tempo = $('#fandangos .tempo').val() / 2;
 			numberOfTimes = 24;
 		} else if ( palo == 'tangos' ) {
-			tempo = $('#tangos .tempo').val() / 2;
 			numberOfTimes = 16;
 		}
 
