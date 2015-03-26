@@ -139,7 +139,7 @@ function play() {
 
 		// change play button
 		playButton.removeClass('glyphicon-stop').addClass('glyphicon-play');
-		$('.play').toggleClass('active');
+		$('.play').removeClass('active');
 
 		// Send message to worker
 		timerWorker.postMessage("stop");
