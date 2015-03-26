@@ -3,8 +3,8 @@
  */
 
 function scheduleNoteTangos(clapType, beatNumber, sounds, time) {
-    // beatNumber : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  
-    // solea : 	    1   2   3   4   5   6     7     8        
+    // beatNumber : TODO
+    // tangos : TODO
     if (clapType == 0) { // Palmas claras
     	if (beatNumber == 0) {
     		playSound(sounds.udu_1.buffer, time, sounds.udu_1.volume);

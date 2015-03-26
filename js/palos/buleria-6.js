@@ -114,7 +114,7 @@ $(document).ready(function() {
             var _txtDiv = $('#buleria-6 .text-danger');
 
             if ( v >= 270 ) {
-            	_txt = "Your rhythm is very quick...";
+            	_txt = "Your rhythm is very fast ...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
@@ -123,7 +123,7 @@ $(document).ready(function() {
             		_txtDiv.append(_txt);
             	}
             } else if ( v <= 120 ) {
-            	_txt = "Your rhythm is very slow...";
+            	_txt = "Your rhythm is very slow ...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);

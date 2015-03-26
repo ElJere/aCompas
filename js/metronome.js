@@ -27,7 +27,8 @@ var palos = [
     "solea",
     "siguiriya",
     "fandangos",
-    "tangos"
+    "tangos",
+    "rumba"
 ];
 
 // Set functions
@@ -94,6 +95,9 @@ function scheduleNote( beatNumber, time ) {
     		break ;
     	case 'tangos':
     		scheduleNoteTangos(clapType, beatNumber, sounds, time);
+    		break ;
+    	case 'rumba':
+    		scheduleNoteRumba(clapType, beatNumber, sounds, time);
     		break ;
     	default :
     		console.log("Unknown palo \"" + palo + "\"");
@@ -180,6 +184,9 @@ function draw() {
         		break ;
         	case 'tangos':
         		drawTangos(i, bar, container);
+        		break ;
+        	case 'rumba':
+        		drawRumba(i, bar, container);
         		break ;
         	default :
         		console.log("Unknown palo \"" + palo + "\"");
@@ -353,6 +360,9 @@ $(document).ready(function() {
 				numberOfTimes = 24;
 				break ;
 			case 'tangos':
+				numberOfTimes = 16;
+				break ;
+			case 'rumba':
 				numberOfTimes = 16;
 				break ;
 			default :
