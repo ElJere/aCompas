@@ -20,6 +20,7 @@ var timerWorker = null;     		// The Web Worker used to fire timer messages
 
 var numberOfTimes = 12;				// Default rhythm times
 var container = $('svg.visualizer');// Select the drawing svg container
+
 // List of all the palos' slugs
 var palos = [
     "buleria-6",
@@ -33,7 +34,7 @@ var palos = [
 
 // Set functions
 function playSound(buffer, start, vol, callback) {
-	// Create source, sounds gain and master gain
+    // Create source, sounds gain and master gain
 	var source = audioContext.createBufferSource(); 
 	var gainNode = audioContext.createGain();
 	var masterGainNode = audioContext.createGain();
