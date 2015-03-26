@@ -34,7 +34,7 @@ $(document).ready(function() {
             var _txt = null;
             var _txtDiv = $('#buleria-12 .text-danger');
 
-            if ( v >= 180 ) {
+            if ( v >= 230 ) {
             	_txt = "Your rhythm is very quick...";
             	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
