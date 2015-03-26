@@ -1,13 +1,14 @@
 Vagrant.configure("2") do |config|
-  config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
-  config.vm.box = "acompass"
+  config.vm.box_url = 'http://cloud-images.ubuntu.com/vagrant/utopic/current/utopic-server-cloudimg-amd64-vagrant-disk1.box'
+  config.vm.box = "aCompas"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
   end
   
   config.vm.network "private_network", ip: "192.168.50.2"
-  config.vm.synced_folder ".", "/vagrant",
+  config.vm.synced_folder ".",
+    "/vagrant",
     :nfs => true,
     :mount_options => ['actimeo=2', 'vers=3', 'tcp', 'fsc']
 

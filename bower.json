@@ -6,7 +6,7 @@
   "main": "index.html",
   "keywords": [
     "flamenco",
-    "webaudio",
+    "web-audio-api",
     "metronome"
   ],
   "authors": [
