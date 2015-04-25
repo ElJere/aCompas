@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box_url = 'http://cloud-images.ubuntu.com/vagrant/utopic/current/utopic-server-cloudimg-amd64-vagrant-disk1.box'
+  config.vm.box_url = 'http://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box'
   config.vm.box = "aCompas"
 
   config.vm.provider "virtualbox" do |v|

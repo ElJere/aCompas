@@ -1,2 +1,9 @@
 bower_components
 .vagrant
+web/common
+web/bower_components
+cordova/platforms/android/.gradle
+cordova/platforms/android/CordovaLib/build
+cordova/www/common
+cordova/platforms/android/assets/www
+.project

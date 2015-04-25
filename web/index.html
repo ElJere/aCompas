@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>A Compás - Flamenco metronome</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="A Compás is a web-based flamenco metronome." />
+
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="common/css/main.css" />
+	</head>
+
+	<body>
+
+		<header class="container">
+			<div>
+				<h1 id="title">A Compás</h1>
+				<h1><small>A flamenco metronome for the Web</small></h1>
+			</div>
+		</header>
+
+	    <section class="container">
+			<div id="main-tabpanel" role="tabpanel">
+
+				<!-- Nav tabs -->
+				<ul id="palos" class="nav nav-tabs" role="tablist">
+				</ul>
+
+				<!-- Tab panes -->
+				<div id="main-tab-content" class="tab-content">
+				</div>
+
+			</div>
+			
+		</section>
+		<footer>
+			<div class="container">
+				<p>This application uses the <a href="https://github.com/cwilso/metronome">original code of Chris Wilson</a>. Thanks to him !</p>
+				<p>Find this on <a href="https://github.com/ElJere/aCompas">Github</a></p>
+			</div>
+		</footer>
+
+	    <script language="javascript" type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	    <script language="javascript" type="text/javascript" src="bower_components/velocity/velocity.min.js"></script>
+	    <script language="javascript" type="text/javascript" src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+	    <script language="javascript" type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/metronome.js"></script>
+	    <!-- Load palos -->
+	    <script language="javascript" type="text/javascript" src="common/js/palos/buleria-6.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/buleria-12.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/solea.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/siguiriya.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/fandangos.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/tangos.js"></script>
+	    <script language="javascript" type="text/javascript" src="common/js/palos/rumba.js"></script>
+	    <script language="javascript" type="text/javascript">
+
+	    	$(document).ready(function() {
+	    		initMetronome();
+	    		initBuleria12();
+	    		initBuleria6();
+	    		initFandangos();
+	    		initRumba();
+	    		initSiguiriya();
+	    		initSolea();
+	    		initTangos();
+	    	});
+
+	    </script>
+	    <!-- Piwik -->
+	    <script type="text/javascript">
+	        var _paq = _paq || [];
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                    var u="//piwik.acompas.audio/";
+                    _paq.push(['setTrackerUrl', u+'piwik.php']);
+                    _paq.push(['setSiteId', 1]);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+           </script>
+           <noscript><p><img src="//piwik.acompas.audio/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+           <!-- End Piwik Code -->
+	</body>
+</html>
