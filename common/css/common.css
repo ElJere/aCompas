@@ -60,6 +60,13 @@ a:hover {
     margin-top: 0px;
 }
 
+.controls .play-label,
+.controls .speed-label,
+.controls .volume-label {
+	width: 104px;
+	text-align: center;
+}
+
 .text-danger {
   opacity: 0;
 }

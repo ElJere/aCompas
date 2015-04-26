@@ -247,25 +247,25 @@ function buildUi() {
 		html += "<div id=\"" + palo.slug + "\" role=\"tabpanel\" class=\"tab-pane fade in " + active + "\">";
 		html += "<section class=\"controls row\">";
 		html += "<div class=\"col-xs-4 col-sm-3\">";
-		html += "<h3><small>Play :</small></h3>";
+		html += "<h3 class=\"play-label\"><small>Play</small></h3>";
 		html += "<button class=\"play\">";
 		html += "<span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span>";
 		html += "</button>";
 		html += "</div>";
 		html += "<div class=\"col-xs-4 col-sm-3 tempo-container\">";
-		html += "<h3><small>Speed :</small></h3>";
+		html += "<h3 class=\"speed-label\"><small>Speed</small></h3>";
 		html += "<input class=\"tempo\" value=\"200\">";
 		html += "</div>";
 
 		html += "<div class=\"col-xs-4 col-sm-3 volume-container\">";
-		html += "<h3><small>Volume :</small></h3>";
+		html += "<h3 class=\"volume-label\"><small>Volume</small></h3>";
 		html += "<input class=\"masterVolume\" value=\"80\">";
 		html += "</div>";
 
 		html += "<div class=\"col-xs-12 col-sm-3\">";
 		html += "<div class=\"row\">";
 		html += "<div class=\"col-xs-6 col-sm-12\">";
-		html += "<h3><small>Resolution :</small></h3>";
+		html += "<h3><small>Resolution</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
 		html += "<label class=\"btn btn-sm active\">";
 		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 0;\" autocomplete=\"off\" checked> Contratiempo";
@@ -276,7 +276,7 @@ function buildUi() {
 		html += "</div>";
 		html += "</div>";
 		html += "<div class=\"col-xs-6 col-sm-12\">";
-		html += "<h3><small>Palmas :</small></h3>";
+		html += "<h3><small>Palmas</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
 		html += "<label class=\"btn btn-sm active\">";
 		html += "<input type=\"radio\" name=\"options\" onchange=\"clapType = 0;\" autocomplete=\"off\" checked> Claras";
