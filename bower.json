@@ -1,16 +1,17 @@
 {
-  "name": "acompass",
-  "version": "0.0.0",
-  "homepage": "https://github.com/ElJere/aCompas",
-  "description": "A flamenco metronome for the Web",
-  "main": "index.html",
+  "name": "acompas",
+  "version": "0.0.1",
+  "homepage": "http://acompas.audio",
+  "description": "A flamenco metronome web and mobile application",
+  "main": "web/index.html",
   "keywords": [
     "flamenco",
     "web-audio-api",
     "metronome"
   ],
   "authors": [
-    "El Jere"
+    "El Jere",
+    "Olivier Ricordeau"
   ],
   "license": "MIT",
   "ignore": [
