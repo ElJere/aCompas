@@ -93,7 +93,7 @@ function scheduleNote( beatNumber, time ) {
 	notesInQueue.push( { note: beatNumber, time: time } );
 
 	// If option "times only" selected, don't play counter times
-	if ( (noteResolution==1) && (beatNumber%2) ) {
+	if ( (noteResolution === 1) && (beatNumber % 2 === 1) ) {
 		return; 
 	}
 
