@@ -156,7 +156,7 @@ function initFandangos() {
 
             if ( v >= 200 ) {
             	_txt = "Your rhythm is very fast ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -165,7 +165,7 @@ function initFandangos() {
             	}
             } else if ( v <= 90 ) {
             	_txt = "Your rhythm is very slow ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -173,7 +173,7 @@ function initFandangos() {
             		_txtDiv.append(_txt);
             	}
             } else {
-            	if ( _txtDiv.css('opacity') === 1 ) {
+            	if ( _txtDiv.css('opacity') == 1 ) {
             		_txtDiv.animate({'opacity': '0'}, 300, function() {
             			_txtDiv.empty().append("Info : ");
             		});

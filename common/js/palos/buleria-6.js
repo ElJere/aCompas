@@ -115,7 +115,7 @@ function initBuleria6() {
 
             if ( v >= 270 ) {
             	_txt = "Your rhythm is very fast ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -124,7 +124,7 @@ function initBuleria6() {
             	}
             } else if ( v <= 120 ) {
             	_txt = "Your rhythm is very slow ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -132,7 +132,7 @@ function initBuleria6() {
             		_txtDiv.append(_txt);
             	}
             } else {
-            	if ( _txtDiv.css('opacity') === 1 ) {
+            	if ( _txtDiv.css('opacity') == 1 ) {
             		_txtDiv.animate({'opacity': '0'}, 300, function() {
             			_txtDiv.empty().append("Info : ");
             		});

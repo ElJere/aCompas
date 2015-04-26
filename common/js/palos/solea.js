@@ -151,7 +151,7 @@ function initSolea() {
 
             if ( v >= 180 ) {
             	_txt = "Your rhythm is very fast ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -160,7 +160,7 @@ function initSolea() {
             	}
             } else if ( v >= 120 && v <= 180 ) {
              	_txt = "Your tempo is solea por buleria or alegria";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -169,7 +169,7 @@ function initSolea() {
             	}           	
             } else if ( v <= 60 ) {
             	_txt = "Your rhythm is very slow ...";
-            	if ( _txtDiv.css('opacity') === 0 ) {
+            	if ( _txtDiv.css('opacity') == 0 ) {
             		_txtDiv.append(_txt);
             		_txtDiv.animate({'opacity': '1'}, 300);
             	} else {
@@ -177,7 +177,7 @@ function initSolea() {
             		_txtDiv.append(_txt);
             	}
             } else {
-            	if ( _txtDiv.css('opacity') === 1 ) {
+            	if ( _txtDiv.css('opacity') == 1 ) {
             		_txtDiv.animate({'opacity': '0'}, 300, function() {
             			_txtDiv.empty().append("Info : ");
             		});

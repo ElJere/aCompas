@@ -21,7 +21,7 @@ var timerWorker = null;     		// The Web Worker used to fire timer messages
 var numberOfTimes = 12;				// Default rhythm times
 var container = null;               // Select the drawing svg container
 
-// List of all the palos' slugs
+// Palos data
 var palos = [
     {
     	slug: "buleria-6",
