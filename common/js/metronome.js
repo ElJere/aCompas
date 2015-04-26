@@ -268,10 +268,10 @@ function buildUi() {
 		html += "<h3><small>Resolution</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
 		html += "<label class=\"btn btn-sm active\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 0;\" autocomplete=\"off\" checked> Contratiempo";
+		html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"0\" autocomplete=\"off\" checked> Contratiempo";
 		html += "</label>";
 		html += "<label class=\"btn btn-sm\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 1;\" autocomplete=\"off\"> Tiempo";
+		html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"1\" autocomplete=\"off\"> Tiempo";
 		html += "</label>";
 		html += "</div>";
 		html += "</div>";
@@ -279,10 +279,10 @@ function buildUi() {
 		html += "<h3><small>Palmas</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
 		html += "<label class=\"btn btn-sm active\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"clapType = 0;\" autocomplete=\"off\" checked> Claras";
+		html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"0\" autocomplete=\"off\" checked> Claras";
 		html += "</label>";
 		html += "<label class=\"btn btn-sm\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"clapType = 1;\" autocomplete=\"off\"> Sordas";
+		html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"1\" autocomplete=\"off\"> Sordas";
 		html += "</label>";
 		html += "</div>";
 		html += "</div>";
@@ -497,8 +497,16 @@ function initMetronome() {
 		        }
 		});
 	});
+
+    $(".resolution").on("change", function(e) {
+        noteResolution = parseInt($(this).data("resolution"));
+    });
     
-	$(window).on("orientationchange", resetDraw);
-	$(window).on("resize", resetDraw); 
+    $(".clap-type").on("change", function(e) {
+        clapType = parseInt($(this).data("clap-type"));
+    });
+
+    $(window).on("orientationchange", resetDraw);
+    $(window).on("resize", resetDraw);
 
 }
