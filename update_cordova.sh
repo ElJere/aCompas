@@ -1,5 +1,5 @@
 #!/bin/sh -x
 
-cp -r ./common ./cordova/www
-cp -r ./bower_components ./cordova/www
+rsync -av --delete ./common ./cordova/www
+rsync -av --delete ./bower_components ./cordova/www
 

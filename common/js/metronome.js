@@ -252,36 +252,36 @@ function buildUi() {
 		html += "<span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span>";
 		html += "</button>";
 		html += "</div>";
-		html += "<div class=\"col-xs-4 col-sm-3\">";
-		html += "<h3><small>Change speed :</small></h3>";
+		html += "<div class=\"col-xs-4 col-sm-3 tempo-container\">";
+		html += "<h3><small>Speed :</small></h3>";
 		html += "<input class=\"tempo\" value=\"200\">";
 		html += "</div>";
 
-		html += "<div class=\"col-xs-4 col-sm-3\">";
-		html += "<h3><small>Change volume :</small></h3>";
+		html += "<div class=\"col-xs-4 col-sm-3 volume-container\">";
+		html += "<h3><small>Volume :</small></h3>";
 		html += "<input class=\"masterVolume\" value=\"80\">";
 		html += "</div>";
 
 		html += "<div class=\"col-xs-12 col-sm-3\">";
 		html += "<div class=\"row\">";
 		html += "<div class=\"col-xs-6 col-sm-12\">";
-		html += "<h3><small>Change resolution :</small></h3>";
+		html += "<h3><small>Resolution :</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-		html += "<label class=\"btn btn-default active\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 0;\" autocomplete=\"off\" checked> Contra tiempos";
+		html += "<label class=\"btn btn-sm active\">";
+		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 0;\" autocomplete=\"off\" checked> Contratiempo";
 		html += "</label>";
-		html += "<label class=\"btn btn-default\">";
-		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 1;\" autocomplete=\"off\"> Tiempos";
+		html += "<label class=\"btn btn-sm\">";
+		html += "<input type=\"radio\" name=\"options\" onchange=\"noteResolution = 1;\" autocomplete=\"off\"> Tiempo";
 		html += "</label>";
 		html += "</div>";
 		html += "</div>";
 		html += "<div class=\"col-xs-6 col-sm-12\">";
-		html += "<h3><small>Change palmas :</small></h3>";
+		html += "<h3><small>Palmas :</small></h3>";
 		html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-		html += "<label class=\"btn btn-default active\">";
+		html += "<label class=\"btn btn-sm active\">";
 		html += "<input type=\"radio\" name=\"options\" onchange=\"clapType = 0;\" autocomplete=\"off\" checked> Claras";
 		html += "</label>";
-		html += "<label class=\"btn btn-default\">";
+		html += "<label class=\"btn btn-sm\">";
 		html += "<input type=\"radio\" name=\"options\" onchange=\"clapType = 1;\" autocomplete=\"off\"> Sordas";
 		html += "</label>";
 		html += "</div>";
@@ -293,7 +293,7 @@ function buildUi() {
 
 		html += "<p class=\"text-danger\">Info : </p>";
 		html += "<section class=\"visualizer_div\">";
-		html += "<svg version=\"1.1\" class=\"visualizer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"300px\" viewBox=\"0 0 1200 300\" enable-background=\"new 0 0 1200 300\" xml:space=\"preserve\">";
+		html += "<svg version=\"1.1\" class=\"visualizer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\" viewBox=\"0 0 1200 300\" enable-background=\"new 0 0 1200 300\" xml:space=\"preserve\">";
 		html += "</svg>";
 		html += "</section>";
 

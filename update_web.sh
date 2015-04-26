@@ -1,4 +1,4 @@
 #!/bin/sh -x
 
-cp -r ./common ./web
-cp -r ./bower_components ./web
+rsync -av --delete ./common ./web
+rsync -av --delete ./bower_components ./web

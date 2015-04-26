@@ -52,8 +52,12 @@ a:hover {
 #title {
   font-family: 'Playball';
   color: tomato;
-  font-size: 84px;
   font-weight: bold;
+  margin-bottom: 0px;
+}
+
+#baseline {
+    margin-top: 0px;
 }
 
 .text-danger {

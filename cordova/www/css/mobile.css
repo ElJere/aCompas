@@ -1,0 +1,36 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+#title {
+	font-size: 56px;
+	margin-top: 2px;
+}
+
+#baseline small {
+	font-size: 16px;
+}
+
+/* Fix a display issue with the jQuery Knob widget (display is set to "inline" by the widget) */
+.tempo-container > div,
+.volume-container > div {
+	display: block !important;
+}
