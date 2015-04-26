@@ -215,7 +215,7 @@ function draw() {
 	}
 
 	// Necessary for jQuery to create svg
-	$(".visualizer_div").html($(".visualizer_div").html());
+	$("#" + palo + " .visualizer_div").html($("#" + palo + " .visualizer_div").html());
 	console.log('drawn visualizer');
 
 }
@@ -424,7 +424,7 @@ function initMetronome() {
 		// previous active tab : e.relatedTarget
 
 		// Stop playing if needed
-		if (isPlaying === true) {
+		if (isPlaying) {
 			play();
 		} 
 
