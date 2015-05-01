@@ -19,31 +19,3 @@ body {
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
-
-body > .container {
-    padding-left: 6px;
-    padding-right: 6px;
-}
-
-header {
-    border-bottom: #ddd 1px solid;
-    margin-bottom: 6px;
-}
-
-#title,
-#baseline {
-    text-align: center;
-}
-
-#title {
-    font-size: 56px;
-    margin-top: 2px;
-}
-
-#baseline {
-    margin-bottom: 6px;
-}
-
-#baseline small {
-    font-size: 16px;
-}

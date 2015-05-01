@@ -179,7 +179,7 @@ function draw() {
 
 		var bar = {
 			'x': (x * i + y) - y / 2,
-			'y': 250,
+			'y': 150,
 			'width': x - y,
 			'height': 5
 		};
@@ -238,8 +238,7 @@ function onTempoChange() {
                      txtDiv.append(txt);
                      txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                     txtDiv.empty().append("Info : ");
-                     txtDiv.append(txt);
+                     txtDiv.empty().append(txt);
                 }
             } else if ( v >= 120 && v <= 180 ) {
                  txt = "Your tempo is solea por buleria or alegria";
@@ -247,8 +246,7 @@ function onTempoChange() {
                      txtDiv.append(txt);
                      txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 60 ) {
                 txt = "Your rhythm is very slow ...";
@@ -256,13 +254,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if (txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -274,8 +271,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 120 ) {
                 txt = "Your rhythm is very slow ...";
@@ -283,13 +279,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -301,8 +296,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 90 ) {
                 txt = "Your rhythm is very slow ...";
@@ -310,13 +304,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -328,8 +321,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 90 ) {
                 txt = "Your rhythm is very slow ...";
@@ -337,13 +329,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -355,8 +346,7 @@ function onTempoChange() {
                      txtDiv.append(txt);
                      txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                     txtDiv.empty().append("Info : ");
-                     txtDiv.append(txt);
+                     txtDiv.empty().append(txt);
                 }
             } else if ( v <= 60 ) {
                 txt = "Your rhythm is very slow ...";
@@ -364,13 +354,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -382,8 +371,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v >= 120 && v <= 180 ) {
                 txt = "Your tempo is solea por buleria or alegria";
@@ -391,8 +379,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 60 ) {
                 txt = "Your rhythm is very slow ...";
@@ -400,13 +387,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -418,8 +404,7 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else if ( v <= 90 ) {
                 txt = "Your rhythm is por tientos";
@@ -427,13 +412,12 @@ function onTempoChange() {
                     txtDiv.append(txt);
                     txtDiv.animate({'opacity': '1'}, 300);
                 } else {
-                    txtDiv.empty().append("Info : ");
-                    txtDiv.append(txt);
+                    txtDiv.empty().append(txt);
                 }
             } else {
                 if ( txtDiv.css('opacity') == 1 ) {
                     txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty().append("Info : ");
+                        txtDiv.empty();
                     });
                 }
             }
@@ -517,32 +501,47 @@ function buildUi() {
     // Resolution
     html += "<label class=\"label label-default\">Resolution</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-sm active\">";
+    html += "<label class=\"btn btn-xs active\">";
     html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"0\" autocomplete=\"off\" checked> Contratiempo";
     html += "</label>";
-    html += "<label class=\"btn btn-sm\">";
+    html += "<label class=\"btn btn-xs\">";
     html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"1\" autocomplete=\"off\"> Tiempo";
     html += "</label>";
     html += "</div>";
     // Palmas
     html += "<label class=\"label label-default\">Palmas</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-sm active\">";
+    html += "<label class=\"btn btn-xs active\">";
     html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"0\" autocomplete=\"off\" checked> Claras";
     html += "</label>";
-    html += "<label class=\"btn btn-sm\">";
+    html += "<label class=\"btn btn-xs\">";
     html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"1\" autocomplete=\"off\"> Sordas";
     html += "</label>";
     html += "</div>";
 
     html += "</div>";
 
+    // Play button + info zone
+    html += "<div id=\"play-and-info-container\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
+    html += "<div class=\"row\">"
+    html += "<div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
+
     // Play button
-    html += "<div id=\"play-container\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
     html += "<button class=\"play\">";
     html += "<span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span>";
     html += "</button>";
+
     html += "</div>";
+    html += "<div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
+
+    // Info area
+    html += "<div class=\"row\">"
+    html += "<p id=\"info\" class=\"text-danger text-center\"></p>";
+    html += "</div>";
+
+    html += "</div>";
+    html += "</div>"; // End .row
+    html += "</div>"; // End #play-and-info-container
 
     html += "</div>"; // End .row
     html += "</div>"; // End Palo switcher + options (resolution and palmas) + play button
@@ -550,42 +549,28 @@ function buildUi() {
     // Sliders (tempo and volume)
     html += "<div id=\"sliders\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
 
-    html += "<div class=\"row\">";
     // Tempo
-    html += "<div class=\"col-xs-6\">";
-    html += "<label class=\"label label-default\">Tempo</label>";
-    html += "<div id=\"tempo-value\">";
-    html += tempo + " bpm";
-    html += "</div>";
+    html += "<div class=\"slider-container\">";
+    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo: " + tempo + " bpm</label>";
     html += "<div id=\"tempo\">";
     html += "</div>"
     html += "</div>";
     // Volume
-    html += "<div class=\"col-xs-6\">";
-    html += "<label class=\"label label-default\">Volume</label>";
-    html += "<div id=\"volume-value\">";
-    html += masterVolume + " %";
-    html += "</div>";
+    html += "<div class=\"slider-container\">";
+    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + masterVolume + " %</label>";
     html += "<div id=\"volume\">";
     html += "</div>";
     html += "</div>";
-
-    html += "</div>"; // End .row
 
     html += "</div>"; // End #sliders
 
     html += "</div>"; // End .row
 
-    // Info area
-    html += "<div class=\"row\">"
-    html += "<p id=\"info\" class=\"text-danger text-center\">Info : </p>";
-    html += "</div>";
-
     $("#main").html(html);
 
     // Build svg visualization using raphael.js
-    paper = new Raphael("visualizer-container", 1200, 300);
-    paper.setViewBox(0, 0, 1200, 300, true);
+    paper = new Raphael("visualizer-container", 1200, 185);
+    paper.setViewBox(0, 0, 1200, 185, true);
     paper.setSize('100%', '100%');
     container = $("#visualizer-container > svg");
 
@@ -608,11 +593,11 @@ function buildUi() {
         reversed: true
     }).on("slide", function(e) {
         tempo = Math.floor(e.value / 2);
-        $("#tempo-value").html(tempo + " bpm");
+        $("#tempo-label").html("Tempo: " + tempo + " bpm");
         onTempoChange();
     }).on("slideStop", function(e) {
         tempo = Math.floor(e.value / 2);
-        $("#tempo-value").html(tempo + " bpm");
+        $("#tempo-label").html("Tempo: " + tempo + " bpm");
         onTempoChange();
     });
     // Volume slider
@@ -625,10 +610,10 @@ function buildUi() {
         reversed: true,
     }).on("slide", function(e) {
         masterVolume = e.value;
-        $("#volume-value").html(masterVolume + " %");
+        $("#volume-label").html("Volume: " + masterVolume + " %");
     }).on("slideStop", function(e) {
         masterVolume = e.value;
-        $("#volume-value").html(masterVolume + " %");
+        $("#volume-label").html("Volume: " + masterVolume + " %");
     });
 
 }

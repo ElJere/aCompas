@@ -5,6 +5,29 @@
     font-style: normal;
 }
 
+/* Make footer stick at the bottom */
+
+html, body {
+    height: 100%;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#main {
+    padding-bottom: 101px; /* Height of <footer> + its top and bottom margins + its top and bottom borders */
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/* ! Make footer stick at the bottom*/
+
 a {
     color: tomato;
     text-decoration: none;
@@ -15,32 +38,51 @@ a:hover {
     text-decoration: none;
 }
 
+#wrapper > .container {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+header {
+    border-bottom: #ddd 1px solid;
+}
+
+#title,
+#baseline {
+    display: inline;
+}
+
 #title {
     font-family: 'Playball';
     color: tomato;
     font-weight: bold;
+    margin-top: 0px;
     margin-bottom: 0px;
+    margin-right: 4px;
+    font-size: 40px;
 }
 
 #baseline {
     margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
 }
 
 #palo-and-options,
-#play-container,
+#play-and-info-container,
 #sliders {
-    margin-bottom: 10px;
     text-align: center;
 }
 
 #palo-and-options label,
 #sliders label {
-    margin-bottom: 10px;
     display: block;
+    padding: 2px;
 }
 
+#palo-and-options label,
 #palo {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .play {
@@ -49,17 +91,16 @@ a:hover {
     -o-transition: all 1s ease 0s;
     transition: all 1s ease 0s;
     background: #ffffff;
-    border: 10px solid #F7F7F7;
+    border: 6px solid #F7F7F7;
     border-radius: 50%;
     color: #777;
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
-    height: 104px;
-    margin: 0.1em 0.2em;
+    width: 60px;
+    height: 60px;
     outline: none;
     vertical-align: top;
-    width: 104px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -69,21 +110,73 @@ a:hover {
 
 .play:active, .play.active {
     position:relative;
-    top:1px; left: 1px;
+    top:1px;
+    left: 1px;
     border-color: tomato;
 }
 
-#tempo-value,
-#volume-value {
-    margin-bottom: 16px;
+.slider-container {
+    display: inline-block;
+}
+
+.slider-container:nth-of-type(1) {
+    margin-right: 4px;
+}
+
+#tempo-label,
+#volume-label {
+    margin-bottom: 12px;
+}
+
+.slider.slider-vertical {
+    height: 180px;
 }
 
 #info {
     opacity: 0;
+    padding-top: 10px;
 }
 
 footer {
     border-top: 1px solid #e5e5e5;
     padding: 20px 0;
     text-align: center;
+    margin-top: 10px;
+}
+
+/* 992px is the limit width from medium to large with bootstrap */
+@media all and (min-width: 992px) {
+
+    #title {
+        font-size: 60px;
+    }
+
+    #baseline {
+        font-size: 30px;
+    }
+
+    #visualizer-container {
+        margin-bottom: 30px;
+    }
+
+    #palo-and-options label,
+    #palo {
+        margin-bottom: 10px;
+    }
+
+    #info {
+        margin-top: 30px;
+    }
+
+    #palo-and-options label,
+    #sliders label {
+        padding: 6px;
+    }
+
+    .play {
+        border-width: 12px;
+        width: 120px;
+        height: 120px;
+    }
+
 }
