@@ -16,8 +16,9 @@ window.aCompas = {
     timerWorker: null,              // The Web Worker used to fire timer messages
     nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
     visualization: null,            // <svg> visualization
-    paper: null                     // raphael.js constructor returns a paper object
+    paper: null,                     // raphael.js constructor returns a paper object
                                     // used to manipulate the SVG visualization
+    palos: null                     // Palos data
 }
 
 // Palos data
@@ -25,7 +26,7 @@ window.aCompas = {
 // Tempo = number of quarter notes per minute
 // Nb beats in pattern : number of beats in a pattern (counting an eighth note as a beat)
 // Nb cells in a pattern : number of times the palo's basic rhythmic cell is repeated in the pattern
-var palos = [
+window.aCompas.palos = [
     {
         slug: "buleria-6",
         label: "Buleria (6)",
@@ -264,7 +265,7 @@ function draw() {
 
 	}
 
-	console.log('drawn visualizer');
+	console.log('Drawn visualizer');
 }
 
 function resetDraw() {
@@ -485,7 +486,7 @@ function setPalo(paloSlug) {
     }
     window.aCompas.palo = paloSlug;
     var paloData = null;
-    $.each(palos, function(paloIndex, paloData2) {
+    $.each(window.aCompas.palos, function(paloIndex, paloData2) {
         if (window.aCompas.palo === paloData2.slug) {
             paloData = paloData2;
         }
@@ -540,7 +541,7 @@ function buildUi() {
     // Palo switcher
     html += "<label for=\"palo\" class=\"label label-default\">Rhythm</label>";
     html += "<select id=\"palo\" class=\"form-control\">";
-    $.each(palos, function(paloIndex, paloData) {
+    $.each(window.aCompas.palos, function(paloIndex, paloData) {
         html += "<option value=\"" + paloData.slug + "\">";
         html += paloData.label;
         html += "</option>";
