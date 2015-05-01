@@ -4,14 +4,14 @@
 
 function drawBarsAndNumbers(bar, number, i) {
     // Draw bars
-    var rect = paper.rect(bar.x, bar.y, bar.width, bar.height);
+    var rect = window.aCompas.paper.rect(bar.x, bar.y, bar.width, bar.height);
     rect.attr({ fill: "tomato" });
     rect.node.setAttribute("class", "bar bar_" + i);
 
     // Draw numbers
     var text = null;
     if ( number !== null ) {
-        text = paper.text((bar.x + bar.width / 2.1), (bar.y + 25), number);
+        text = window.aCompas.paper.text((bar.x + bar.width / 2.1), (bar.y + 25), number);
         text.attr({
             "fill": "lightgray",
             "font-size": 16,

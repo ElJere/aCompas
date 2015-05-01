@@ -1,128 +1,179 @@
-// Set variables
-var audioContext = null;
-var isPlaying = false;      		// Are we currently playing?
-var startTime;              		// The start time of the entire sequence.
-var currentNote;        			// What note is currently last scheduled?
-var palo = 'buleria-6';				// Default rhythm style
-var tempo =  200 / 2;               // Set default tempo
-var masterVolume = null;
-var masterVolume = 100;             // Set default master volume
-var lookahead = 25.0;       		// How frequently to call scheduling function 
-                            		//(in milliseconds)
-var scheduleAheadTime = 0.1;    	// How far ahead to schedule audio (sec)
-                            		// This is calculated from lookahead, and overlaps 
-                            		// with next interval (in case the timer is late)
-var nextNoteTime = 0.0;     		// when the next note is due.
-var noteResolution = 0;     		// 0 = counter times, 1 = times only
-var clapType = 0;                   // Default clap = light claps
-var notesInQueue = [];      		// the notes that have been put into the web audio,
-                            		// and may or may not have played yet. {note, time}
-var timerWorker = null;     		// The Web Worker used to fire timer messages
-
-var numberOfTimes = 12;				// Default rhythm times
-var container = null;               // Svg visualization container
-var paper = null;                   // Object returned by the Raphael constructor
+// Initialize the metronome object
+window.aCompas = {
+    audioContext: null,
+    isPlaying: false,               // Are we currently playing ?
+    currentNote: null,              // What note is currently last scheduled ?
+    palo: null,                     // Current palo's slug
+    masterVolume: 90,               // Default master volume
+    lookahead: 25.0,                // How frequently to call scheduling function ?
+                                    // (in milliseconds)
+    scheduleAheadTime: 0.1,         // How far ahead to schedule audio (sec)
+                                    // This is calculated from lookahead, and overlaps
+                                    // with next interval (in case the timer is late)
+    nextNoteTime: 0.0,              // When the next note is due ?
+    noteResolution: 0,              // 0 = times + counter times, 1 = times only
+    clapType: 0,                    // 0 = palmas claras, 1 = palmas sordas
+    timerWorker: null,              // The Web Worker used to fire timer messages
+    nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
+    visualization: null,            // <svg> visualization
+    paper: null                     // raphael.js constructor returns a paper object
+                                    // used to manipulate the SVG visualization
+}
 
 // Palos data
+//
+// Tempo = number of quarter notes per minute
+// Nb beats in pattern : number of beats in a pattern (counting an eighth note as a beat)
+// Nb cells in a pattern : number of times the palo's basic rhythmic cell is repeated in the pattern
 var palos = [
     {
         slug: "buleria-6",
-        label: "Buleria (6)"
+        label: "Buleria (6)",
+        minTempo: 20,
+        maxTempo: 170,
+        defaultTempo: 100,
+        nbBeatsInPattern: 12,
+        nbCellsInPattern: 1,
+        rhythmicSignature: "6/8",
+        description: ""
     },
     {
         slug: "buleria-12",
-        label: "Buleria (12)"
-    },
-    {
-        slug: "solea",
-        label: "Soleá"
-    },
-    {
-        slug: "siguiriya",
-        label: "Siguiriya"
+        label: "Buleria (12)",
+        minTempo: 20,
+        maxTempo: 170,
+        defaultTempo: 100,
+        nbBeatsInPattern: 24,
+        nbCellsInPattern: 1,
+        rhythmicSignature: "12/8",
+        description: ""
     },
     {
         slug: "fandangos",
-        label: "Fandangos"
-    },
-    {
-        slug: "tangos",
-        label: "Tangos"
+        label: "Fandangos",
+        minTempo: 15,
+        maxTempo: 125,
+        defaultTempo: 75,
+        nbBeatsInPattern: 24,
+        nbCellsInPattern: 1,
+        rhythmicSignature: "12/8",
+        description: ""
     },
     {
         slug: "rumba",
-        label: "Rumba"
+        label: "Rumba",
+        minTempo: 15,
+        maxTempo: 170,
+        defaultTempo: 100,
+        nbBeatsInPattern: 16,
+        nbCellsInPattern: 2,
+        rhythmicSignature: "4/4",
+        description: ""
+    },
+    {
+        slug: "siguiriya",
+        label: "Siguiriya",
+        minTempo: 10,
+        maxTempo: 90,
+        defaultTempo: 40,
+        nbBeatsInPattern: 24,
+        nbCellsInPattern: 1,
+        rhythmicSignature: "12/8",
+        description: ""
+    },
+    {
+        slug: "solea",
+        label: "Soleá",
+        minTempo: 30,
+        maxTempo: 130,
+        defaultTempo: 50,
+        nbBeatsInPattern: 24,
+        nbCellsInPattern: 1,
+        rhythmicSignature: "12/8",
+        description: ""
+    },
+    {
+        slug: "tangos",
+        label: "Tangos",
+        minTempo: 15,
+        maxTempo: 170,
+        defaultTempo: 85,
+        nbBeatsInPattern: 16,
+        nbCellsInPattern: 2,
+        rhythmicSignature: "4/4",
+        description: ""
     }
 ];
 
 // Set functions
 function playSound(buffer, start, vol) {
     // Create source, sounds gain and master gain
-	var source = audioContext.createBufferSource(); 
-	var gainNode = audioContext.createGain();
-	var masterGainNode = audioContext.createGain();
+	var source = window.aCompas.audioContext.createBufferSource();
+	var gainNode = window.aCompas.audioContext.createGain();
+	var masterGainNode = window.aCompas.audioContext.createGain();
 
 	// Set sounds and master gain nodes
 	gainNode.gain.value = vol;
-	masterGainNode.gain.value = masterVolume / 100;
+	masterGainNode.gain.value = window.aCompas.masterVolume / 100;
 	source.buffer = buffer;
 
 	// Connect everything
 	source.connect(gainNode);
 	gainNode.connect(masterGainNode);
-	masterGainNode.connect( audioContext.destination );
+	masterGainNode.connect( window.aCompas.audioContext.destination );
 
 	// Play
 	source.start(start);
 }
 
+function getTempo() {
+    return $("#tempo").data("slider").getValue();
+}
+
 function nextNote() {
 	// Calculate current beat length
-	var secondsPerBeat = 60.0 / tempo;
+	var secondsPerBeat = 60.0 / getTempo();
 
 	// Add beat length to last beat time  
-	nextNoteTime += 0.25 * secondsPerBeat;
+	window.aCompas.nextNoteTime += 0.25 * secondsPerBeat;
 
 	// Advance the beat number, back to zero when loop finished
-	currentNote++;    
-	if (currentNote == numberOfTimes) {
-		currentNote = 0;
+	window.aCompas.currentNote++;
+	if (window.aCompas.currentNote === window.aCompas.nbBeatsInPattern) {
+		window.aCompas.currentNote = 0;
 	}
 }
 
 function scheduleNote( beatNumber, time ) {
-	// push the note on the queue, even if we're not playing.
-	notesInQueue.push( { note: beatNumber, time: time } );
-
 	// If option "times only" selected, don't play counter times
-	if ( (noteResolution === 1) && (beatNumber % 2 === 1) ) {
+	if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
 		return; 
 	}
 
-	switch (palo) {
+	switch (window.aCompas.palo) {
 		case 'buleria-6':
-			scheduleNoteBuleria6(clapType, beatNumber, sounds, time);
+			scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'buleria-12':
-			scheduleNoteBuleria12(clapType, beatNumber, sounds, time);
+			scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'solea':
-			scheduleNoteSolea(clapType, beatNumber, sounds, time);
+			scheduleNoteSolea(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'siguiriya':
-			scheduleNoteSiguiriya(clapType, beatNumber, sounds, time);
+			scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'fandangos':
-			scheduleNoteFandangos(clapType, beatNumber, sounds, time);
+			scheduleNoteFandangos(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'tangos':
-			scheduleNoteTangos(clapType, beatNumber, sounds, time);
+			scheduleNoteTangos(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		case 'rumba':
-			scheduleNoteRumba(clapType, beatNumber, sounds, time);
+			scheduleNoteRumba(window.aCompas.clapType, beatNumber, sounds, time);
 			break ;
 		default :
-			console.log("Unknown palo \"" + palo + "\"");
+			console.log("Unknown palo \"" + window.aCompas.palo + "\"");
 			break ;
 	}
 }
@@ -130,8 +181,8 @@ function scheduleNote( beatNumber, time ) {
 function scheduler() {
 	// while there are notes that will need to play before the next worker interval, 
 	// schedule them and advance the pointer.
-	while ( nextNoteTime < audioContext.currentTime + scheduleAheadTime ) {
-		scheduleNote( currentNote, nextNoteTime );
+	while ( window.aCompas.nextNoteTime < window.aCompas.audioContext.currentTime + window.aCompas.scheduleAheadTime ) {
+		scheduleNote( window.aCompas.currentNote, window.aCompas.nextNoteTime );
 		nextNote();
 	}
 }
@@ -141,18 +192,18 @@ function play() {
 	var playButton = $('.play > .glyphicon');
 
 	// start playing
-	if (! isPlaying) { 
+	if (! window.aCompas.isPlaying) {
 
-		currentNote = 0;
-		nextNoteTime = audioContext.currentTime;
+		window.aCompas.currentNote = 0;
+		window.aCompas.nextNoteTime = window.aCompas.audioContext.currentTime;
 
 		// change play button
 		playButton.removeClass('glyphicon-play').addClass('glyphicon-stop');
 		$('.play').addClass('active');
 
 		// Send message to worker
-		timerWorker.postMessage("start");
-		isPlaying = true;
+		window.aCompas.timerWorker.postMessage("start");
+		window.aCompas.isPlaying = true;
 
 		// stop playing
 	} else { 
@@ -162,8 +213,8 @@ function play() {
 		$('.play').removeClass('active');
 
 		// Send message to worker
-		timerWorker.postMessage("stop");
-		isPlaying = false;
+		window.aCompas.timerWorker.postMessage("stop");
+		window.aCompas.isPlaying = false;
 
 	}
 }
@@ -171,11 +222,11 @@ function play() {
 function draw() {
 
 	// Take measures
-	var x = Math.floor( 1200 / numberOfTimes );
-	var y = x - Math.floor( 1200 / (numberOfTimes + 1) );
+	var x = Math.floor( 1200 / window.aCompas.nbBeatsInPattern );
+	var y = x - Math.floor( 1200 / (window.aCompas.nbBeatsInPattern + 1) );
 
 	// Draw svg
-	for ( var i = 0; i < numberOfTimes; i++ ) {
+	for ( var i = 0; i < window.aCompas.nbBeatsInPattern; i++ ) {
 
 		var bar = {
 			'x': (x * i + y) - y / 2,
@@ -184,7 +235,7 @@ function draw() {
 			'height': 5
 		};
 
-		switch (palo) {
+		switch (window.aCompas.palo) {
 			case 'buleria-6':
 				drawBuleria6(i, bar);
 				break ;
@@ -207,30 +258,28 @@ function draw() {
 				drawRumba(i, bar);
 				break ;
 			default :
-				console.log("Error: unknown palo \"" + palo + "\"");
+				console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
 				break ;
 		}
 
 	}
-
-	// Necessary for jQuery to create svg
-//	$("#visualizer-container").html($("#visualizer-container").html());
 
 	console.log('drawn visualizer');
 }
 
 function resetDraw() {
     // Erase svg and draw again
-    container.html("");
+    window.aCompas.visualization.html("");
     draw();
 }
 
 // Updates the zone which contains information about the tempo
 function onTempoChange() {
-    var v = tempo * 2;
+//TODO Compare with tempo without multiplying by 2
+    var v = getTempo() * 2;
     var txt = null;
     var txtDiv = $("#info");
-    switch (palo) {
+    switch (window.aCompas.palo) {
         case "buleria-12":
             if ( v >= 230 ) {
                 txt = "Your rhythm is very fast ...";
@@ -423,45 +472,47 @@ function onTempoChange() {
             }
             break ;
         default :
-            console.log("Error: unknown palo \"" + palo + "\"");
+            console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
             return ;
             break ;
     }
 }
 
-function onPaloSwitch() {
+function setPalo(paloSlug) {
     // Stop playing if needed
-    if (isPlaying) {
+    if (window.aCompas.isPlaying) {
         play();
     }
-    // Set number of times
-    switch (palo) {
-        case 'buleria-6':
-            numberOfTimes = 12;
-            break ;
-        case 'buleria-12':
-            numberOfTimes = 24;
-            break ;
-        case 'solea':
-            numberOfTimes = 24;
-            break ;
-        case 'siguiriya':
-            numberOfTimes = 24;
-            break ;
-        case 'fandangos':
-            numberOfTimes = 24;
-            break ;
-        case 'tangos':
-            numberOfTimes = 16;
-            break ;
-        case 'rumba':
-            numberOfTimes = 16;
-            break ;
-        default :
-            console.log("Error: Unknown palo \"" + palo + "\"");
-            break ;
+    window.aCompas.palo = paloSlug;
+    var paloData = null;
+    $.each(palos, function(paloIndex, paloData2) {
+        if (window.aCompas.palo === paloData2.slug) {
+            paloData = paloData2;
+        }
+    });
+    // Update window.aCompas.nbBeatsInPattern
+     window.aCompas.nbBeatsInPattern = paloData.nbBeatsInPattern;
+    // Destroy the tempo slider if needed
+    if ($("#tempo").data("slider")) {
+        $("#tempo").data("slider").destroy();
     }
-
+    // Build tempo slider
+    $("#tempo").slider({
+        orientation: "vertical",
+        min: paloData.minTempo,
+        max: paloData.maxTempo,
+        tooltip: "hide",
+        value: paloData.defaultTempo,
+        reversed: true
+    }).on("slide", function(e) {
+        $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
+        onTempoChange();
+    }).on("slideStop", function(e) {
+        $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
+        onTempoChange();
+    });
+    // Force rendering of the slider's label
+    $("#tempo").trigger("slideStop");
     // Reset visualization
     resetDraw();
 }
@@ -489,9 +540,9 @@ function buildUi() {
     // Palo switcher
     html += "<label for=\"palo\" class=\"label label-default\">Rhythm</label>";
     html += "<select id=\"palo\" class=\"form-control\">";
-    $.each(palos, function(paloIndex, palo) {
-        html += "<option value=\"" + palo.slug + "\">";
-        html += palo.label;
+    $.each(palos, function(paloIndex, paloData) {
+        html += "<option value=\"" + paloData.slug + "\">";
+        html += paloData.label;
         html += "</option>";
     });
     html += "</select>";
@@ -551,13 +602,13 @@ function buildUi() {
 
     // Tempo
     html += "<div class=\"slider-container\">";
-    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo: " + tempo + " bpm</label>";
+    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo:</label>";
     html += "<div id=\"tempo\">";
     html += "</div>"
     html += "</div>";
     // Volume
     html += "<div class=\"slider-container\">";
-    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + masterVolume + " %</label>";
+    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
     html += "<div id=\"volume\">";
     html += "</div>";
     html += "</div>";
@@ -569,51 +620,33 @@ function buildUi() {
     $("#main").html(html);
 
     // Build svg visualization using raphael.js
-    paper = new Raphael("visualizer-container", 1200, 185);
-    paper.setViewBox(0, 0, 1200, 185, true);
-    paper.setSize('100%', '100%');
-    container = $("#visualizer-container > svg");
+    window.aCompas.paper = new Raphael("visualizer-container", 1200, 185);
+    window.aCompas.paper.setViewBox(0, 0, 1200, 185, true);
+    window.aCompas.paper.setSize('100%', '100%');
+    window.aCompas.visualization = $("#visualizer-container > svg");
 
     // On palo change
     $("#palo").change(function(e) {
         // Set rhythm style
-        palo = $(this).val();
-        onPaloSwitch();
+        setPalo($(this).val());
         // Trick to force rendering the newly selected value on Cordova
         $(this).blur();
     });
 
-    // Tempo slider
-    $("#tempo").slider({
-        orientation: "vertical",
-        min: 20,
-        max: 350,
-        tooltip: "hide",
-        value: 200,
-        reversed: true
-    }).on("slide", function(e) {
-        tempo = Math.floor(e.value / 2);
-        $("#tempo-label").html("Tempo: " + tempo + " bpm");
-        onTempoChange();
-    }).on("slideStop", function(e) {
-        tempo = Math.floor(e.value / 2);
-        $("#tempo-label").html("Tempo: " + tempo + " bpm");
-        onTempoChange();
-    });
     // Volume slider
     $("#volume").slider({
         orientation: "vertical",
         min: 0,
         max: 100,
         tooltip: "hide",
-        value: masterVolume,
+        value: window.aCompas.masterVolume,
         reversed: true,
     }).on("slide", function(e) {
-        masterVolume = e.value;
-        $("#volume-label").html("Volume: " + masterVolume + " %");
+        window.aCompas.masterVolume = e.value;
+        $("#volume-label").html("Volume: " + window.aCompas.masterVolume + " %");
     }).on("slideStop", function(e) {
-        masterVolume = e.value;
-        $("#volume-label").html("Volume: " + masterVolume + " %");
+        window.aCompas.masterVolume = e.value;
+        $("#volume-label").html("Volume: " + window.aCompas.masterVolume + " %");
     });
 
 }
@@ -627,12 +660,13 @@ function buildUi() {
 function initMetronome() {
 
     buildUi();
-    draw();
+    // Set default palo
+    $("#palo").change();
 
     // Create Web Audio API audio context
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-    audioContext = new AudioContext();
+    window.aCompas.audioContext = new AudioContext();
 
     // Prepare loading sounds
     var format = '.' + (new Audio().canPlayType('audio/ogg') !== '' ? 'ogg' : 'mp3');
@@ -644,7 +678,7 @@ function initMetronome() {
 
         request.onload = function() {
             // request.response is encoded... so decode it now
-            audioContext.decodeAudioData(request.response, function(buffer) {
+            window.aCompas.audioContext.decodeAudioData(request.response, function(buffer) {
                 obj.buffer = buffer;
                 }, function() {
                     message.call($wrapper, 'error', 'Error loading ' + obj.src);
@@ -702,9 +736,9 @@ function initMetronome() {
     loadSounds(sounds);
 
     // Set the message worker
-    timerWorker = new Worker("common/js/metronomeworker.js");
+    window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
 
-    timerWorker.onmessage = function(e) {
+    window.aCompas.timerWorker.onmessage = function(e) {
         if (e.data == "tick") {
             // console.log("tick!");
             scheduler();
@@ -712,7 +746,7 @@ function initMetronome() {
             console.log("message: " + e.data);
         }
     };
-    timerWorker.postMessage({"interval":lookahead});
+    window.aCompas.timerWorker.postMessage({"interval":window.aCompas.lookahead});
 
     // Set buttons
     $('.play').on('click', function() {
@@ -720,11 +754,11 @@ function initMetronome() {
     });
 
     $(".resolution").on("change", function(e) {
-        noteResolution = parseInt($(this).data("resolution"));
+        window.aCompas.noteResolution = parseInt($(this).data("resolution"));
     });
     
     $(".clap-type").on("change", function(e) {
-        clapType = parseInt($(this).data("clap-type"));
+        window.aCompas.clapType = parseInt($(this).data("clap-type"));
     });
 
     $(window).on("orientationchange", resetDraw);
