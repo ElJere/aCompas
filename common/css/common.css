@@ -147,6 +147,11 @@ footer {
 /* 992px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 992px) {
 
+    header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
     #title {
         font-size: 60px;
     }
@@ -156,8 +161,8 @@ footer {
     }
 
     #visualizer-container {
-        margin-top: 40px;
-        margin-bottom: 40px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     #palo-and-options label,
