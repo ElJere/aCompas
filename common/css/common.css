@@ -144,6 +144,11 @@ header {
     height: 162px;
 }
 
+.slider-handle {
+    background-color: tomato;
+    background-image: linear-gradient(to bottom, tomato 0%, firebrick 100%);
+}
+
 #info {
     opacity: 0;
     padding-top: 10px;
