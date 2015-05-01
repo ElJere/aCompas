@@ -102,7 +102,7 @@ header {
     -o-transition: all 1s ease 0s;
     transition: all 1s ease 0s;
     background: #ffffff;
-    border: 6px solid #F7F7F7;
+    border: 6px solid tomato;
     border-radius: 50%;
     color: #777;
     cursor: pointer;
@@ -117,14 +117,16 @@ header {
 }
 
 .play:hover {
+    border-color: firebrick;
+}
+
+.play:active,
+.play.active {
     border-color: tomato;
 }
 
-.play:active, .play.active {
-    position:relative;
-    top:1px;
-    left: 1px;
-    border-color: tomato;
+.play.active:hover {
+    border-color: firebrick;
 }
 
 .slider-container {
