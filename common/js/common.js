@@ -480,7 +480,7 @@ function buildUi() {
     html += "<div class=\"row\">";
 
     // Palo switcher + options (resolution and palmas) + play button
-    html += "<div class=\"col-xs-6 col-sm-6 col-md-8 col-lg-8\">";
+    html += "<div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-8 col-lg-8\">";
     html += "<div class=\"row\">";
 
     // Palo switcher + options
@@ -547,7 +547,7 @@ function buildUi() {
     html += "</div>"; // End Palo switcher + options (resolution and palmas) + play button
 
     // Sliders (tempo and volume)
-    html += "<div id=\"sliders\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
+    html += "<div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
 
     // Tempo
     html += "<div class=\"slider-container\">";

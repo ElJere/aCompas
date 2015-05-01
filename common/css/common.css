@@ -39,8 +39,8 @@ a:hover {
 }
 
 #wrapper > .container {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 header {
@@ -59,30 +59,41 @@ header {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-right: 8px;
-    font-size: 40px;
+    font-size: 34px;
 }
 
 #baseline {
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-#palo-and-options,
-#play-and-info-container,
-#sliders {
+#main {
+    vertical-align: middle;
+}
+
+#left-col,
+#right-col {
     text-align: center;
 }
 
-#palo-and-options label,
-#sliders label {
+#left-col {
+    padding-right: 0px;
+}
+
+#right-col {
+    padding-left: 0px;
+}
+
+#left-col label,
+#right-col label {
     display: block;
-    padding: 2px;
+    padding: 1px;
 }
 
 #palo-and-options label,
 #palo {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .play {
@@ -121,7 +132,7 @@ header {
 }
 
 .slider-container:nth-of-type(1) {
-    margin-right: 4px;
+    margin-right: 1px;
 }
 
 #tempo-label,
@@ -130,7 +141,7 @@ header {
 }
 
 .slider.slider-vertical {
-    height: 180px;
+    height: 162px;
 }
 
 #info {
@@ -145,11 +156,8 @@ footer {
     margin-top: 10px;
 }
 
-/*
-    992px is the limit width from medium to large with bootstrap
-    768px is the limit width from small to medium with bootstrap
-*/
-@media all and (min-width: 992px) and (orientation: landscape), (min-height: 768px) and (orientation:portrait) {
+/* 992px is the limit width from medium to large with bootstrap */
+@media all and (min-width: 992px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
 
     header {
         padding-top: 10px;
@@ -165,8 +173,8 @@ footer {
     }
 
     #visualizer-container {
-        margin-top: 30px;
-        margin-bottom: 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     #palo-and-options label,
@@ -178,15 +186,39 @@ footer {
         margin-top: 30px;
     }
 
-    #palo-and-options label,
-    #sliders label {
-        padding: 6px;
+    #left-col label,
+    #right-col label {
+        padding: 3px;
     }
 
     .play {
-        border-width: 12px;
-        width: 120px;
-        height: 120px;
+        border-width: 10px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .slider.slider-vertical {
+        height: 200px;
+    }
+
+}
+
+/* 1200px is the limit width from medium to large with bootstrap */
+@media all and (min-width: 1200px) and (orientation: landscape) {
+
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #visualizer-container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    #palo-and-options label,
+    #palo {
+        margin-bottom: 20px;
     }
 
 }
