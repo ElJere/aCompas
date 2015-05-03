@@ -72,23 +72,39 @@ header {
     vertical-align: middle;
 }
 
-#left-col,
-#right-col {
-    text-align: center;
+#controls-row {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
-#left-col {
+#controls-row > div {
+    padding-left: 0px;
     padding-right: 0px;
 }
 
+#left-col,
 #right-col {
-    padding-left: 0px;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 8px;
+}
+
+#left-col > .row,
+#right-col > .row {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #left-col label,
 #right-col label {
     display: block;
     padding: 1px;
+}
+
+#palo-and-options {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 #palo-and-options label,
@@ -129,17 +145,14 @@ header {
     border-color: firebrick;
 }
 
-.slider-container {
-    display: inline-block;
-}
-
-.slider-container:nth-of-type(1) {
-    margin-right: 1px;
-}
-
 #tempo-label,
 #volume-label {
-    margin-bottom: 12px;
+    margin-bottom: 17px;
+}
+
+.slider-container {
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .slider.slider-vertical {
@@ -149,6 +162,10 @@ header {
 .slider-handle {
     background-color: tomato;
     background-image: linear-gradient(to bottom, tomato 0%, firebrick 100%);
+    margin-left: -15px !important;
+    margin-top: -15px !important;
+    height: 40px;
+    width: 40px;
 }
 
 #info {
@@ -189,14 +206,18 @@ footer {
         margin-bottom: 10px;
     }
 
-    #info {
-        margin-top: 30px;
-    }
-
     #left-col label,
     #right-col label {
         padding: 3px;
     }
+
+    .slider.slider-vertical {
+        height: 200px;
+    }
+
+}
+
+@media all and (min-width: 992px) and (orientation: landscape) {
 
     .play {
         border-width: 10px;
@@ -204,8 +225,8 @@ footer {
         height: 100px;
     }
 
-    .slider.slider-vertical {
-        height: 200px;
+    #info {
+        margin-top: 30px;
     }
 
 }

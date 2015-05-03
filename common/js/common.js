@@ -522,14 +522,14 @@ function buildUi() {
     var html = "";
 
     // Visualization
-    html += "<div class=\"row\">";
+    html += "<div class=\"controls-row row\">";
     html += "<div class=\"col-xs-12\">";
     html += "<div id=\"visualizer-container\">";
     html += "</div>";
     html += "</div>";
     html += "</div>";
 
-    html += "<div class=\"row\">";
+    html += "<div id=\"controls-row\" class=\"row\">";
 
     // Palo switcher + options (resolution and palmas) + play button
     html += "<div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-8 col-lg-8\">";
@@ -600,21 +600,23 @@ function buildUi() {
 
     // Sliders (tempo and volume)
     html += "<div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
+    html += "<div class=\"row\">";
 
     // Tempo
-    html += "<div class=\"slider-container\">";
+    html += "<div class=\"slider-container col-xs-6\">";
     html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo:</label>";
     html += "<div id=\"tempo\">";
     html += "</div>"
     html += "</div>";
     // Volume
-    html += "<div class=\"slider-container\">";
+    html += "<div class=\"slider-container col-xs-6\">";
     html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
     html += "<div id=\"volume\">";
     html += "</div>";
     html += "</div>";
 
-    html += "</div>"; // End #sliders
+    html += "</div>";
+    html += "</div>"; // End #right-col
 
     html += "</div>"; // End .row
 
