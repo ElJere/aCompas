@@ -522,7 +522,7 @@ function buildUi() {
     var html = "";
 
     // Visualization
-    html += "<div class=\"controls-row row\">";
+    html += "<div class=\"row\">";
     html += "<div class=\"col-xs-12\">";
     html += "<div id=\"visualizer-container\">";
     html += "</div>";
