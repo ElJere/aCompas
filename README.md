@@ -16,8 +16,8 @@ git clone https://github.com/ElJere/aCompas.git
 cd aCompas
 # Install dependencies using bower
 bower install
-# Copy assets to the web/ folder
-./update_web.sh
+# Synchronize assets to the web/ and cordova/ folders
+./sync_assets.sh
 # Go inside the web/ subdirectory of the project (which contains the web app version)
 cd web/
 # Run a basic web server on port 8000
@@ -45,8 +45,8 @@ vagrant ssh
 cd /vagrant
 # Setup dependendencies
 bower install
-# Copy assets to the web/ folder
-./update_web.sh
+# Synchronize assets to the web/ and cordova/ folders
+./sync_assets.sh
 # Go inside the web/ subdirectory of the project (which contains the web app version)
 cd web/
 # Run a basic web server on port 8000
@@ -64,8 +64,8 @@ git clone https://github.com/ElJere/aCompas.git
 cd aCompas
 # Install dependencies using bower
 bower install
-# Copy assets to the cordova/ folder
-./update_cordova.sh
+# Synchronize assets to the web/ and cordova/ folders
+./sync_assets.sh
 # Go inside the Cordova project
 cd cordova/
 # Install Cordova

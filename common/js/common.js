@@ -672,8 +672,14 @@ function initMetronome() {
     window.aCompas.audioContext = new AudioContext();
 
     // Prepare loading sounds
-    var format = '.' + (new Audio().canPlayType('audio/ogg') !== '' ? 'ogg' : 'mp3');
-
+    var format = '.';
+    if (new Audio().canPlayType("audio/ogg")) {
+        format += "ogg";
+    } else if (new Audio().canPlayType("audio/mp3")) {
+        format += "mp3";
+    } else {
+        format += "wav";
+    }
     function loadSoundObj(obj, callback) {
         var request = new XMLHttpRequest();
         request.open('GET', "common/audio/" + obj.src + format, true);
