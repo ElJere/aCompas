@@ -19,3 +19,7 @@ body {
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
+
+#main {
+    padding-bottom: 0px;
+}

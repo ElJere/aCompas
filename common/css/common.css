@@ -87,7 +87,6 @@ header {
     text-align: center;
     padding-left: 2px;
     padding-right: 2px;
-    margin-bottom: 8px;
 }
 
 #left-col > .row,
@@ -136,7 +135,6 @@ header {
     border-color: firebrick;
 }
 
-.play:active,
 .play.active {
     border-color: tomato;
 }
