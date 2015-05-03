@@ -274,202 +274,89 @@ function resetDraw() {
     draw();
 }
 
+function setInfoMessage(txt) {
+    var txtDiv = $("#info");
+    if (txt === null) {
+        txtDiv.css({ "opacity": 0 }, 300).empty();
+    } else {
+        if (txtDiv.html().length !== 0 ) {
+            txtDiv.html(txt);
+        } else {
+            txtDiv.html(txt).animate({"opacity": 1}, 300);
+        }
+    }
+}
+
 // Updates the zone which contains information about the tempo
 function onTempoChange() {
 //TODO Compare with tempo without multiplying by 2
     var v = getTempo() * 2;
-    var txt = null;
-    var txtDiv = $("#info");
     switch (window.aCompas.palo) {
         case "buleria-12":
             if ( v >= 230 ) {
-                txt = "Your rhythm is very fast ...";
-                if (txtDiv.css('opacity') == 0 ) {
-                     txtDiv.append(txt);
-                     txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                     txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v >= 120 && v <= 180 ) {
-                 txt = "Your tempo is solea por buleria or alegria";
-                if (txtDiv.css('opacity') == 0 ) {
-                     txtDiv.append(txt);
-                     txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your tempo is solea por buleria or alegria");
             } else if ( v <= 60 ) {
-                txt = "Your rhythm is very slow ...";
-                if (txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if (txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break;
         case "buleria-6":
             if ( v >= 270 ) {
-                txt = "Your rhythm is very fast ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v <= 120 ) {
-                txt = "Your rhythm is very slow ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         case "fandangos":
             if ( v >= 200 ) {
-                txt = "Your rhythm is very fast ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v <= 90 ) {
-                txt = "Your rhythm is very slow ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         case "rumba":
             if ( v >= 240 ) {
-                txt = "Your rhythm is very fast ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v <= 90 ) {
-                txt = "Your rhythm is very slow ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         case "siguiriya":
             if ( v >= 160 ) {
-                txt = "Your rhythm is very fast ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                     txtDiv.append(txt);
-                     txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                     txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v <= 60 ) {
-                txt = "Your rhythm is very slow ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         case "solea":
             if ( v >= 180 ) {
-                txt = "Your rhythm is very fast ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very fast");
             } else if ( v >= 120 && v <= 180 ) {
-                txt = "Your tempo is solea por buleria or alegria";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your tempo is solea por buleria or alegria");
             } else if ( v <= 60 ) {
-                txt = "Your rhythm is very slow ...";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is very slow");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         case "tangos":
             if ( v >= 180 ) {
-                txt = "Your rhythm is por rumba";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is por rumba");
             } else if ( v <= 90 ) {
-                txt = "Your rhythm is por tientos";
-                if ( txtDiv.css('opacity') == 0 ) {
-                    txtDiv.append(txt);
-                    txtDiv.animate({'opacity': '1'}, 300);
-                } else {
-                    txtDiv.empty().append(txt);
-                }
+                setInfoMessage("Your rhythm is por tientos");
             } else {
-                if ( txtDiv.css('opacity') == 1 ) {
-                    txtDiv.animate({'opacity': '0'}, 300, function() {
-                        txtDiv.empty();
-                    });
-                }
+                setInfoMessage(null);
             }
             break ;
         default :
