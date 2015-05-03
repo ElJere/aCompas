@@ -18,10 +18,8 @@ cd aCompas
 bower install
 # Synchronize assets to the web/ and cordova/ folders
 ./sync_assets.sh
-# Go inside the web/ subdirectory of the project (which contains the web app version)
-cd web/
 # Run a basic web server on port 8000
-python -m SimpleHTTPServer 8000
+./server.sh
 ```
 
 Then, open your favorite web browser and go to [http://localhost:8000](http://localhost:8000)
@@ -47,10 +45,8 @@ cd /vagrant
 bower install
 # Synchronize assets to the web/ and cordova/ folders
 ./sync_assets.sh
-# Go inside the web/ subdirectory of the project (which contains the web app version)
-cd web/
 # Run a basic web server on port 8000
-python -m SimpleHTTPServer 8000
+./server.sh
 ```
 
 Then, in the host operating system (not inside the virtual machine), open your favorite web browser and go to [http://192.168.50.2:8000](http://192.168.50.2:8000)
