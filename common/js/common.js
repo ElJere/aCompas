@@ -18,7 +18,38 @@ window.aCompas = {
     visualization: null,            // <svg> visualization
     paper: null,                     // raphael.js constructor returns a paper object
                                     // used to manipulate the SVG visualization
-    palos: null                     // Palos data
+    palos: null,                    // Palos data
+    audioFormat: null,              // Audio format to use for playing
+    sounds: {                       // Sounds used by the application
+        clara_1 : {
+            src : 'clara_1',
+            volume : 1
+        },
+        clara_2 : {
+            src : 'clara_2',
+            volume : 1
+        },
+        clara_3 : {
+            src : 'clara_3',
+            volume : 0.5
+        },
+        sorda_1 : {
+            src : 'sorda_1',
+            volume : 1
+        },
+        sorda_2 : {
+            src : 'sorda_2',
+            volume : 1
+        },
+        udu_1 : {
+            src : 'udu_1',
+            volume : 1
+        },
+        udu_2 : {
+            src : 'udu_2',
+            volume : 0.5
+        }
+    }
 }
 
 // Palos data
@@ -153,25 +184,25 @@ function scheduleNote( beatNumber, time ) {
 
 	switch (window.aCompas.palo) {
 		case 'buleria-6':
-			scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'buleria-12':
-			scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'solea':
-			scheduleNoteSolea(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteSolea(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'siguiriya':
-			scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'fandangos':
-			scheduleNoteFandangos(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteFandangos(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'tangos':
-			scheduleNoteTangos(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteTangos(window.aCompas.clapType, beatNumber, time);
 			break ;
 		case 'rumba':
-			scheduleNoteRumba(window.aCompas.clapType, beatNumber, sounds, time);
+			scheduleNoteRumba(window.aCompas.clapType, beatNumber, time);
 			break ;
 		default :
 			console.log("Unknown palo \"" + window.aCompas.palo + "\"");
@@ -539,112 +570,6 @@ function buildUi() {
         $("#volume-label").html("Volume: " + window.aCompas.masterVolume + " %");
     });
 
-}
-
-// ****************************
-// ****************************
-// Main initialization function
-// ****************************
-// ****************************
-
-function initMetronome() {
-
-    buildUi();
-    // Set default palo
-    $("#palo").change();
-
-    // Create Web Audio API audio context
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-    window.aCompas.audioContext = new AudioContext();
-
-    // Prepare loading sounds
-    var format = '.';
-    if (new Audio().canPlayType("audio/ogg")) {
-        format += "ogg";
-    } else if (new Audio().canPlayType("audio/mp3")) {
-        format += "mp3";
-    } else {
-        format += "wav";
-    }
-    function loadSoundObj(obj, callback) {
-        var request = new XMLHttpRequest();
-        request.open('GET', "common/audio/" + obj.src + format, true);
-        request.responseType = 'arraybuffer';
-
-        request.onload = function() {
-            // request.response is encoded... so decode it now
-            window.aCompas.audioContext.decodeAudioData(request.response, function(buffer) {
-                obj.buffer = buffer;
-                }, function() {
-                    message.call($wrapper, 'error', 'Error loading ' + obj.src);
-                });
-        };
-
-        request.send();
-    }
-
-    function loadSounds(obj) {
-        var len = obj.length, i;
-
-        // iterate over sounds obj
-        for (i in obj) {
-            if (obj.hasOwnProperty(i)) {
-                // load sound
-                loadSoundObj(obj[i]);
-            }
-        }
-    }
-
-    // Declare sounds object
-    sounds = {
-        clara_1 : {
-            src : 'clara_1',
-            volume : 1
-        },
-        clara_2 : {
-            src : 'clara_2',
-            volume : 1
-        },
-        clara_3 : {
-            src : 'clara_3',
-            volume : 0.5
-        },
-        sorda_1 : {
-            src : 'sorda_1',
-            volume : 1
-        },
-        sorda_2 : {
-            src : 'sorda_2',
-            volume : 1
-        },
-        udu_1 : {
-            src : 'udu_1',
-            volume : 1
-        },
-        udu_2 : {
-            src : 'udu_2',
-            volume : 0.5
-        }
-    };
-
-    // Load sounds
-    loadSounds(sounds);
-
-    // Set the message worker
-    window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
-
-    window.aCompas.timerWorker.onmessage = function(e) {
-        if (e.data == "tick") {
-            // console.log("tick!");
-            scheduler();
-        } else {
-            console.log("message: " + e.data);
-        }
-    };
-    window.aCompas.timerWorker.postMessage({"interval":window.aCompas.lookahead});
-
-    // Set buttons
     $('.play').on('click', function() {
         play();
     });
@@ -657,7 +582,85 @@ function initMetronome() {
         window.aCompas.clapType = parseInt($(this).data("clap-type"));
     });
 
+    // Set default palo
+    $("#palo").change();
+
     $(window).on("orientationchange", resetDraw);
     $(window).on("resize", resetDraw);
+}
 
+function loadSoundObj(obj, callback) {
+    var request = new XMLHttpRequest();
+    request.open('GET', "common/audio/" + obj.src + "." + window.aCompas.audioFormat, true);
+    request.responseType = 'arraybuffer';
+
+    request.onload = function() {
+        // request.response is encoded... so decode it now
+        window.aCompas.audioContext.decodeAudioData(request.response, function(buffer) {
+            obj.buffer = buffer;
+            }, function() {
+                message.call($wrapper, 'error', 'Error loading ' + obj.src);
+            });
+    };
+
+    request.send();
+}
+
+function loadSounds() {
+    // iterate over sounds obj
+    for (var i in window.aCompas.sounds) {
+        if (window.aCompas.sounds.hasOwnProperty(i)) {
+            // load sound
+            loadSoundObj(window.aCompas.sounds[i]);
+        }
+    }
+}
+
+function initAudio() {
+    try {
+        // Create Web Audio API audio context
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (window.AudioContext != undefined) {
+            window.aCompas.audioContext = new AudioContext();
+            // Detect the audio format to use for playing
+            if (new Audio().canPlayType("audio/ogg")) {
+                window.aCompas.audioFormat = "ogg";
+            } else if (new Audio().canPlayType("audio/mp3")) {
+                window.aCompas.audioFormat = "mp3";
+            } else {
+                window.aCompas.audioFormat = "wav";
+            }
+
+            // Load sounds
+            loadSounds();
+
+            // Set the message worker
+            window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
+
+            window.aCompas.timerWorker.onmessage = function(e) {
+                if (e.data == "tick") {
+                    // console.log("tick!");
+                    scheduler();
+                } else {
+                    console.log("message: " + e.data);
+                }
+            };
+            window.aCompas.timerWorker.postMessage({"interval":window.aCompas.lookahead});
+        } else {
+            $("#will-not-work-modal").modal("show");
+        }
+    } catch (e) {
+        $("#will-not-work-modal").modal("show");
+    }
+}
+
+// ****************************
+// ****************************
+// Main initialization function
+// ****************************
+// ****************************
+
+function initMetronome() {
+    buildUi();
+    initAudio();
 }

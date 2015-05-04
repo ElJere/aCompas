@@ -38,6 +38,32 @@
             </footer>
         </div>
 
+        <!-- Modal which is shown if user's browser can't run the application -->
+        <div id="will-not-work-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Unsupported browser</h4>
+                    </div>
+                    <div class="modal-body">
+                        The web browser you are currently using does not meet the minimal
+                        requirements needed to use this application.
+                        <br /><br />
+                        Please use (for example) a recent version of
+                        <a href="http://getfirefox.com">Mozilla Firefox</a>
+                        or <a href="http://www.google.com/chrome">Google Chrome</a>.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/velocity/velocity.min.js"></script>
         <script type="text/javascript" src="common/lib/eve.js"></script>
