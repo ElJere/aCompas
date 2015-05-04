@@ -662,5 +662,9 @@ function initAudio() {
 
 function initMetronome() {
     buildUi();
+    // Apple iOS detection (See http://stackoverflow.com/questions/9038625/detect-if-device-is-ios)
+    if ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ) {
+        $("#ios-modal").modal("show");
+    }
     initAudio();
 }
