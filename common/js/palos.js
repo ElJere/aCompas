@@ -41,7 +41,7 @@ function animateStrongBeat(i, time) {
     callAtGivenTime(time, function() {
         $('.bar_' + i)
             .velocity({ y: 5, height: [150, 300]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
     });
 }
 
@@ -49,7 +49,7 @@ function animateUpBeat(i, time) {
     callAtGivenTime(time, function() {
         $('.bar_' + i)
             .velocity({ y: 55, height: [100, 250]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
     });
 }
 
@@ -57,7 +57,7 @@ function animateDownBeat(i, time) {
     callAtGivenTime(time, function() {
         $('.bar_' + i)
             .velocity({ y: 100, height: [55, 150]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
     });
 }
 

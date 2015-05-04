@@ -3,6 +3,7 @@ window.aCompas = {
     audioContext: null,
     isPlaying: false,               // Are we currently playing ?
     currentNote: null,              // What note is currently last scheduled ?
+    defaultPaloSlug: "tangos",  // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
     lookahead: 25.0,                // How frequently to call scheduling function ?
@@ -19,6 +20,8 @@ window.aCompas = {
     paper: null,                     // raphael.js constructor returns a paper object
                                     // used to manipulate the SVG visualization
     palos: null,                    // Palos data
+    playStartTime: null,            // The time when the user starts playing is stored
+                                    // in this property
     audioFormat: null,              // Audio format to use for playing
     sounds: {                       // Sounds used by the application
         clara_1 : {
@@ -220,35 +223,36 @@ function scheduler() {
 }
 
 function play() {
-
-	var playButton = $('.play > .glyphicon');
-
-	// start playing
-	if (! window.aCompas.isPlaying) {
-
-		window.aCompas.currentNote = 0;
-		window.aCompas.nextNoteTime = window.aCompas.audioContext.currentTime;
-
-		// change play button
-		playButton.removeClass('glyphicon-play').addClass('glyphicon-stop');
-		$('.play').addClass('active');
-
-		// Send message to worker
-		window.aCompas.timerWorker.postMessage("start");
-		window.aCompas.isPlaying = true;
-
-		// stop playing
-	} else { 
-
-		// change play button
-		playButton.removeClass('glyphicon-stop').addClass('glyphicon-play');
-		$('.play').removeClass('active');
-
-		// Send message to worker
-		window.aCompas.timerWorker.postMessage("stop");
-		window.aCompas.isPlaying = false;
-
-	}
+    var playButton = $('.play > .glyphicon');
+    var paloData = null;
+    $.each(window.aCompas.palos, function(paloIndex, paloData2) {
+        if (window.aCompas.palo === paloData2.slug) {
+            paloData = paloData2;
+        }
+    });
+    if (! window.aCompas.isPlaying) {
+        window.aCompas.currentNote = 0;
+        window.aCompas.nextNoteTime = window.aCompas.audioContext.currentTime;
+        window.aCompas.playStartTime = window.aCompas.audioContext.currentTime;
+        // change play button
+        playButton.removeClass('glyphicon-play').addClass('glyphicon-stop');
+        $('.play').addClass('active');
+        // Send message to worker
+        window.aCompas.timerWorker.postMessage("start");
+        window.aCompas.isPlaying = true;
+        // Track event in Piwik
+        _paq.push(['trackEvent', 'Playing', 'Play', paloData.label]);
+    } else {
+        // change play button
+        playButton.removeClass('glyphicon-stop').addClass('glyphicon-play');
+        $('.play').removeClass('active');
+        // Send message to worker
+        window.aCompas.timerWorker.postMessage("stop");
+        window.aCompas.isPlaying = false;
+        // Track event in Piwik
+        _paq.push(['trackEvent', 'Playing', 'Stop', paloData.label,
+            Math.round(window.aCompas.audioContext.currentTime - window.aCompas.playStartTime)]);
+    }
 }
 
 function draw() {
@@ -546,12 +550,23 @@ function buildUi() {
     window.aCompas.paper.setSize('100%', '100%');
     window.aCompas.visualization = $("#visualizer-container > svg");
 
+    // Set default palo
+    setPalo(window.aCompas.defaultPaloSlug);
+    $("#palo").val(window.aCompas.defaultPaloSlug);
     // On palo change
     $("#palo").change(function(e) {
         // Set rhythm style
         setPalo($(this).val());
         // Trick to force rendering the newly selected value on Cordova
         $(this).blur();
+        // Track event in Piwik
+        var paloData = null;
+        $.each(window.aCompas.palos, function(paloIndex, paloData2) {
+            if (window.aCompas.palo === paloData2.slug) {
+                paloData = paloData2;
+            }
+        });
+        _paq.push(['trackEvent', 'PaloSwitch', 'Set', paloData.label]);
     });
 
     // Volume slider
@@ -576,14 +591,27 @@ function buildUi() {
 
     $(".resolution").on("change", function(e) {
         window.aCompas.noteResolution = parseInt($(this).data("resolution"));
+        // Track event in Piwik
+        var label = null;
+        if (window.aCompas.noteResolution == 0) {
+            label = "Contratiempo";
+        } else {
+            label = "Tiempo";
+        }
+        _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
     
     $(".clap-type").on("change", function(e) {
         window.aCompas.clapType = parseInt($(this).data("clap-type"));
+        // Track event in Piwik
+        var label = null;
+        if (window.aCompas.clapType == 0) {
+            label = "Claras";
+        } else {
+            label = "Sordas";
+        }
+        _paq.push(['trackEvent', 'Options', 'Palmas', label]);
     });
-
-    // Set default palo
-    $("#palo").change();
 
     $(window).on("orientationchange", resetDraw);
     $(window).on("resize", resetDraw);
