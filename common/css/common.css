@@ -182,6 +182,9 @@ header {
     width: 40px;
 }
 
+.slider-track {
+    background-image: linear-gradient(to bottom, white 0%, tomato 100%);
+}
 #info {
     opacity: 0;
     padding-top: 10px;
