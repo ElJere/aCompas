@@ -638,7 +638,7 @@ function initAudio() {
             window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
 
             window.aCompas.timerWorker.onmessage = function(e) {
-                if (e.data == "tick") {
+                if (e.data === "tick") {
                     // console.log("tick!");
                     scheduler();
                 } else {

@@ -33,22 +33,32 @@ function setDownBeat(elts) {
     elts.rect.attr({ stroke: "tomato" });
 }
 
-function animateStrongBeat(i) {
-    $('.bar_' + i)
-        .velocity({ y: 5, height: [150, 300]}, {duration: 0, easing: "linear"})
-        .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+function callAtGivenTime(time, callback) {
+    window.setTimeout(callback, Math.round((time - window.aCompas.audioContext.currentTime) * 1000));
 }
 
-function animateUpBeat(i) {
-    $('.bar_' + i)
-        .velocity({ y: 55, height: [100, 250]}, {duration: 0, easing: "linear"})
-        .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+function animateStrongBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 5, height: [150, 300]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+    });
 }
 
-function animateDownBeat(i) {
-    $('.bar_' + i)
-        .velocity({ y: 100, height: [55, 150]}, {duration: 0, easing: "linear"})
-        .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+function animateUpBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 55, height: [100, 250]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+    });
+}
+
+function animateDownBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 100, height: [55, 150]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 500, easing: "linear"});
+    });
 }
 
 /**
@@ -142,11 +152,11 @@ function scheduleNoteBuleria12(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 4 || beatNumber === 12 || beatNumber === 14 || beatNumber === 18 || beatNumber === 22 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -223,11 +233,11 @@ function scheduleNoteBuleria6(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 0 || beatNumber == 6 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -345,11 +355,11 @@ function scheduleNoteFandangos(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 4 || beatNumber === 10 || beatNumber === 14 || beatNumber === 18 || beatNumber === 22 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -457,11 +467,11 @@ function scheduleNoteRumba(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 0 || beatNumber === 4 || beatNumber === 8 || beatNumber === 12 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -597,11 +607,11 @@ function scheduleNoteSiguiriya(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 0 || beatNumber === 4 || beatNumber === 8 || beatNumber === 14 || beatNumber === 20 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -720,11 +730,11 @@ function scheduleNoteSolea(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 4 || beatNumber === 10 || beatNumber === 14 || beatNumber === 18 || beatNumber === 22 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
@@ -815,11 +825,11 @@ function scheduleNoteTangos(clapType, beatNumber, time) {
     for ( var i = 0; i <= beatNumber; i++ ) {
         if ( i === beatNumber ) {
             if ( beatNumber === 4 || beatNumber === 10 || beatNumber === 14 || beatNumber === 18 || beatNumber === 22 ) {
-                animateStrongBeat(i);
+                animateStrongBeat(i, time);
             } else if ( beatNumber % 2 === 0 ) {
-                animateUpBeat(i);
+                animateUpBeat(i, time);
             } else {
-                animateDownBeat(i);
+                animateDownBeat(i, time);
             }
         }
     }
