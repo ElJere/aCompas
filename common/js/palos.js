@@ -186,11 +186,11 @@ function scheduleNoteBuleria6(clapType, beatNumber, time) {
     // beatNumber : 0 1 2 3 4 5 6 7 8 9 10 11
     // buleria :    6   1   2   3   4   5    
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    	} else if (beatNumber === 1 ) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 2) { 
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+        } else if (beatNumber === 1 ) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 2) {
             playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
         } else if (beatNumber === 3) {
             playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
@@ -209,11 +209,11 @@ function scheduleNoteBuleria6(clapType, beatNumber, time) {
             playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
         }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 1 ) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 2) { 
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 1 ) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 2) {
             playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
         } else if (beatNumber === 3) {
             playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
@@ -267,88 +267,88 @@ function scheduleNoteFandangos(clapType, beatNumber, time) {
     // beatNumber : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 
     // fandangos :  1   2   3   4   5   6     7     8     9     10    11    12   
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber == 8) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 19) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 4) {
+           playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber == 8) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 19) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 22) {
+           playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 19) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 19) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 22) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        }
     }
 
     // On playing sounds, animate bars
@@ -386,81 +386,80 @@ function drawFandangos(i, bar) {
 
 function scheduleNoteRumba(clapType, beatNumber, time) {
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 5) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 13) {
-//    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 5) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 5) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 5) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        }
     }
 
     // On playing sounds, animate bars
@@ -501,106 +500,106 @@ function scheduleNoteSiguiriya(clapType, beatNumber, time) {
     // beatNumber : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 
     // siguiriya : 	1       2       3               4                  5        
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 5) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 17) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 19) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 5) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 17) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 19) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 22) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 5) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 15) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 17) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 19) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	}	    	
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 5) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 15) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 17) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 19) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 22) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        }
     }
 
     // On playing sounds, animate bars
@@ -647,83 +646,83 @@ function scheduleNoteSolea(clapType, beatNumber, time) {
     // beatNumber : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 
     // solea : 	    1   2   3   4   5   6     7     8     9     10    11    12   
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 17) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 17) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 22) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 7) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 13) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 16) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 17) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 18) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 20) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 22) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	}	    	
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 7) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 13) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 16) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 17) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 18) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 20) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 22) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        }
     }
 
     // On playing sounds, animate bars
@@ -764,61 +763,61 @@ function scheduleNoteTangos(clapType, beatNumber, time) {
     // beatNumber : TODO
     // tangos : TODO
     if (clapType === 0) { // Palmas claras
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
-    		playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.udu_1.buffer, time, window.aCompas.sounds.udu_1.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.udu_2.buffer, time, window.aCompas.sounds.udu_2.volume);
+            playSound(window.aCompas.sounds.clara_3.buffer, time, window.aCompas.sounds.clara_3.volume);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.clara_2.buffer, time, window.aCompas.sounds.clara_2.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.clara_1.buffer, time, window.aCompas.sounds.clara_1.volume);
+        }
     } else { // Palmas sordas
-    	if (beatNumber === 0) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 1) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 2) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 3) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
-    	} else if (beatNumber === 4) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 6) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 8) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 9) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 10) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 11) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	} else if (beatNumber === 12) {
-    		playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
-    	} else if (beatNumber === 14) {
-    		playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
-    	}
+        if (beatNumber === 0) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 1) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 2) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 3) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, window.aCompas.sounds.sorda_2.volume);
+        } else if (beatNumber === 4) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 6) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 8) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 9) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 10) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 11) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        } else if (beatNumber === 12) {
+            playSound(window.aCompas.sounds.sorda_1.buffer, time, window.aCompas.sounds.sorda_1.volume);
+        } else if (beatNumber === 14) {
+            playSound(window.aCompas.sounds.sorda_2.buffer, time, 0.3);
+        }
     }
 
     // On playing sounds, animate bars

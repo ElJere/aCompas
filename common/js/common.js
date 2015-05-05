@@ -143,22 +143,19 @@ window.aCompas.palos = [
 // Set functions
 function playSound(buffer, start, vol) {
     // Create source, sounds gain and master gain
-	var source = window.aCompas.audioContext.createBufferSource();
-	var gainNode = window.aCompas.audioContext.createGain();
-	var masterGainNode = window.aCompas.audioContext.createGain();
-
-	// Set sounds and master gain nodes
-	gainNode.gain.value = vol;
-	masterGainNode.gain.value = window.aCompas.masterVolume / 100;
-	source.buffer = buffer;
-
-	// Connect everything
-	source.connect(gainNode);
-	gainNode.connect(masterGainNode);
-	masterGainNode.connect( window.aCompas.audioContext.destination );
-
-	// Play
-	source.start(start);
+    var source = window.aCompas.audioContext.createBufferSource();
+    var gainNode = window.aCompas.audioContext.createGain();
+    var masterGainNode = window.aCompas.audioContext.createGain();
+    // Set sounds and master gain nodes
+    gainNode.gain.value = vol;
+    masterGainNode.gain.value = window.aCompas.masterVolume / 100;
+    source.buffer = buffer;
+    // Connect everything
+    source.connect(gainNode);
+    gainNode.connect(masterGainNode);
+    masterGainNode.connect( window.aCompas.audioContext.destination );
+    // Play
+    source.start(start);
 }
 
 function getTempo() {
@@ -166,60 +163,57 @@ function getTempo() {
 }
 
 function nextNote() {
-	// Calculate current beat length
-	var secondsPerBeat = 60.0 / getTempo();
-
-	// Add beat length to last beat time  
-	window.aCompas.nextNoteTime += 0.25 * secondsPerBeat;
-
-	// Advance the beat number, back to zero when loop finished
-	window.aCompas.currentNote++;
-	if (window.aCompas.currentNote === window.aCompas.nbBeatsInPattern) {
-		window.aCompas.currentNote = 0;
-	}
+    // Calculate current beat length
+    var secondsPerBeat = 60.0 / getTempo();
+    // Add beat length to last beat time
+    window.aCompas.nextNoteTime += 0.25 * secondsPerBeat;
+    // Advance the beat number, back to zero when loop finished
+    window.aCompas.currentNote++;
+    if (window.aCompas.currentNote === window.aCompas.nbBeatsInPattern) {
+        window.aCompas.currentNote = 0;
+    }
 }
 
 function scheduleNote( beatNumber, time ) {
-	// If option "times only" selected, don't play counter times
-	if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
-		return; 
-	}
-
-	switch (window.aCompas.palo) {
-		case 'buleria-6':
-			scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'buleria-12':
-			scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'solea':
-			scheduleNoteSolea(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'siguiriya':
-			scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'fandangos':
-			scheduleNoteFandangos(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'tangos':
-			scheduleNoteTangos(window.aCompas.clapType, beatNumber, time);
-			break ;
-		case 'rumba':
-			scheduleNoteRumba(window.aCompas.clapType, beatNumber, time);
-			break ;
-		default :
-			console.log("Unknown palo \"" + window.aCompas.palo + "\"");
-			break ;
-	}
+    // If option "times only" selected, don't play counter times
+    if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
+        return; 
+    }
+    switch (window.aCompas.palo) {
+        case 'buleria-6':
+            scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'buleria-12':
+            scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'solea':
+            scheduleNoteSolea(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'siguiriya':
+            scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'fandangos':
+            scheduleNoteFandangos(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'tangos':
+            scheduleNoteTangos(window.aCompas.clapType, beatNumber, time);
+            break ;
+        case 'rumba':
+            scheduleNoteRumba(window.aCompas.clapType, beatNumber, time);
+            break ;
+        default :
+            console.log("Unknown palo \"" + window.aCompas.palo + "\"");
+            break ;
+    }
 }
 
 function scheduler() {
-	// while there are notes that will need to play before the next worker interval, 
-	// schedule them and advance the pointer.
-	while ( window.aCompas.nextNoteTime < window.aCompas.audioContext.currentTime + window.aCompas.scheduleAheadTime ) {
-		scheduleNote( window.aCompas.currentNote, window.aCompas.nextNoteTime );
-		nextNote();
-	}
+    // while there are notes that will need to play before the next worker interval,
+    // schedule them and advance the pointer.
+    while ( window.aCompas.nextNoteTime < window.aCompas.audioContext.currentTime + window.aCompas.scheduleAheadTime ) {
+        scheduleNote( window.aCompas.currentNote, window.aCompas.nextNoteTime );
+        nextNote();
+    }
 }
 
 function play() {
@@ -256,51 +250,45 @@ function play() {
 }
 
 function draw() {
-
-	// Take measures
-	var x = Math.floor( 1200 / window.aCompas.nbBeatsInPattern );
-	var y = x - Math.floor( 1200 / (window.aCompas.nbBeatsInPattern + 1) );
-
-	// Draw svg
-	for ( var i = 0; i < window.aCompas.nbBeatsInPattern; i++ ) {
-
-		var bar = {
-			'x': (x * i + y) - y / 2,
-			'y': 150,
-			'width': x - y,
-			'height': 5
-		};
-
-		switch (window.aCompas.palo) {
-			case 'buleria-6':
-				drawBuleria6(i, bar);
-				break ;
-			case 'buleria-12':
-				drawBuleria12(i, bar);
-				break ;
-			case 'solea':
-				drawSolea(i, bar);
-				break ;
-			case 'siguiriya':
-				drawSiguiriya(i, bar);
-				break ;
-			case 'fandangos':
-				drawFandangos(i, bar);
-				break ;
-			case 'tangos':
-				drawTangos(i, bar);
-				break ;
-			case 'rumba':
-				drawRumba(i, bar);
-				break ;
-			default :
-				console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
-				break ;
-		}
-
-	}
-
-	console.log('Drawn visualizer');
+    // Take measures
+    var x = Math.floor( 1200 / window.aCompas.nbBeatsInPattern );
+    var y = x - Math.floor( 1200 / (window.aCompas.nbBeatsInPattern + 1) );
+    // Draw svg
+    for ( var i = 0; i < window.aCompas.nbBeatsInPattern; i++ ) {
+        var bar = {
+            'x': (x * i + y) - y / 2,
+            'y': 150,
+            'width': x - y,
+            'height': 5
+        };
+        switch (window.aCompas.palo) {
+            case 'buleria-6':
+                drawBuleria6(i, bar);
+                break ;
+            case 'buleria-12':
+                drawBuleria12(i, bar);
+                break ;
+            case 'solea':
+                drawSolea(i, bar);
+                break ;
+            case 'siguiriya':
+                drawSiguiriya(i, bar);
+                break ;
+            case 'fandangos':
+                drawFandangos(i, bar);
+                break ;
+            case 'tangos':
+                drawTangos(i, bar);
+                break ;
+            case 'rumba':
+                drawRumba(i, bar);
+                break ;
+            default :
+                console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
+                break ;
+        }
+    }
+    console.log('Drawn visualizer');
 }
 
 function resetDraw() {
@@ -600,7 +588,7 @@ function buildUi() {
         }
         _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
-    
+
     $(".clap-type").on("change", function(e) {
         window.aCompas.clapType = parseInt($(this).data("clap-type"));
         // Track event in Piwik
@@ -621,7 +609,6 @@ function loadSoundObj(obj, callback) {
     var request = new XMLHttpRequest();
     request.open('GET', "common/audio/" + obj.src + "." + window.aCompas.audioFormat, true);
     request.responseType = 'arraybuffer';
-
     request.onload = function() {
         // request.response is encoded... so decode it now
         window.aCompas.audioContext.decodeAudioData(request.response, function(buffer) {
@@ -658,13 +645,10 @@ function initAudio() {
             } else {
                 window.aCompas.audioFormat = "wav";
             }
-
             // Load sounds
             loadSounds();
-
             // Set the message worker
             window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
-
             window.aCompas.timerWorker.onmessage = function(e) {
                 if (e.data === "tick") {
                     // console.log("tick!");
