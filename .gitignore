@@ -4,6 +4,8 @@ web/common
 web/bower_components
 cordova/platforms/android/.gradle
 cordova/platforms/android/CordovaLib/build
+cordova/platforms/android/res/xml/config.xml
 cordova/www/common
 cordova/platforms/android/assets/www
+cordova/platforms/android/release-signing.properties
 .project

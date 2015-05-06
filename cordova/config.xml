@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="audio.acompas.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="audio.acompas.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>A Compás</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A flamenco metronome application
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="olivier@ricordeau.org" href="http://acompas.audio">
+        Olivier Ricordeau
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
@@ -18,6 +18,8 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="21" />
+        <preference name="android-SdkVersion" value="22" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
