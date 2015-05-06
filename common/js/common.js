@@ -20,6 +20,7 @@ window.aCompas = {
     paper: null,                     // raphael.js constructor returns a paper object
                                     // used to manipulate the SVG visualization
     palos: null,                    // Palos data
+    deviceOrientation: null,        // String ("Landscape" or "Portrait")
     playStartTime: null,            // The time when the user starts playing is stored
                                     // in this property
     audioFormat: null,              // Audio format to use for playing
@@ -601,8 +602,26 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', 'Palmas', label]);
     });
 
-    $(window).on("orientationchange", resetDraw);
-    $(window).on("resize", resetDraw);
+    $(window).on("resize", function(e) {
+        resetDraw();
+        // Track event in Piwik
+        trackDeviceOrientation();
+    });
+
+    trackDeviceOrientation();
+}
+
+function trackDeviceOrientation() {
+    var label = null
+    if (window.innerHeight > window.innerWidth) {
+        label = "Portrait";
+    } else {
+        label = "Landscape";
+    }
+    if (window.aCompas.deviceOrientation !== label) {
+        window.aCompas.deviceOrientation = label;
+        _paq.push(['trackEvent', 'Device', 'Orientation', window.aCompas.deviceOrientation]);
+    }
 }
 
 function loadSoundObj(obj, callback) {
