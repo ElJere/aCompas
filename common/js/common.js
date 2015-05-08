@@ -464,20 +464,20 @@ function buildUi() {
     // Resolution
     html += "<label class=\"label label-default\">Resolution</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-xs active\">";
+    html += "<label class=\"btn btn-default active\">";
     html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"0\" autocomplete=\"off\" checked> Contratiempo";
     html += "</label>";
-    html += "<label class=\"btn btn-xs\">";
+    html += "<label class=\"btn btn-default\">";
     html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"1\" autocomplete=\"off\"> Tiempo";
     html += "</label>";
     html += "</div>";
     // Palmas
     html += "<label class=\"label label-default\">Palmas</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-xs active\">";
+    html += "<label class=\"btn btn-default active\">";
     html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"0\" autocomplete=\"off\" checked> Claras";
     html += "</label>";
-    html += "<label class=\"btn btn-xs\">";
+    html += "<label class=\"btn btn-default\">";
     html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"1\" autocomplete=\"off\"> Sordas";
     html += "</label>";
     html += "</div>";

@@ -111,8 +111,8 @@ header {
     margin-right: 0px;
 }
 
-#left-col label,
-#right-col label {
+#left-col label.label,
+#right-col label.label {
     display: block;
     padding: 1px;
 }
@@ -223,8 +223,8 @@ footer {
         margin-bottom: 10px;
     }
 
-    #left-col label,
-    #right-col label {
+    #left-col label.label,
+    #right-col label.label {
         padding: 3px;
     }
 
