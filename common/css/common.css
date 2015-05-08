@@ -55,8 +55,8 @@ a:hover {
 }
 
 #wrapper > .container {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 header {
@@ -86,6 +86,16 @@ header {
 
 #main {
     vertical-align: middle;
+}
+
+#visualizer-row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#visualizer-row > div {
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 #controls-row {
@@ -124,7 +134,7 @@ header {
 
 #palo-and-options label,
 #palo {
-    margin-bottom: 2px;
+    margin-bottom: 0px;
 }
 
 .play {
@@ -164,13 +174,18 @@ header {
     margin-bottom: 17px;
 }
 
-.slider-container {
-    padding-left: 2px;
-    padding-right: 2px;
+#tempo-slider-container {
+    padding-left: 1px;
+    padding-right: 0.5px;
+}
+
+#volume-slider-container {
+    padding-left: 0.5px;
+    padding-right: 1px;
 }
 
 .slider.slider-vertical {
-    height: 162px;
+    height: 144px;
 }
 
 .slider-handle {
@@ -185,9 +200,12 @@ header {
 .slider-track {
     background-image: linear-gradient(to bottom, white 0%, tomato 100%);
 }
+
 #info {
     opacity: 0;
-    padding-top: 10px;
+    vertical-align: middle;
+    display: table-cell;
+    height: 60px;
 }
 
 footer {
@@ -236,14 +254,19 @@ footer {
 
 @media all and (min-width: 992px) and (orientation: landscape) {
 
-    .play {
-        border-width: 10px;
-        width: 100px;
+    .play,
+    #info {
         height: 100px;
     }
 
+    .play {
+        border-width: 10px;
+        width: 100px;
+    }
+
     #info {
-        margin-top: 30px;
+        margin-top: 40px;
+        display: block;
     }
 
 }
