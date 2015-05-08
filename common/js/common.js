@@ -294,7 +294,7 @@ function draw() {
 
 function resetDraw() {
     // Erase svg and draw again
-    window.aCompas.visualization.html("");
+    window.aCompas.paper.clear();
     draw();
 }
 
