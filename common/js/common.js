@@ -1160,7 +1160,7 @@ function buildUi() {
     html += "<div class=\"btn-group\" role=\"group\">";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"clara\">Palma clara</button>";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"sorda\">Palma sorda</button>";
-    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"cajon\">Cajon</button>";
+    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"cajon\">Cajón</button>";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"udu\">Udu</button>";
     html += "</div>";
 

@@ -3,7 +3,7 @@
 A flamenco metronome available in two versions :
 
 * Web application (available at [http://acompas.audio](http://acompas.audio)).
-* Mobile application using the Cordova/PhoneGap framework, soon available on the Google Play marketplace.
+* Mobile application using the Cordova/PhoneGap framework, [available on the Google Play marketplace](https://play.google.com/store/apps/details?id=audio.acompas.app).
 
 It makes use of Web Audio API to play various flamenco rhythms and features a visual animation.
 
