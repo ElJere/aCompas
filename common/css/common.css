@@ -16,14 +16,6 @@ html, body {
     position: relative;
 }
 
-#main {
-    /*
-        Height of <footer> + its top and bottom margins
-        + its top and bottom borders + a few pixels more for when a slider is at minimum value
-    */
-    padding-bottom: 134px;
-}
-
 footer {
     position: absolute;
     width: 100%;

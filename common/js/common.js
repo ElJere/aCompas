@@ -1120,6 +1120,14 @@ function setPalo(paloSlug) {
     resetDraw();
 }
 
+function adaptToFooterHeight() {
+    var footer = $("footer");
+    var mainPaddingBottom = footer.height() + parseInt(footer.css("margin-top").replace("px", ""))
+        + parseInt(footer.css("padding-top").replace("px", ""))
+        + parseInt(footer.css("padding-bottom").replace("px", "")) + 4;
+    $("#main").css("padding-bottom", mainPaddingBottom);
+}
+
 function buildUi() {
     var html = "";
 
@@ -1166,17 +1174,10 @@ function buildUi() {
     // Instruments
     html += "<label class=\"label label-default\">Instruments</label>";
     html += "<div class=\"btn-group\" role=\"group\">";
-<<<<<<< Updated upstream
-    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"clara\">Palma clara</button>";
-    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"sorda\">Palma sorda</button>";
-    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"cajon\">Cajón</button>";
-    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"udu\">Udu</button>";
-=======
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\">Palma clara</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\">Palma sorda</button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajon</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajón</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\">Udu</button>";
->>>>>>> Stashed changes
     html += "</div>";
 
     html += "</div>"; // End #palo-and-options
@@ -1303,8 +1304,11 @@ function buildUi() {
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
     });
 
+    adaptToFooterHeight();
+
     $(window).on("resize", function(e) {
         resetDraw();
+        adaptToFooterHeight();
         // Track event in Piwik
         trackDeviceOrientation();
     });
