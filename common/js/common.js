@@ -80,9 +80,9 @@ window.aCompas.palos = [
     {
         slug: "buleria-6",
         label: "Buleria (6)",
-        minTempo: 20,
-        maxTempo: 170,
-        defaultTempo: 100,
+        minTempo: 40,
+        maxTempo: 340,
+        defaultTempo: 200,
         nbBeatsInPattern: 12,
         clara: {
             1: 3,
@@ -145,9 +145,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 135 ) {
+            if ( tempo >= 270 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 60 ) {
+            } else if ( tempo <= 100 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -157,9 +157,9 @@ window.aCompas.palos = [
     {
         slug: "buleria-12",
         label: "Buleria (12)",
-        minTempo: 20,
-        maxTempo: 170,
-        defaultTempo: 100,
+        minTempo: 30,
+        maxTempo: 340,
+        defaultTempo: 200,
         nbBeatsInPattern: 24,
         clara: {
             0: 1,
@@ -259,11 +259,11 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 115 ) {
+            if ( tempo >= 230 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo >= 60 && tempo <= 90 ) {
+            } else if ( tempo >= 1200 && tempo <= 180 ) {
                 setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( tempo <= 30 ) {
+            } else if ( tempo <= 60 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -273,9 +273,9 @@ window.aCompas.palos = [
     {
         slug: "fandangos",
         label: "Fandangos",
-        minTempo: 15,
-        maxTempo: 125,
-        defaultTempo: 75,
+        minTempo: 30,
+        maxTempo: 270,
+        defaultTempo: 150,
         nbBeatsInPattern: 24,
         clara: {
             0: 1,
@@ -388,9 +388,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 100 ) {
+            if ( tempo >= 200 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 45 ) {
+            } else if ( tempo <= 80 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -400,9 +400,9 @@ window.aCompas.palos = [
     {
         slug: "rumba",
         label: "Rumba",
-        minTempo: 15,
-        maxTempo: 170,
-        defaultTempo: 100,
+        minTempo: 30,
+        maxTempo: 340,
+        defaultTempo: 200,
         nbBeatsInPattern: 16,
         clara: {
             0: 1,
@@ -485,9 +485,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 120 ) {
+            if ( tempo >= 240 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 45 ) {
+            } else if ( tempo <= 90 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -497,9 +497,9 @@ window.aCompas.palos = [
     {
         slug: "siguiriya",
         label: "Siguiriya",
-        minTempo: 10,
-        maxTempo: 90,
-        defaultTempo: 40,
+        minTempo: 20,
+        maxTempo: 180,
+        defaultTempo: 80,
         nbBeatsInPattern: 24,
         clara: {
             0: 1,
@@ -613,9 +613,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 80 ) {
+            if ( tempo >= 160 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 30 ) {
+            } else if ( tempo <= 60 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -625,9 +625,9 @@ window.aCompas.palos = [
     {
         slug: "solea",
         label: "Soleá",
-        minTempo: 30,
-        maxTempo: 130,
-        defaultTempo: 50,
+        minTempo: 50,
+        maxTempo: 260,
+        defaultTempo: 100,
         nbBeatsInPattern: 24,
         clara: {
             0: 1,
@@ -735,11 +735,11 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 90 ) {
+            if ( tempo >= 180 ) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo >= 60 && tempo <= 90 ) {
+            } else if ( tempo >= 120 && tempo <= 180 ) {
                 setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( tempo <= 30 ) {
+            } else if ( tempo <= 60 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -749,9 +749,9 @@ window.aCompas.palos = [
     {
         slug: "tangos",
         label: "Tangos",
-        minTempo: 15,
-        maxTempo: 170,
-        defaultTempo: 85,
+        minTempo: 30,
+        maxTempo: 340,
+        defaultTempo: 170,
         nbBeatsInPattern: 16,
         clara: {
             0: 3,
@@ -831,9 +831,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 90 ) {
+            if ( tempo >= 180 ) {
                 setInfoMessage("Your rhythm is por rumba");
-            } else if ( tempo <= 45 ) {
+            } else if ( tempo <= 90 ) {
                 setInfoMessage("Your rhythm is por tientos");
             } else {
                 setInfoMessage(null);
@@ -872,7 +872,7 @@ function nextNote() {
     // Calculate current beat length
     var secondsPerBeat = 60.0 / getTempo();
     // Add beat length to last beat time
-    window.aCompas.nextNoteTime += 0.25 * secondsPerBeat;
+    window.aCompas.nextNoteTime += 0.5 * secondsPerBeat;
     // Advance the beat number, back to zero when loop finished
     window.aCompas.currentNote++;
     if (window.aCompas.currentNote === window.aCompas.nbBeatsInPattern) {
