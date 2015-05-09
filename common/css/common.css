@@ -113,7 +113,7 @@ a:hover {
 #right-col label.label {
     background-color: #999;
     display: block;
-    padding: 5px 0;
+    padding: 1px;
 }
 
 #palo-and-options {
@@ -250,6 +250,11 @@ footer {
 }
 
 @media all and (min-width: 992px) and (orientation: landscape) {
+
+    #left-col label.label,
+    #right-col label.label {
+        padding: 5px;
+    }
 
     .play,
     #info {

@@ -1122,10 +1122,12 @@ function setPalo(paloSlug) {
 
 function adaptToFooterHeight() {
     var footer = $("footer");
-    var mainPaddingBottom = footer.height() + parseInt(footer.css("margin-top").replace("px", ""))
-        + parseInt(footer.css("padding-top").replace("px", ""))
-        + parseInt(footer.css("padding-bottom").replace("px", "")) + 4;
-    $("#main").css("padding-bottom", mainPaddingBottom);
+    if (footer.length > 0) {
+        var mainPaddingBottom = footer.height() + parseInt(footer.css("margin-top").replace("px", ""))
+            + parseInt(footer.css("padding-top").replace("px", ""))
+            + parseInt(footer.css("padding-bottom").replace("px", "")) + 4;
+        $("#main").css("padding-bottom", mainPaddingBottom);
+    }
 }
 
 function buildUi() {
