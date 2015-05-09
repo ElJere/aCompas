@@ -34,6 +34,14 @@ a:hover {
     text-decoration: none;
 }
 
+.btn-default:focus {
+    background-color: #fff;
+}
+
+.btn-default.active {
+    background-color: #e6e6e6;
+}
+
 .btn-primary {
     background-image: linear-gradient(to bottom, tomato 0px, firebrick 100%);
     border-color: firebrick;
