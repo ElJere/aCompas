@@ -59,10 +59,6 @@ a:hover {
     padding-right: 0px;
 }
 
-header {
-    border-bottom: #ddd 1px solid;
-}
-
 #title,
 #baseline {
     display: inline;
@@ -123,8 +119,9 @@ header {
 
 #left-col label.label,
 #right-col label.label {
+    background-color: #999;
     display: block;
-    padding: 1px;
+    padding: 5px 0;
 }
 
 #palo-and-options {
@@ -189,16 +186,29 @@ header {
 }
 
 .slider-handle {
-    background-color: tomato;
-    background-image: linear-gradient(to bottom, tomato 0%, firebrick 100%);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
     margin-left: -15px !important;
     margin-top: -15px !important;
     height: 40px;
-    width: 40px;
+    width: 40px; 
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .125);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .125);
+}
+
+.slider-selection {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #adadad;
 }
 
 .slider-track {
-    background-image: linear-gradient(to bottom, white 0%, tomato 100%);
+    background-color: #e6e6e6;
+    background-image: none;
+    border-color: #adadad;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .5);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .5);
 }
 
 #info {
@@ -241,11 +251,6 @@ footer {
         margin-bottom: 10px;
     }
 
-    #left-col label.label,
-    #right-col label.label {
-        padding: 3px;
-    }
-
     .slider.slider-vertical {
         height: 200px;
     }
@@ -273,11 +278,6 @@ footer {
 
 /* 1200px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 1200px) and (orientation: landscape) {
-
-    header {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
 
     #visualizer-container {
         margin-top: 50px;

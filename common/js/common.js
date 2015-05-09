@@ -108,18 +108,18 @@ window.aCompas.palos = [
         cajon: {
             0: 3,
             1: 2,
-            2: 3,
-            4: 3,
+            2: 1,
+            3: 1,
+            4: 2,
             6: 1,
-            9: 2,
-            10: 1
+            8: 2,
+            10: 2
         },
         udu: {
             0: 1,
-            2: 2,
-            4: 2,
+            3: 2,
             6: 1,
-            10: 2
+            9: 2
         },
         beats: {
             0: "strong",
@@ -191,30 +191,38 @@ window.aCompas.palos = [
             15: 2,
             16: 1,
             18: 2,
-            19: 2,
-            20: 1,
+            19: 1,
+            20: 2,
             22: 2
         },
         cajon: {
             0: 3,
-            3: 2,
-            4: 1,
+            1: 2,
+            2: 1,
+            3: 1,
+            4: 2,
             6: 3,
-            9: 2,
-            10: 1,
-            12: 3,
-            14: 1,
-            15: 2,
-            16: 1,
-            19: 3,
-            20: 1,
+            8: 2,
+            9: 1,
+            10: 3,
+            12: 2,
+            14: 2,
+            15: 1,
+            16: 3,
+            18: 2,
+            19: 1,
+            20: 3,
             22: 2
         },
         udu: {
             0: 1,
+            3: 2,
             6: 1,
+            9: 2,
             14: 1,
+            15: 2,
             16: 1,
+            19: 2,
             20: 1
         },
         beats: {
@@ -1147,10 +1155,10 @@ function buildUi() {
     // Resolution
     html += "<label class=\"label label-default\">Resolution</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-sm active\">";
+    html += "<label class=\"btn btn-default btn-sm active\">";
     html += "<input type=\"radio\" class=\"resolution\" data-value=\"0\" autocomplete=\"off\" checked> Contratiempo";
     html += "</label>";
-    html += "<label class=\"btn btn-sm\">";
+    html += "<label class=\"btn btn-default btn-sm\">";
     html += "<input type=\"radio\" class=\"resolution\" data-value=\"1\" autocomplete=\"off\"> Tiempo";
     html += "</label>";
     html += "</div>";
@@ -1158,10 +1166,17 @@ function buildUi() {
     // Instruments
     html += "<label class=\"label label-default\">Instruments</label>";
     html += "<div class=\"btn-group\" role=\"group\">";
+<<<<<<< Updated upstream
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"clara\">Palma clara</button>";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"sorda\">Palma sorda</button>";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"cajon\">Cajón</button>";
     html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"udu\">Udu</button>";
+=======
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\">Palma clara</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\">Palma sorda</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajon</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\">Udu</button>";
+>>>>>>> Stashed changes
     html += "</div>";
 
     html += "</div>"; // End #palo-and-options
@@ -1276,13 +1291,13 @@ function buildUi() {
         e.preventDefault();
         var instrument = $(this).data("instrument");
         var label = null;
-        if ($(this).hasClass("btn-primary")) {
+        if ($(this).hasClass("active")) {
             window.aCompas[instrument] = 0;
-            $(this).removeClass("btn-primary");
+            $(this).removeClass("active");
             label = "Off";
         } else {
             window.aCompas[instrument] = 1;
-            $(this).addClass("btn-primary");
+            $(this).addClass("active");
             label = "On";
         }
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
