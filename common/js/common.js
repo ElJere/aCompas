@@ -3,7 +3,7 @@ window.aCompas = {
     audioContext: null,
     isPlaying: false,               // Are we currently playing ?
     currentNote: null,              // What note is currently last scheduled ?
-    defaultPaloSlug: "tangos",  // Slug of the default palo
+    defaultPaloSlug: "tangos",      // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
     lookahead: 25.0,                // How frequently to call scheduling function ?
@@ -13,11 +13,14 @@ window.aCompas = {
                                     // with next interval (in case the timer is late)
     nextNoteTime: 0.0,              // When the next note is due ?
     noteResolution: 0,              // 0 = times + counter times, 1 = times only
-    clapType: 0,                    // 0 = palmas claras, 1 = palmas sordas
+    clara: 1,                       // 0 = off, 1 = on
+    sorda: 1,                       // 0 = off, 1 = on
+    cajon: 1,                       // 0 = off, 1 = on
+    udu: 1,                         // 0 = off, 1 = on
     timerWorker: null,              // The Web Worker used to fire timer messages
     nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
     visualization: null,            // <svg> visualization
-    paper: null,                     // raphael.js constructor returns a paper object
+    paper: null,                    // raphael.js constructor returns a paper object
                                     // used to manipulate the SVG visualization
     palos: null,                    // Palos data
     deviceOrientation: null,        // String ("Landscape" or "Portrait")
@@ -39,11 +42,23 @@ window.aCompas = {
         },
         sorda_1 : {
             src : 'sorda_1',
-            volume : 1
+            volume : 0.8
         },
         sorda_2 : {
             src : 'sorda_2',
-            volume : 1
+            volume : 0.2
+        },
+        cajon_1: {
+            src: 'cajon_1',
+            volume: 0.6
+        },
+        cajon_2: {
+            src: 'cajon_2',
+            volume: 0.6
+        },
+        cajon_3: {
+            src: 'cajon_3',
+            volume: 0.6
         },
         udu_1 : {
             src : 'udu_1',
@@ -69,9 +84,75 @@ window.aCompas.palos = [
         maxTempo: 170,
         defaultTempo: 100,
         nbBeatsInPattern: 12,
-        nbCellsInPattern: 1,
-        rhythmicSignature: "6/8",
-        description: ""
+        clara: {
+            1: 3,
+            2: 2,
+            3: 3,
+            4: 3,
+            6: 1,
+            7: 3,
+            8: 3,
+            10: 3
+        },
+        sorda: {
+            0: { nb: 2, volume: 0.3 },
+            1: { nb: 2, volume: 0.3 },
+            2: 2,
+            3: { nb: 2, volume: 0.3 },
+            4: { nb: 2, volume: 0.3 },
+            6: 1,
+            7: { nb: 2, volume: 0.3 },
+            8: { nb: 2, volume: 0.3 },
+            10: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 3,
+            1: 2,
+            2: 3,
+            4: 3,
+            6: 1,
+            9: 2,
+            10: 1
+        },
+        udu: {
+            0: 1,
+            2: 2,
+            4: 2,
+            6: 1,
+            10: 2
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "strong",
+            7: "down",
+            8: "up",
+            9: "down",
+            10: "up",
+            11: "down"
+        },
+        beatLabels: {
+            0: 6,
+            2: 1,
+            4: 2,
+            6: 3,
+            8: 4,
+            10: 5
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 135 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo <= 60 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "buleria-12",
@@ -80,9 +161,114 @@ window.aCompas.palos = [
         maxTempo: 170,
         defaultTempo: 100,
         nbBeatsInPattern: 24,
-        nbCellsInPattern: 1,
-        rhythmicSignature: "12/8",
-        description: ""
+        clara: {
+            0: 1,
+            2: 3,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 3,
+            9: 2,
+            10: 3,
+            12: 3,
+            14: 1,
+            15: 2,
+            16: 1,
+            18: 3,
+            19: 2,
+            20: 1,
+            22: 3
+        },
+        sorda: {
+            0: 1,
+            2: 2,
+            4: 2,
+            6: 1,
+            8: 2,
+            10: 2,
+            12: 2,
+            14: 1,
+            15: 2,
+            16: 1,
+            18: 2,
+            19: 2,
+            20: 1,
+            22: 2
+        },
+        cajon: {
+            0: 3,
+            3: 2,
+            4: 1,
+            6: 3,
+            9: 2,
+            10: 1,
+            12: 3,
+            14: 1,
+            15: 2,
+            16: 1,
+            19: 3,
+            20: 1,
+            22: 2
+        },
+        udu: {
+            0: 1,
+            6: 1,
+            14: 1,
+            16: 1,
+            20: 1
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "strong",
+            7: "down",
+            8: "up",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "up",
+            13: "down",
+            14: "strong",
+            15: "down",
+            16: "strong",
+            17: "down",
+            18: "up",
+            19: "down",
+            20: "strong",
+            21: "down",
+            22: "up",
+            23: "down"
+        },
+        beatLabels: {
+            0: 12,
+            2: 1,
+            4: 2,
+            6: 3,
+            8: 4,
+            10: 5,
+            12: 6,
+            14: 7,
+            16: 8,
+            18: 9,
+            20: 10,
+            22: 11
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 115 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo >= 60 && tempo <= 90 ) {
+                setInfoMessage("Your tempo is solea por buleria or alegria");
+            } else if ( tempo <= 30 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "fandangos",
@@ -91,9 +277,125 @@ window.aCompas.palos = [
         maxTempo: 125,
         defaultTempo: 75,
         nbBeatsInPattern: 24,
-        nbCellsInPattern: 1,
-        rhythmicSignature: "12/8",
-        description: ""
+        clara: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 2,
+            4: 3,
+            6: 1,
+            7: 2,
+            8: 3,
+            10: 3,
+            12: 1,
+            13: 2,
+            14: 3,
+            15: 2,
+            16: 3,
+            18: 1,
+            19: 2,
+            20: 1,
+            22: 3
+        },
+        sorda: {
+            0: 1,
+            1: 2,
+            2: { nb: 2, volume: 0.3 },
+            3: 2,
+            4: { nb: 2, volume: 0.3 },
+            6: 1,
+            7: 2,
+            8: { nb: 2, volume: 0.3 },
+            10: { nb: 2, volume: 0.3 },
+            12: 1,
+            13: 2,
+            14: { nb: 2, volume: 0.3 },
+            15: 2,
+            16: { nb: 2, volume: 0.3 },
+            18: 1,
+            19: 2,
+            20: 1,
+            22: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 2,
+            4: 3,
+            6: 1,
+            7: 2,
+            8: 3,
+            10: 3,
+            12: 1,
+            13: 2,
+            14: 3,
+            15: 2,
+            16: 2,
+            18: 1,
+            19: 2,
+            20: 1,
+            22: 2
+        },
+        udu: {
+            0: 1,
+            3: 2,
+            6: 1,
+            12: 1,
+            15: 2,
+            18: 1,
+            20: 1
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "strong",
+            7: "down",
+            8: "up",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "strong",
+            13: "down",
+            14: "up",
+            15: "down",
+            16: "up",
+            17: "down",
+            18: "strong",
+            19: "down",
+            20: "strong",
+            21: "down",
+            22: "up",
+            23: "down"
+        },
+        beatLabels: {
+            0: 1,
+            2: 2,
+            4: 3,
+            6: 4,
+            8: 5,
+            10: 6,
+            12: 7,
+            14: 8,
+            16: 9,
+            18: 10,
+            20: 11,
+            22: 12
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 100 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo <= 45 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "rumba",
@@ -102,9 +404,95 @@ window.aCompas.palos = [
         maxTempo: 170,
         defaultTempo: 100,
         nbBeatsInPattern: 16,
-        nbCellsInPattern: 2,
-        rhythmicSignature: "4/4",
-        description: ""
+        clara: {
+            0: 1,
+            1: 1,
+            2: 3,
+            3: 2,
+            4: 1,
+            6: 2,
+            8: 1,
+            9: 1,
+            10: 3,
+            11: 2,
+            12: 1,
+            14: 2
+        },
+        sorda: {
+            0: 1,
+            1: 1,
+            2: { nb: 2, volume: 0.3 },
+            3: { nb: 2, volume: 0.3 },
+            4: 1,
+            6: { nb: 2, volume: 0.3 },
+            8: 1,
+            9: 1,
+            10: { nb: 2, volume: 0.3 },
+            11: { nb: 2, volume: 0.3 },
+            12: 1,
+            14: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 3,
+            1: 2,
+            2: 1,
+            3: 3,
+            5: 3,
+            6: 1,
+            8: 3,
+            9: 2,
+            10: 1,
+            11: 3,
+            13: 3,
+            14: 1
+        },
+        udu: {
+            0: 1,
+            1: 2,
+            4: 1,
+            5: 2,
+            8: 1,
+            9: 2,
+            12: 1
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "strong",
+            5: "down",
+            6: "up",
+            7: "down",
+            8: "strong",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "strong",
+            13: "down",
+            14: "up",
+            15: "down"
+        },
+        beatLabels: {
+            0: 1,
+            2: 2,
+            4: 3,
+            6: 4,
+            8: 5,
+            10: 6,
+            12: 7,
+            14: 8
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 120 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo <= 45 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "siguiriya",
@@ -113,9 +501,126 @@ window.aCompas.palos = [
         maxTempo: 90,
         defaultTempo: 40,
         nbBeatsInPattern: 24,
-        nbCellsInPattern: 1,
-        rhythmicSignature: "12/8",
-        description: ""
+        clara: {
+            0: 1,
+            1: 3,
+            2: 2,
+            4: 1,
+            5: 3,
+            6: 2,
+            7: 2,
+            8: 1,
+            9: 3,
+            10: 3,
+            11: 1,
+            12: 3,
+            13: 2,
+            14: 1,
+            15: 3,
+            16: 3,
+            17: 1,
+            18: 3,
+            19: 2,
+            20: 1,
+            22: 3
+        },
+        sorda: {
+            0: 1,
+            1: { nb: 2, volume: 0.3 },
+            2: 2,
+            3: { nb: 2, volume: 0.3 },
+            4: 1,
+            5: { nb: 2, volume: 0.3 },
+            6: 2,
+            7: { nb: 2, volume: 0.3 },
+            8: 1,
+            9: { nb: 2, volume: 0.3 },
+            10: { nb: 2, volume: 0.3 },
+            11: 2,
+            12: { nb: 2, volume: 0.3 },
+            13: { nb: 2, volume: 0.3 },
+            14: 1,
+            15: { nb: 2, volume: 0.3 },
+            16: { nb: 2, volume: 0.3 },
+            17: 2,
+            18: { nb: 2, volume: 0.3 },
+            19: { nb: 2, volume: 0.3 },
+            20: 1,
+            22: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 1,
+            1: 2,
+            2: 3,
+            4: 1,
+            5: 2,
+            6: 3,
+            8: 1,
+            9: 2,
+            10: 3,
+            11: 2,
+            14: 1,
+            15: 2,
+            16: 3,
+            17: 2,
+            20: 1,
+            21: 2,
+            22: 3
+        },
+        udu: {
+            0: 1,
+            3: 2,
+            4: 1,
+            7: 2,
+            8: 1,
+            11: 2,
+            14: 1,
+            17: 2,
+            20: 1
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "strong",
+            5: "down",
+            6: "up",
+            7: "down",
+            8: "strong",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "up",
+            13: "down",
+            14: "strong",
+            15: "down",
+            16: "up",
+            17: "down",
+            18: "up",
+            19: "down",
+            20: "strong",
+            21: "down",
+            22: "up",
+            23: "down"
+        },
+        beatLabels: {
+            0: 1,
+            4: 2,
+            8: 3,
+            14: 4,
+            20: 5
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 80 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo <= 30 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "solea",
@@ -124,9 +629,122 @@ window.aCompas.palos = [
         maxTempo: 130,
         defaultTempo: 50,
         nbBeatsInPattern: 24,
-        nbCellsInPattern: 1,
-        rhythmicSignature: "12/8",
-        description: ""
+        clara: {
+            0: 1,
+            2: 3,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 3,
+            9: 2,
+            10: 3,
+            12: 1,
+            14: 3,
+            15: 2,
+            16: 1,
+            18: 3,
+            19: 2,
+            20: 1,
+            22: 3
+        },
+        sorda: {
+            0: 1,
+            2: { nb: 2, volume: 0.3 },
+            3: 2,
+            4: { nb: 2, volume: 0.3 },
+            6: 1,
+            8: { nb: 2, volume: 0.3 },
+            9: 2,
+            10: 2,
+            12: 1,
+            14: { nb: 2, volume: 0.3 },
+            15: 2,
+            16: 1,
+            18: { nb: 2, volume: 0.3 },
+            19: 2,
+            20: 1,
+            22: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 2,
+            4: 3,
+            6: 1,
+            7: 2,
+            8: 3,
+            9: 2,
+            10: 3,
+            12: 1,
+            13: 2,
+            14: 3,
+            16: 1,
+            17: 2,
+            18: 3,
+            20: 1,
+            21: 2,
+            22: 3
+        },
+        udu: {
+            0: 1,
+            6: 1,
+            12: 1,
+            16: 1,
+            20: 1
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "strong",
+            7: "down",
+            8: "up",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "strong",
+            13: "down",
+            14: "up",
+            15: "down",
+            16: "strong",
+            17: "down",
+            18: "up",
+            19: "down",
+            20: "strong",
+            21: "down",
+            22: "up",
+            23: "down"
+        },
+        beatLabels: {
+            0: 12,
+            2: 1,
+            4: 2,
+            6: 3,
+            8: 4,
+            10: 5,
+            12: 6,
+            14: 7,
+            16: 8,
+            18: 9,
+            20: 10,
+            22: 11
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 90 ) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if ( tempo >= 60 && tempo <= 90 ) {
+                setInfoMessage("Your tempo is solea por buleria or alegria");
+            } else if ( tempo <= 30 ) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     },
     {
         slug: "tangos",
@@ -135,14 +753,101 @@ window.aCompas.palos = [
         maxTempo: 170,
         defaultTempo: 85,
         nbBeatsInPattern: 16,
-        nbCellsInPattern: 2,
-        rhythmicSignature: "4/4",
-        description: ""
+        clara: {
+            0: 3,
+            1: 3,
+            2: 2,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 3,
+            9: 3,
+            10: 1,
+            11: 3,
+            12: 2,
+            14: 1
+        },
+        sorda: {
+            0: { nb: 2, volume: 0.3 },
+            1: { nb: 2, volume: 0.3 },
+            2: 1,
+            3: 2,
+            4: { nb: 2, volume: 0.3 },
+            6: 1,
+            8: { nb: 2, volume: 0.3 },
+            9: { nb: 2, volume: 0.3 },
+            10: 1,
+            11: { nb: 2, volume: 0.3 },
+            12: 1,
+            14: { nb: 2, volume: 0.3 }
+        },
+        cajon: {
+            0: 3,
+            1: 2,
+            2: 1,
+            3: 3,
+            5: 3,
+            6: 1,
+            8: 3,
+            9: 2,
+            10: 1,
+            11: 3,
+            13: 3,
+            14: 1
+        },
+        udu: {
+            0: 1,
+            3: 2,
+            8: 1,
+            11: 2
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "up",
+            7: "down",
+            8: "strong",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "up",
+            13: "down",
+            14: "up",
+            15: "down"
+        },
+        beatLabels: {
+            0: 1,
+            2: 2,
+            4: 3,
+            6: 4,
+            8: 5,
+            10: 6,
+            12: 7,
+            14: 8
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if ( tempo >= 90 ) {
+                setInfoMessage("Your rhythm is por rumba");
+            } else if ( tempo <= 45 ) {
+                setInfoMessage("Your rhythm is por tientos");
+            } else {
+                setInfoMessage(null);
+            }
+        }
     }
 ];
 
 // Set functions
-function playSound(buffer, start, vol) {
+function playSound(name, start, vol) {
+    // If vol is null, use the sound's default volume
+    if (vol === null) {
+        vol = window.aCompas.sounds[name].volume;
+    }
     // Create source, sounds gain and master gain
     var source = window.aCompas.audioContext.createBufferSource();
     var gainNode = window.aCompas.audioContext.createGain();
@@ -150,7 +855,7 @@ function playSound(buffer, start, vol) {
     // Set sounds and master gain nodes
     gainNode.gain.value = vol;
     masterGainNode.gain.value = window.aCompas.masterVolume / 100;
-    source.buffer = buffer;
+    source.buffer = window.aCompas.sounds[name].buffer;
     // Connect everything
     source.connect(gainNode);
     gainNode.connect(masterGainNode);
@@ -175,36 +880,44 @@ function nextNote() {
     }
 }
 
+function scheduleInstrument(instrument, beatNumber, time, paloData) {
+    if (window.aCompas[instrument] !== 0 && paloData[instrument][beatNumber] !== undefined) {
+        var nb = null;
+        var volume = null;
+        // Check if paloData[instrument][beatNumber] is an object
+        if (paloData[instrument][beatNumber] === Object(paloData[instrument][beatNumber])) {
+            nb = paloData[instrument][beatNumber].nb;
+            volume = paloData[instrument][beatNumber].volume;
+        } else {
+            nb = paloData[instrument][beatNumber];
+        }
+        playSound(instrument + "_" + nb, time, volume);
+    }
+}
+
 function scheduleNote( beatNumber, time ) {
     // If option "times only" selected, don't play counter times
     if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
         return; 
     }
-    switch (window.aCompas.palo) {
-        case 'buleria-6':
-            scheduleNoteBuleria6(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'buleria-12':
-            scheduleNoteBuleria12(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'solea':
-            scheduleNoteSolea(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'siguiriya':
-            scheduleNoteSiguiriya(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'fandangos':
-            scheduleNoteFandangos(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'tangos':
-            scheduleNoteTangos(window.aCompas.clapType, beatNumber, time);
-            break ;
-        case 'rumba':
-            scheduleNoteRumba(window.aCompas.clapType, beatNumber, time);
-            break ;
-        default :
-            console.log("Unknown palo \"" + window.aCompas.palo + "\"");
-            break ;
+    var paloData = null;
+    $.each(window.aCompas.palos, function(paloIndex, paloData2) {
+        if (paloData2.slug === window.aCompas.palo) {
+            paloData = paloData2;
+        }
+    });
+    // Schedule instruments
+    scheduleInstrument("clara", beatNumber, time, paloData);
+    scheduleInstrument("sorda", beatNumber, time, paloData);
+    scheduleInstrument("cajon", beatNumber, time, paloData);
+    scheduleInstrument("udu", beatNumber, time, paloData);
+    // Animate visualization
+    if (paloData.beats[beatNumber] === "strong") {
+        animateStrongBeat(beatNumber, time);
+    } else if (paloData.beats[beatNumber] === "up") {
+        animateUpBeat(beatNumber, time);
+    } else {
+        animateDownBeat(beatNumber, time);
     }
 }
 
@@ -250,10 +963,75 @@ function play() {
     }
 }
 
+function drawBarsAndNumbers(bar, number, i) {
+    // Draw bars
+    var rect = window.aCompas.paper.rect(bar.x, bar.y, bar.width, bar.height);
+    rect.attr({ fill: "tomato" });
+    rect.node.setAttribute("class", "bar bar_" + i);
+
+    // Draw numbers
+    var text = null;
+    if ( number !== null ) {
+        text = window.aCompas.paper.text((bar.x + bar.width / 2.1), (bar.y + 25), number);
+        text.attr({
+            "fill": "lightgray",
+            "font-size": 16,
+            "font-family": "sans-serif",
+            "font-weight": "bold"
+        });
+        text.node.setAttribute("class", "number number_" + i);
+    }
+    return { rect: rect, text: text };
+}
+
+function setStrongBeat(elts) {
+    elts.rect.attr("fill", "firebrick");
+    elts.rect.attr("stroke", "firebrick");
+    elts.text.attr("fill", "black");
+}
+
+function setUpOrDownBeat(elts) {
+    elts.rect.attr({ stroke: "tomato" });
+}
+
+function callAtGivenTime(time, callback) {
+    window.setTimeout(callback, Math.round((time - window.aCompas.audioContext.currentTime) * 1000));
+}
+
+function animateStrongBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 5, height: [150, 300]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
+    });
+}
+
+function animateUpBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 55, height: [100, 250]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
+    });
+}
+
+function animateDownBeat(i, time) {
+    callAtGivenTime(time, function() {
+        $('.bar_' + i)
+            .velocity({ y: 100, height: [55, 150]}, {duration: 0, easing: "linear"})
+            .velocity({ y: 150, height: 5}, {duration: 300, easing: "linear"});
+    });
+}
+
 function draw() {
     // Take measures
     var x = Math.floor( 1200 / window.aCompas.nbBeatsInPattern );
     var y = x - Math.floor( 1200 / (window.aCompas.nbBeatsInPattern + 1) );
+    var paloData = null;
+    $.each(window.aCompas.palos, function(paloIndex, paloData2) {
+        if (paloData2.slug === window.aCompas.palo) {
+            paloData = paloData2;
+        }
+    });
     // Draw svg
     for ( var i = 0; i < window.aCompas.nbBeatsInPattern; i++ ) {
         var bar = {
@@ -262,31 +1040,15 @@ function draw() {
             'width': x - y,
             'height': 5
         };
-        switch (window.aCompas.palo) {
-            case 'buleria-6':
-                drawBuleria6(i, bar);
-                break ;
-            case 'buleria-12':
-                drawBuleria12(i, bar);
-                break ;
-            case 'solea':
-                drawSolea(i, bar);
-                break ;
-            case 'siguiriya':
-                drawSiguiriya(i, bar);
-                break ;
-            case 'fandangos':
-                drawFandangos(i, bar);
-                break ;
-            case 'tangos':
-                drawTangos(i, bar);
-                break ;
-            case 'rumba':
-                drawRumba(i, bar);
-                break ;
-            default :
-                console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
-                break ;
+        var beatLabel = null;
+        if (paloData.beatLabels[i] !== undefined) {
+            beatLabel = paloData.beatLabels[i];
+        }
+        var elts = drawBarsAndNumbers(bar, beatLabel, i);
+        if (paloData.beats[i] === "strong") {
+            setStrongBeat(elts);
+        } else {
+            setUpOrDownBeat(elts);
         }
     }
     console.log('Drawn visualizer');
@@ -308,85 +1070,6 @@ function setInfoMessage(txt) {
         } else {
             txtDiv.html(txt).animate({"opacity": 1}, 300);
         }
-    }
-}
-
-// Updates the zone which contains information about the tempo
-function onTempoChange() {
-//TODO Compare with tempo without multiplying by 2
-    var v = getTempo() * 2;
-    switch (window.aCompas.palo) {
-        case "buleria-12":
-            if ( v >= 230 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v >= 120 && v <= 180 ) {
-                setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( v <= 60 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break;
-        case "buleria-6":
-            if ( v >= 270 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v <= 120 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        case "fandangos":
-            if ( v >= 200 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v <= 90 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        case "rumba":
-            if ( v >= 240 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v <= 90 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        case "siguiriya":
-            if ( v >= 160 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v <= 60 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        case "solea":
-            if ( v >= 180 ) {
-                setInfoMessage("Your rhythm is very fast");
-            } else if ( v >= 120 && v <= 180 ) {
-                setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( v <= 60 ) {
-                setInfoMessage("Your rhythm is very slow");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        case "tangos":
-            if ( v >= 180 ) {
-                setInfoMessage("Your rhythm is por rumba");
-            } else if ( v <= 90 ) {
-                setInfoMessage("Your rhythm is por tientos");
-            } else {
-                setInfoMessage(null);
-            }
-            break ;
-        default :
-            console.log("Error: unknown palo \"" + window.aCompas.palo + "\"");
-            return ;
-            break ;
     }
 }
 
@@ -418,10 +1101,10 @@ function setPalo(paloSlug) {
         reversed: true
     }).on("slide", function(e) {
         $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
-        onTempoChange();
+        paloData.setTempoInfo();
     }).on("slideStop", function(e) {
         $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
-        onTempoChange();
+        paloData.setTempoInfo();
     });
     // Force rendering of the slider's label
     $("#tempo").trigger("slideStop");
@@ -465,24 +1148,23 @@ function buildUi() {
     html += "<label class=\"label label-default\">Resolution</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
     html += "<label class=\"btn btn-sm active\">";
-    html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"0\" autocomplete=\"off\" checked> Contratiempo";
+    html += "<input type=\"radio\" class=\"resolution\" data-value=\"0\" autocomplete=\"off\" checked> Contratiempo";
     html += "</label>";
     html += "<label class=\"btn btn-sm\">";
-    html += "<input type=\"radio\" name=\"options\" class=\"resolution\" data-resolution=\"1\" autocomplete=\"off\"> Tiempo";
-    html += "</label>";
-    html += "</div>";
-    // Palmas
-    html += "<label class=\"label label-default\">Palmas</label>";
-    html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-sm active\">";
-    html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"0\" autocomplete=\"off\" checked> Claras";
-    html += "</label>";
-    html += "<label class=\"btn btn-sm\">";
-    html += "<input type=\"radio\" name=\"options\" class=\"clap-type\" data-clap-type=\"1\" autocomplete=\"off\"> Sordas";
+    html += "<input type=\"radio\" class=\"resolution\" data-value=\"1\" autocomplete=\"off\"> Tiempo";
     html += "</label>";
     html += "</div>";
 
+    // Instruments
+    html += "<label class=\"label label-default\">Instruments</label>";
+    html += "<div class=\"btn-group\" role=\"group\">";
+    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"clara\">Palma clara</button>";
+    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"sorda\">Palma sorda</button>";
+    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"cajon\">Cajon</button>";
+    html += "<button class=\"toggle-instrument btn btn-primary btn-sm\" data-instrument=\"udu\">Udu</button>";
     html += "</div>";
+
+    html += "</div>"; // End #palo-and-options
 
     // Play button + info zone
     html += "<div id=\"play-and-info-container\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
@@ -579,7 +1261,7 @@ function buildUi() {
     });
 
     $(".resolution").on("change", function(e) {
-        window.aCompas.noteResolution = parseInt($(this).data("resolution"));
+        window.aCompas.noteResolution = parseInt($(this).data("value"));
         // Track event in Piwik
         var label = null;
         if (window.aCompas.noteResolution == 0) {
@@ -590,16 +1272,20 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
 
-    $(".clap-type").on("change", function(e) {
-        window.aCompas.clapType = parseInt($(this).data("clap-type"));
-        // Track event in Piwik
+    $(".toggle-instrument").on("click", function(e) {
+        e.preventDefault();
+        var instrument = $(this).data("instrument");
         var label = null;
-        if (window.aCompas.clapType == 0) {
-            label = "Claras";
+        if ($(this).hasClass("btn-primary")) {
+            window.aCompas[instrument] = 0;
+            $(this).removeClass("btn-primary");
+            label = "Off";
         } else {
-            label = "Sordas";
+            window.aCompas[instrument] = 1;
+            $(this).addClass("btn-primary");
+            label = "On";
         }
-        _paq.push(['trackEvent', 'Options', 'Palmas', label]);
+        _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
     });
 
     $(window).on("resize", function(e) {
