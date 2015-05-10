@@ -72,11 +72,11 @@ window.aCompas = {
         },
         click_1: {
             src: 'click_1',
-            volume: 0.2
+            volume: 0.1
         },
         click_2: {
             src: 'click_2',
-            volume: 0.2
+            volume: 0.1
         }
     },
     soundCounts: {
