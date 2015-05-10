@@ -43,7 +43,7 @@ a:hover {
 }
 
 .btn-group {
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 .btn-primary {
@@ -134,7 +134,7 @@ a:hover {
 }
 
 #palo {
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     cursor: pointer;
 }
 
@@ -232,6 +232,10 @@ footer {
 /* 992px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 992px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
 
+    .btn-group {
+        margin-bottom: 10px;
+    }
+
     header {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -250,6 +254,10 @@ footer {
         margin-bottom: 20px;
     }
 
+    #palo {
+        margin-bottom: 10px;
+    }
+
     .slider.slider-vertical {
         height: 200px;
     }
@@ -257,6 +265,10 @@ footer {
 }
 
 @media all and (min-width: 992px) and (orientation: landscape) {
+
+    .btn-group {
+        margin-bottom: 20px;
+    }
 
     #right-col label.label {
         padding: 5px;
