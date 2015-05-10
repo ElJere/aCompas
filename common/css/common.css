@@ -42,6 +42,10 @@ a:hover {
     background-color: #e6e6e6;
 }
 
+.btn-group {
+    margin-bottom: 10px;
+}
+
 .btn-primary {
     background-image: linear-gradient(to bottom, tomato 0px, firebrick 100%);
     border-color: firebrick;
@@ -117,11 +121,11 @@ a:hover {
     margin-right: 0px;
 }
 
-#left-col label.label,
 #right-col label.label {
     background-color: #999;
     display: block;
     padding: 1px;
+    margin-bottom: 17px;
 }
 
 #palo-and-options {
@@ -129,9 +133,9 @@ a:hover {
     padding-right: 0px;
 }
 
-#palo-and-options label,
 #palo {
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .play {
@@ -164,11 +168,6 @@ a:hover {
 
 .play.active:hover {
     border-color: firebrick;
-}
-
-#tempo-label,
-#volume-label {
-    margin-bottom: 17px;
 }
 
 #tempo-slider-container {
@@ -246,11 +245,6 @@ footer {
         margin-bottom: 20px;
     }
 
-    #palo-and-options label,
-    #palo {
-        margin-bottom: 10px;
-    }
-
     .slider.slider-vertical {
         height: 200px;
     }
@@ -259,7 +253,6 @@ footer {
 
 @media all and (min-width: 992px) and (orientation: landscape) {
 
-    #left-col label.label,
     #right-col label.label {
         padding: 5px;
     }
@@ -289,7 +282,6 @@ footer {
         margin-bottom: 50px;
     }
 
-    #palo-and-options label,
     #palo {
         margin-bottom: 20px;
     }

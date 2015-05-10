@@ -13,10 +13,11 @@ window.aCompas = {
                                     // with next interval (in case the timer is late)
     nextNoteTime: 0.0,              // When the next note is due ?
     noteResolution: 0,              // 0 = times + counter times, 1 = times only
-    clara: 1,                       // 0 = off, 1 = on
-    sorda: 1,                       // 0 = off, 1 = on
-    cajon: 1,                       // 0 = off, 1 = on
-    udu: 1,                         // 0 = off, 1 = on
+    clara: true,                    // Is the palma clara track on ?
+    sorda: true,                    // Is the palma sorda track on ?
+    cajon: true,                    // Is the cajón track on ?
+    udu: true,                      // Is the udu track on ?
+    improvise: true,                // Is improvisation mode on ?
     timerWorker: null,              // The Web Worker used to fire timer messages
     nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
     visualization: null,            // <svg> visualization
@@ -28,23 +29,23 @@ window.aCompas = {
                                     // in this property
     audioFormat: null,              // Audio format to use for playing
     sounds: {                       // Sounds used by the application
-        clara_1 : {
+        clara_1: {
             src : 'clara_1',
             volume : 1
         },
-        clara_2 : {
+        clara_2: {
             src : 'clara_2',
             volume : 1
         },
-        clara_3 : {
+        clara_3: {
             src : 'clara_3',
             volume : 0.5
         },
-        sorda_1 : {
+        sorda_1: {
             src : 'sorda_1',
             volume : 0.8
         },
-        sorda_2 : {
+        sorda_2: {
             src : 'sorda_2',
             volume : 0.2
         },
@@ -60,14 +61,20 @@ window.aCompas = {
             src: 'cajon_3',
             volume: 0.6
         },
-        udu_1 : {
+        udu_1: {
             src : 'udu_1',
             volume : 1
         },
-        udu_2 : {
+        udu_2: {
             src : 'udu_2',
             volume : 0.5
         }
+    },
+    soundCounts: {
+        clara: 3,
+        sorda: 2,
+        cajon: 3,
+        udu: 2
     }
 }
 
@@ -888,8 +895,8 @@ function nextNote() {
     }
 }
 
-function scheduleInstrument(instrument, beatNumber, time, paloData) {
-    if (window.aCompas[instrument] !== 0 && paloData[instrument][beatNumber] !== undefined) {
+function scheduleInstrumentWithoutImprovisation(instrument, beatNumber, time, paloData) {
+    if (paloData[instrument][beatNumber] !== undefined) {
         var nb = null;
         var volume = null;
         // Check if paloData[instrument][beatNumber] is an object
@@ -900,6 +907,30 @@ function scheduleInstrument(instrument, beatNumber, time, paloData) {
             nb = paloData[instrument][beatNumber];
         }
         playSound(instrument + "_" + nb, time, volume);
+    }
+}
+
+function scheduleInstrumentWithImprovisation(instrument, time) {
+    // Pick a random sound
+    var nb = Math.round(Math.random() * (window.aCompas.soundCounts[instrument] - 1)) + 1;
+    // Pick a random volume, using the sound's default volume as a maximum value
+    var volume = Math.random() * window.aCompas.sounds[instrument + "_" + nb].volume;
+    playSound(instrument + "_" + nb, time, volume);
+}
+
+function scheduleInstrument(instrument, beatNumber, time, paloData) {
+    if (window.aCompas[instrument]) {
+        if (window.aCompas.improvise) {
+            var improvisationProbability = 15; // Percentage of chances that the pattern is not followed
+            var willStickToPattern = (Math.random() > improvisationProbability / 100);
+            if (willStickToPattern) {
+                scheduleInstrumentWithoutImprovisation(instrument, beatNumber, time, paloData);
+            } else {
+                scheduleInstrumentWithImprovisation(instrument, time);
+            }
+        } else {
+            scheduleInstrumentWithoutImprovisation(instrument, beatNumber, time, paloData);
+        }
     }
 }
 
@@ -1059,7 +1090,6 @@ function draw() {
             setUpOrDownBeat(elts);
         }
     }
-    console.log('Drawn visualizer');
 }
 
 function resetDraw() {
@@ -1151,7 +1181,6 @@ function buildUi() {
     html += "<div id=\"palo-and-options\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
 
     // Palo switcher
-    html += "<label for=\"palo\" class=\"label label-default\">Rhythm</label>";
     html += "<select id=\"palo\" class=\"form-control\">";
     $.each(window.aCompas.palos, function(paloIndex, paloData) {
         html += "<option value=\"" + paloData.slug + "\">";
@@ -1163,7 +1192,6 @@ function buildUi() {
     // Options
 
     // Resolution
-    html += "<label class=\"label label-default\">Resolution</label>";
     html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
     html += "<label class=\"btn btn-default btn-sm active\">";
     html += "<input type=\"radio\" class=\"resolution\" data-value=\"0\" autocomplete=\"off\" checked> Contratiempo";
@@ -1174,12 +1202,18 @@ function buildUi() {
     html += "</div>";
 
     // Instruments
-    html += "<label class=\"label label-default\">Instruments</label>";
+    html += "<div>";
     html += "<div class=\"btn-group\" role=\"group\">";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\">Palma clara</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\">Palma sorda</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajón</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\">Udu</button>";
+    html += "</div>";
+    html += "</div>"
+
+    // Improvise
+    html += "<div class=\"btn-group\" role=\"group\">";
+    html += "<button id=\"improvise\" class=\"btn btn-default btn-sm active\" >Improvise</button>";
     html += "</div>";
 
     html += "</div>"; // End #palo-and-options
@@ -1215,13 +1249,13 @@ function buildUi() {
 
     // Tempo
     html += "<div id=\"tempo-slider-container\" class=\"col-xs-6\">";
-    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo:</label>";
+    html += "<label class=\"label label-default\">Tempo:</label>";
     html += "<div id=\"tempo\">";
     html += "</div>"
     html += "</div>";
     // Volume
     html += "<div id=\"volume-slider-container\" class=\"col-xs-6\">";
-    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
+    html += "<label class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
     html += "<div id=\"volume\">";
     html += "</div>";
     html += "</div>";
@@ -1295,15 +1329,30 @@ function buildUi() {
         var instrument = $(this).data("instrument");
         var label = null;
         if ($(this).hasClass("active")) {
-            window.aCompas[instrument] = 0;
+            window.aCompas[instrument] = false;
             $(this).removeClass("active");
             label = "Off";
         } else {
-            window.aCompas[instrument] = 1;
+            window.aCompas[instrument] = true;
             $(this).addClass("active");
             label = "On";
         }
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
+    });
+
+    $("#improvise").on("click", function(e) {
+        e.preventDefault();
+        var label = null;
+        if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            window.aCompas.improvise = false;
+            label = "Off";
+        } else {
+            $(this).addClass("active")
+            window.aCompas.improvise = true;
+            label = "On";
+        }
+        _paq.push(['trackEvent', 'Options', "Improvisation", label]);
     });
 
     adaptToFooterHeight();
