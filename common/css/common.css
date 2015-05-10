@@ -170,6 +170,11 @@ a:hover {
     border-color: firebrick;
 }
 
+#tempo-label,
+#volume-label {
+    margin-bottom: 17px;
+}
+
 #tempo-slider-container {
     padding-left: 1px;
     padding-right: 0.5px;

@@ -1249,13 +1249,13 @@ function buildUi() {
 
     // Tempo
     html += "<div id=\"tempo-slider-container\" class=\"col-xs-6\">";
-    html += "<label class=\"label label-default\">Tempo:</label>";
+    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo:</label>";
     html += "<div id=\"tempo\">";
     html += "</div>"
     html += "</div>";
     // Volume
     html += "<div id=\"volume-slider-container\" class=\"col-xs-6\">";
-    html += "<label class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
+    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
     html += "<div id=\"volume\">";
     html += "</div>";
     html += "</div>";
