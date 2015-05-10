@@ -17,6 +17,7 @@ window.aCompas = {
     sorda: true,                    // Is the palma sorda track on ?
     cajon: true,                    // Is the cajón track on ?
     udu: true,                      // Is the udu track on ?
+    click: false,                   // Is the click track on ?
     improvise: true,                // Is improvisation mode on ?
     timerWorker: null,              // The Web Worker used to fire timer messages
     nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
@@ -30,23 +31,23 @@ window.aCompas = {
     audioFormat: null,              // Audio format to use for playing
     sounds: {                       // Sounds used by the application
         clara_1: {
-            src : 'clara_1',
+            src: 'clara_1',
             volume : 1
         },
         clara_2: {
-            src : 'clara_2',
+            src: 'clara_2',
             volume : 1
         },
         clara_3: {
-            src : 'clara_3',
+            src: 'clara_3',
             volume : 0.5
         },
         sorda_1: {
-            src : 'sorda_1',
+            src: 'sorda_1',
             volume : 0.8
         },
         sorda_2: {
-            src : 'sorda_2',
+            src: 'sorda_2',
             volume : 0.2
         },
         cajon_1: {
@@ -62,12 +63,20 @@ window.aCompas = {
             volume: 0.6
         },
         udu_1: {
-            src : 'udu_1',
+            src: 'udu_1',
             volume : 1
         },
         udu_2: {
-            src : 'udu_2',
+            src: 'udu_2',
             volume : 0.5
+        },
+        click_1: {
+            src: 'click_1',
+            volume: 0.2
+        },
+        click_2: {
+            src: 'click_2',
+            volume: 0.2
         }
     },
     soundCounts: {
@@ -475,7 +484,7 @@ window.aCompas.palos = [
             1: "down",
             2: "up",
             3: "down",
-            4: "strong",
+            4: "up",
             5: "down",
             6: "up",
             7: "down",
@@ -483,7 +492,7 @@ window.aCompas.palos = [
             9: "down",
             10: "up",
             11: "down",
-            12: "strong",
+            12: "up",
             13: "down",
             14: "up",
             15: "down"
@@ -934,6 +943,16 @@ function scheduleInstrument(instrument, beatNumber, time, paloData) {
     }
 }
 
+function scheduleClick(beatNumber, time, paloData) {
+    if (window.aCompas.click && beatNumber % 2 === 0) {
+        if (paloData.beats[beatNumber] === "strong") {
+            playSound("click_1", time, null);
+        } else {
+            playSound("click_2", time, null);
+        }
+    }
+}
+
 function scheduleNote( beatNumber, time ) {
     // If option "times only" selected, don't play counter times
     if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
@@ -950,6 +969,7 @@ function scheduleNote( beatNumber, time ) {
     scheduleInstrument("sorda", beatNumber, time, paloData);
     scheduleInstrument("cajon", beatNumber, time, paloData);
     scheduleInstrument("udu", beatNumber, time, paloData);
+    scheduleClick(beatNumber, time, paloData);
     // Animate visualization
     if (paloData.beats[beatNumber] === "strong") {
         animateStrongBeat(beatNumber, time);
@@ -1208,6 +1228,7 @@ function buildUi() {
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\">Palma sorda</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajón</button>";
     html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\">Udu</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\">Click</button>";
     html += "</div>";
     html += "</div>"
 

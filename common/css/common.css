@@ -34,6 +34,10 @@ a:hover {
     text-decoration: none;
 }
 
+.btn {
+    padding: 2px 4px;
+}
+
 .btn-default:focus {
     background-color: #fff;
 }
@@ -231,6 +235,10 @@ footer {
 
 /* 992px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 992px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
+
+    .btn {
+        padding: 5px 10px;
+    }
 
     .btn-group {
         margin-bottom: 10px;
