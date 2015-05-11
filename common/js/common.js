@@ -930,7 +930,7 @@ function scheduleInstrumentWithImprovisation(instrument, time) {
 function scheduleInstrument(instrument, beatNumber, time, paloData) {
     if (window.aCompas[instrument]) {
         if (window.aCompas.improvise) {
-            var improvisationProbability = 15; // Percentage of chances that the pattern is not followed
+            var improvisationProbability = 20; // Percentage of chances that the pattern is not followed
             var willStickToPattern = (Math.random() > improvisationProbability / 100);
             if (willStickToPattern) {
                 scheduleInstrumentWithoutImprovisation(instrument, beatNumber, time, paloData);
