@@ -102,6 +102,45 @@ a:hover {
     padding-right: 1px;
 }
 
+#visualizer .bar,
+#visualizer .beat-label {
+    display: inline-block;
+}
+
+#visualizer .row-1 {
+    position: relative;
+}
+
+#visualizer .bar {
+    position: absolute;
+    bottom: 0px;
+}
+
+#visualizer .bar-strong {
+    background-color: firebrick;
+}
+
+#visualizer .bar-up,
+#visualizer .bar-down {
+    background-color: tomato;
+}
+
+#visualizer .beat-label {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 13px;
+    text-align: center;
+}
+
+.beat-label.beat-label-strong {
+    color: black;
+}
+
+.beat-label.beat-label-up,
+.beat-label.beat-label-down {
+    color: lightgray;
+}
+
 #controls-row {
     margin-left: 0px;
     margin-right: 0px;
@@ -257,7 +296,7 @@ footer {
         font-size: 30px;
     }
 
-    #visualizer-container {
+    #visualizer-row {
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -302,7 +341,7 @@ footer {
 /* 1200px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 1200px) and (orientation: landscape) {
 
-    #visualizer-container {
+    #visualizer-row {
         margin-top: 50px;
         margin-bottom: 50px;
     }

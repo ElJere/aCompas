@@ -25,7 +25,6 @@
     "bootstrap": "~3.3.4",
     "jquery": "~2.1.4",
     "velocity": "~1.2.2",
-    "raphael": "~2.1.4",
     "seiyria-bootstrap-slider": "~4.8.1"
   }
 }

@@ -6,9 +6,9 @@ window.aCompas = {
     defaultPaloSlug: "tangos",      // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
-    lookahead: 25.0,                // How frequently to call scheduling function ?
+    lookahead: 50.0,                // How frequently to call scheduling function ?
                                     // (in milliseconds)
-    scheduleAheadTime: 0.1,         // How far ahead to schedule audio (sec)
+    scheduleAheadTime: 0.3,         // How far ahead to schedule audio (sec)
                                     // This is calculated from lookahead, and overlaps
                                     // with next interval (in case the timer is late)
     nextNoteTime: 0.0,              // When the next note is due ?
@@ -21,9 +21,8 @@ window.aCompas = {
     improvise: true,                // Is improvisation mode on ?
     timerWorker: null,              // The Web Worker used to fire timer messages
     nbBeatsInPattern: null,         // Number of beats in the current pattern (counting eighth notes)
-    visualization: null,            // <svg> visualization
-    paper: null,                    // raphael.js constructor returns a paper object
-                                    // used to manipulate the SVG visualization
+    defaultBarHeight: 5,            // Initial height of a bar in the bar visualization (in pixels)
+    barMaxHeight: null,             // Maximum height of a bar (float, in pixels)
     palos: null,                    // Palos data
     deviceOrientation: null,        // String ("Landscape" or "Portrait")
     playStartTime: null,            // The time when the user starts playing is stored
@@ -954,6 +953,10 @@ function scheduleClick(beatNumber, time, paloData) {
 }
 
 function scheduleNote( beatNumber, time ) {
+    // Don't schedule anything if the browser is lagging
+    if (time < window.aCompas.audioContext.currentTime) {
+        return ;
+    }
     // If option "times only" selected, don't play counter times
     if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
         return; 
@@ -971,13 +974,7 @@ function scheduleNote( beatNumber, time ) {
     scheduleInstrument("udu", beatNumber, time, paloData);
     scheduleClick(beatNumber, time, paloData);
     // Animate visualization
-    if (paloData.beats[beatNumber] === "strong") {
-        animateStrongBeat(beatNumber, time);
-    } else if (paloData.beats[beatNumber] === "up") {
-        animateUpBeat(beatNumber, time);
-    } else {
-        animateDownBeat(beatNumber, time);
-    }
+    animateBar(beatNumber, time, paloData.beats[beatNumber]);
 }
 
 function scheduler() {
@@ -1022,152 +1019,76 @@ function play() {
     }
 }
 
-function drawBarsAndNumbers(bar, number, i) {
-    // Draw bars
-    var rect = window.aCompas.paper.rect(bar.x, bar.y, bar.width, bar.height);
-    rect.attr({ fill: "tomato" });
-    rect.node.setAttribute("class", "bar");
-    rect.node.setAttribute("id", "bar_" + i)
-
-    // Draw numbers
-    var text = null;
-    if ( number !== null ) {
-        text = window.aCompas.paper.text((bar.x + bar.width / 2.1), (bar.y + 25), number);
-        text.attr({
-            "fill": "lightgray",
-            "font-size": 16,
-            "font-family": "sans-serif",
-            "font-weight": "bold"
-        });
-        text.node.setAttribute("class", "number number_" + i);
-    }
-    return { rect: rect, text: text };
-}
-
-function setStrongBeat(elts) {
-    elts.rect.attr("fill", "firebrick");
-    elts.rect.attr("stroke", "firebrick");
-    elts.text.attr("fill", "black");
-}
-
-function setUpOrDownBeat(elts) {
-    elts.rect.attr({ stroke: "tomato" });
-}
-
 function callAtGivenTime(time, callback) {
     window.setTimeout(callback, Math.round((time - window.aCompas.audioContext.currentTime) * 1000));
 }
 
-function animateStrongBeat(i, time) {
+function animateBar(i, time, beatType) {
     callAtGivenTime(time, function() {
-        $.Velocity(document.getElementById("bar_" + i),
+        var maxHeight = window.aCompas.barMaxHeight;
+        if (beatType === "up") {
+            maxHeight *= 2/3
+        }
+        if (beatType === "down") {
+            maxHeight *= 1/3;
+        }
+        $("#bar-" + i).css("height", maxHeight + "px");
+        $.Velocity(document.getElementById("bar-" + i),
             {
-                y: 5,
-                height: [150, 300]
+                height: window.aCompas.defaultBarHeight
             },
             {
-                duration: 0,
-                easing: "linear",
-                complete: function(elements) {
-                    $.Velocity(document.getElementById("bar_" + i),
-                        {
-                            y: 150,
-                            height: 5
-                        },
-                        {
-                            duration: 220,
-                            easing: "linear"
-                        });
-                }
-            });
-    });
-}
-
-function animateUpBeat(i, time) {
-    callAtGivenTime(time, function() {
-        $.Velocity(document.getElementById("bar_" + i),
-            {
-                y: 55,
-                height: [100, 250]
-            },
-            {
-                duration: 0,
-                easing: "linear",
-                complete: function(elements) {
-                    $.Velocity(document.getElementById("bar_" + i),
-                        {
-                            y: 150,
-                            height: 5
-                        },
-                        {
-                            duration: 220,
-                            easing: "linear"
-                        });
-                }
-            });
-    });
-}
-
-function animateDownBeat(i, time) {
-    callAtGivenTime(time, function() {
-        $.Velocity(document.getElementById("bar_" + i),
-            {
-                y: 100,
-                height: [55, 150]
-            },
-            {
-                duration: 0,
-                easing: "linear",
-                complete: function(elements) {
-                    $.Velocity(document.getElementById("bar_" + i),
-                        {
-                            y: 150,
-                            height: 5
-                        },
-                        {
-                            duration: 220,
-                            easing: "linear"
-                        });
-                }
+                duration: 220,
+                easing: "linear"
             });
     });
 }
 
 function draw() {
-    // Take measures
-    var x = Math.floor( 1200 / window.aCompas.nbBeatsInPattern );
-    var y = x - Math.floor( 1200 / (window.aCompas.nbBeatsInPattern + 1) );
+    var html = "";
     var paloData = null;
     $.each(window.aCompas.palos, function(paloIndex, paloData2) {
-        if (paloData2.slug === window.aCompas.palo) {
+        if (window.aCompas.palo === paloData2.slug) {
             paloData = paloData2;
         }
     });
-    // Draw svg
-    for ( var i = 0; i < window.aCompas.nbBeatsInPattern; i++ ) {
-        var bar = {
-            'x': (x * i + y) - y / 2,
-            'y': 150,
-            'width': x - y,
-            'height': 5
-        };
-        var beatLabel = null;
-        if (paloData.beatLabels[i] !== undefined) {
-            beatLabel = paloData.beatLabels[i];
-        }
-        var elts = drawBarsAndNumbers(bar, beatLabel, i);
-        if (paloData.beats[i] === "strong") {
-            setStrongBeat(elts);
-        } else {
-            setUpOrDownBeat(elts);
-        }
+    html += "<div class=\"row-1\">";
+    for (var i = 0; i < window.aCompas.nbBeatsInPattern; i++) {
+        html += "<div id=\"bar-" + i + "\" class=\"bar bar-" + paloData.beats[i] + "\"></div>";
     }
-}
+    html += "</div>"; // End .row-1
+    html += "<div class=\"row-2\">";
+    for (var i = 0; i < window.aCompas.nbBeatsInPattern; i++) {
+        html += "<div class=\"beat-label beat-label-" + paloData.beats[i] + "\">";
+        if (paloData.beatLabels[i] !== undefined) {
+            html += paloData.beatLabels[i];
+        }
+        html += "</div>";
+    }
+    html += "</div>"; // End .row-2
+    $("#visualizer").html(html);
 
-function resetDraw() {
-    // Erase svg and draw again
-    window.aCompas.paper.clear();
-    draw();
+    // Set height for #visualizer
+    var ratio = 0.15; // height / width ratio
+    var visualizerHeight = ratio * $("#visualizer").width();
+    $("#visualizer").css("height", visualizerHeight);
+    // Set CSS for each bar
+    var sideMargin = 2; // px
+    var columnWidth = ($("#visualizer").width() - (window.aCompas.nbBeatsInPattern * sideMargin * 2)) / window.aCompas.nbBeatsInPattern;
+    $("#visualizer .bar, #visualizer .beat-label").css({
+        marginLeft: sideMargin + "px",
+        marginRight: sideMargin + "px",
+        width: columnWidth
+    });
+    var barLeft = null;
+    for (var i = 0; i < window.aCompas.nbBeatsInPattern; i++) {
+        barLeft = (columnWidth + (2 * sideMargin)) * i;
+        $("#bar-" + i).css("left", barLeft);
+    }
+    $("#visualizer .bar").css("height", window.aCompas.defaultBarHeight + "px");
+    var row1Height = visualizerHeight - $("#visualizer > .row-2").height();
+    $("#visualizer > .row-1").css("height", row1Height + "px");
+    window.aCompas.barMaxHeight = Math.ceil(row1Height);
 }
 
 function setInfoMessage(txt) {
@@ -1218,8 +1139,8 @@ function setPalo(paloSlug) {
     });
     // Force rendering of the slider's label
     $("#tempo").trigger("slideStop");
-    // Reset visualization
-    resetDraw();
+    // Draw visualization
+    draw();
 }
 
 function adaptToFooterHeight() {
@@ -1238,7 +1159,7 @@ function buildUi() {
     // Visualization
     html += "<div id=\"visualizer-row\" class=\"row\">";
     html += "<div class=\"col-xs-12\">";
-    html += "<div id=\"visualizer-container\">";
+    html += "<div id=\"visualizer\">";
     html += "</div>";
     html += "</div>";
     html += "</div>";
@@ -1340,12 +1261,6 @@ function buildUi() {
 
     $("#main").html(html);
 
-    // Build svg visualization using raphael.js
-    window.aCompas.paper = new Raphael("visualizer-container", 1200, 185);
-    window.aCompas.paper.setViewBox(0, 0, 1200, 185, true);
-    window.aCompas.paper.setSize('100%', '100%');
-    window.aCompas.visualization = $("#visualizer-container > svg");
-
     // Set default palo
     setPalo(window.aCompas.defaultPaloSlug);
     $("#palo").val(window.aCompas.defaultPaloSlug);
@@ -1431,7 +1346,7 @@ function buildUi() {
     adaptToFooterHeight();
 
     $(window).on("resize", function(e) {
-        resetDraw();
+        draw();
         adaptToFooterHeight();
         // Track event in Piwik
         trackDeviceOrientation();
