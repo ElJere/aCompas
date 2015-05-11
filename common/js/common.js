@@ -1026,7 +1026,8 @@ function drawBarsAndNumbers(bar, number, i) {
     // Draw bars
     var rect = window.aCompas.paper.rect(bar.x, bar.y, bar.width, bar.height);
     rect.attr({ fill: "tomato" });
-    rect.node.setAttribute("class", "bar bar_" + i);
+    rect.node.setAttribute("class", "bar");
+    rect.node.setAttribute("id", "bar_" + i)
 
     // Draw numbers
     var text = null;
@@ -1059,25 +1060,82 @@ function callAtGivenTime(time, callback) {
 
 function animateStrongBeat(i, time) {
     callAtGivenTime(time, function() {
-        $('.bar_' + i)
-            .velocity({ y: 5, height: [150, 300]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 220, easing: "linear"});
+        var elt = document.getElementById("bar_" + i);
+        $(elt).velocity(
+            {
+                y: 5,
+                height: [150, 300]
+            },
+            {
+                duration: 0,
+                easing: "linear",
+                complete: function(elements) {
+                    var elt = document.getElementById("bar_" + i);
+                    $(elt).velocity(
+                        {
+                            y: 150,
+                            height: 5
+                        },
+                        {
+                            duration: 220,
+                            easing: "linear"
+                        });
+                }
+            });
     });
 }
 
 function animateUpBeat(i, time) {
     callAtGivenTime(time, function() {
-        $('.bar_' + i)
-            .velocity({ y: 55, height: [100, 250]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 220, easing: "linear"});
+        var elt = document.getElementById("bar_" + i)
+        $(elt).velocity(
+            {
+                y: 55,
+                height: [100, 250]
+            },
+            {
+                duration: 0,
+                easing: "linear",
+                complete: function(elements) {
+                    var elt = document.getElementById("bar_" + i);
+                    $(elt).velocity(
+                        {
+                            y: 150,
+                            height: 5
+                        },
+                        {
+                            duration: 220,
+                            easing: "linear"
+                        });
+                }
+            });
     });
 }
 
 function animateDownBeat(i, time) {
     callAtGivenTime(time, function() {
-        $('.bar_' + i)
-            .velocity({ y: 100, height: [55, 150]}, {duration: 0, easing: "linear"})
-            .velocity({ y: 150, height: 5}, {duration: 220, easing: "linear"});
+        var elt = document.getElementById("bar_" + i);
+        $(elt).velocity(
+            {
+                y: 100,
+                height: [55, 150]
+            },
+            {
+                duration: 0,
+                easing: "linear",
+                complete: function(elements) {
+                    var elt = document.getElementById("bar_" + i);
+                    $(elt).velocity(
+                        {
+                            y: 150,
+                            height: 5
+                        },
+                        {
+                            duration: 220,
+                            easing: "linear"
+                        });
+                }
+            });
     });
 }
 
