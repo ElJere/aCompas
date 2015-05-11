@@ -1060,8 +1060,7 @@ function callAtGivenTime(time, callback) {
 
 function animateStrongBeat(i, time) {
     callAtGivenTime(time, function() {
-        var elt = document.getElementById("bar_" + i);
-        $(elt).velocity(
+        $.Velocity(document.getElementById("bar_" + i),
             {
                 y: 5,
                 height: [150, 300]
@@ -1070,8 +1069,7 @@ function animateStrongBeat(i, time) {
                 duration: 0,
                 easing: "linear",
                 complete: function(elements) {
-                    var elt = document.getElementById("bar_" + i);
-                    $(elt).velocity(
+                    $.Velocity(document.getElementById("bar_" + i),
                         {
                             y: 150,
                             height: 5
@@ -1087,8 +1085,7 @@ function animateStrongBeat(i, time) {
 
 function animateUpBeat(i, time) {
     callAtGivenTime(time, function() {
-        var elt = document.getElementById("bar_" + i)
-        $(elt).velocity(
+        $.Velocity(document.getElementById("bar_" + i),
             {
                 y: 55,
                 height: [100, 250]
@@ -1097,8 +1094,7 @@ function animateUpBeat(i, time) {
                 duration: 0,
                 easing: "linear",
                 complete: function(elements) {
-                    var elt = document.getElementById("bar_" + i);
-                    $(elt).velocity(
+                    $.Velocity(document.getElementById("bar_" + i),
                         {
                             y: 150,
                             height: 5
@@ -1114,8 +1110,7 @@ function animateUpBeat(i, time) {
 
 function animateDownBeat(i, time) {
     callAtGivenTime(time, function() {
-        var elt = document.getElementById("bar_" + i);
-        $(elt).velocity(
+        $.Velocity(document.getElementById("bar_" + i),
             {
                 y: 100,
                 height: [55, 150]
@@ -1124,8 +1119,7 @@ function animateDownBeat(i, time) {
                 duration: 0,
                 easing: "linear",
                 complete: function(elements) {
-                    var elt = document.getElementById("bar_" + i);
-                    $(elt).velocity(
+                    $.Velocity(document.getElementById("bar_" + i),
                         {
                             y: 150,
                             height: 5
