@@ -3,7 +3,7 @@
 A flamenco metronome available in two versions :
 
 * Web application (available at [http://acompas.audio](http://acompas.audio)).
-* Mobile application using the Cordova/PhoneGap framework, [available on the Google Play marketplace](https://play.google.com/store/apps/details?id=audio.acompas.app).
+* Mobile application using [Crosswalk](https://crosswalk-project.org/), [available on the Google Play marketplace](https://play.google.com/store/apps/details?id=audio.acompas.app).
 
 It makes use of Web Audio API to play various flamenco rhythms and features a visual animation.
 
@@ -16,7 +16,7 @@ git clone https://github.com/ElJere/aCompas.git
 cd aCompas
 # Install dependencies using bower
 bower install
-# Synchronize assets to the web/ and cordova/ folders
+# Synchronize assets to the web/ and crosswalk/ folders
 ./sync_assets.sh
 # Run a basic web server on port 8000
 ./server.sh
@@ -43,7 +43,7 @@ vagrant ssh
 cd /vagrant
 # Setup dependendencies
 bower install
-# Synchronize assets to the web/ and cordova/ folders
+# Synchronize assets to the web/ and crosswalk/ folders
 ./sync_assets.sh
 # Run a basic web server on port 8000
 ./server.sh
@@ -60,16 +60,10 @@ git clone https://github.com/ElJere/aCompas.git
 cd aCompas
 # Install dependencies using bower
 bower install
-# Synchronize assets to the web/ and cordova/ folders
+# Synchronize assets to the web/ and crosswalk/ folders
 ./sync_assets.sh
-# Go inside the Cordova project
-cd cordova/
-# Install Cordova
-sudo npm install -g cordova
 # Build the app
-cordova build
-# Run the application in the Android emulator
-cordova run --emulator
+python /path/to/crosswalk/make_apk.py --package=audio.acompas.app --manifest=crosswalk/manifest.json
 ```
 
 ## Credits

@@ -13,7 +13,6 @@ fi
 rsync -av --delete ./common ./web
 rsync -av --delete ./bower_components ./web
 
-# Cordova version
-rsync -av --delete ./common ./cordova/www
-rsync -av --delete ./bower_components ./cordova/www
-
+# Crosswalk version
+rsync -av --delete ./common ./crosswalk
+rsync -av --delete ./bower_components ./crosswalk

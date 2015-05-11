@@ -339,7 +339,7 @@ footer {
 }
 
 /* 1200px is the limit width from medium to large with bootstrap */
-@media all and (min-width: 1200px) and (orientation: landscape) {
+@media all and (min-width: 1200px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
 
     #visualizer-row {
         margin-top: 50px;
