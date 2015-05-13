@@ -1188,19 +1188,19 @@ function buildUi() {
     // Resolution
     html += "<div>";
     html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><object><embed src=\"common/images/croche.svg\" class=\"btn-icon\" /></object>";
-    html += "<button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><object><embed src=\"common/images/noire.svg\" class=\"btn-icon\" /></object>";
+    html += "<button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "<button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
     html += "</div>";
     html += "</div>";
 
     // Instruments
     html += "<div>";
     html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\" title=\"Palma clara\"><object><embed src=\"common/images/clara.svg\" class=\"btn-icon\" /></object></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\" title=\"Palma sorda\"><object><embed src=\"common/images/sorda.svg\" class=\"btn-icon\" /></object></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\" title=\"Cajón\"><object><embed src=\"common/images/cajon.svg\" class=\"btn-icon\" /></object></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\" title=\"Udu\"><object><embed src=\"common/images/udu.svg\" class=\"btn-icon\" /></object></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\" title=\"Click\"><object><embed src=\"common/images/click.svg\" class=\"btn-icon\" /></object></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-icon\" /></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-icon\" /></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-icon\" /></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-icon\" /></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-icon\" /></button>";
     html += "</div>";
     html += "</div>"
 

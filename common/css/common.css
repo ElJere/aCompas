@@ -210,7 +210,7 @@ header {
     cursor: pointer;
 }
 
-.toggle-instrument > object,
+.toggle-instrument > img,
 .btn-icon {
     width: 16px;
 }
@@ -313,7 +313,7 @@ footer {
         margin-left: 6px;
     }
 
-    .toggle-instrument > object,
+    .toggle-instrument > img,
    .btn-icon {
         width: 18px;
     }
@@ -339,7 +339,7 @@ footer {
         margin-bottom: 10px;
     }
 
-    .toggle-instrument > object,
+    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -380,7 +380,7 @@ footer {
         margin-bottom: 20px;
     }
 
-    .toggle-instrument > object,
+    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -528,7 +528,7 @@ footer {
         padding-right: 2px;
     }
 
-    .toggle-instrument > object,
+    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -569,7 +569,7 @@ footer {
         padding: 4px 7px;
     }
 
-    .toggle-instrument > object,
+    .toggle-instrument > img,
    .btn-icon {
         width: 48px;
     }
