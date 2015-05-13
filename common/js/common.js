@@ -1069,7 +1069,7 @@ function draw() {
     $("#visualizer").html(html);
 
     // Set height for #visualizer
-    var ratio = 0.15; // height / width ratio
+    var ratio = 0.17; // height / width ratio
     var visualizerHeight = ratio * $("#visualizer").width();
     $("#visualizer").css("height", visualizerHeight);
     // Set CSS for each bar
@@ -1148,7 +1148,7 @@ function adaptToFooterHeight() {
     if (footer.length > 0) {
         var mainPaddingBottom = footer.height() + parseInt(footer.css("margin-top").replace("px", ""))
             + parseInt(footer.css("padding-top").replace("px", ""))
-            + parseInt(footer.css("padding-bottom").replace("px", "")) + 4;
+            + parseInt(footer.css("padding-bottom").replace("px", "")) + parseInt($(".slider-handle").css("height").replace("px", "")) / 2;
         $("#main").css("padding-bottom", mainPaddingBottom);
     }
 }
@@ -1185,29 +1185,27 @@ function buildUi() {
     // Options
 
     // Resolution
-    html += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-    html += "<label class=\"btn btn-default btn-sm active\">";
-    html += "<input type=\"radio\" class=\"resolution\" data-value=\"0\" autocomplete=\"off\" checked> Contratiempo";
-    html += "</label>";
-    html += "<label class=\"btn btn-default btn-sm\">";
-    html += "<input type=\"radio\" class=\"resolution\" data-value=\"1\" autocomplete=\"off\"> Tiempo";
-    html += "</label>";
+    html += "<div>";
+    html += "<div class=\"btn-group\" role=\"group\">";
+    html += "<button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><object><embed src=\"common/images/croche.svg\" class=\"btn-icon\" /></object>";
+    html += "<button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><object><embed src=\"common/images/noire.svg\" class=\"btn-icon\" /></object>";
+    html += "</div>";
     html += "</div>";
 
     // Instruments
     html += "<div>";
     html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\">Palma clara</button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\">Palma sorda</button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\">Cajón</button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\">Udu</button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\">Click</button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\" title=\"Palma clara\"><object><embed src=\"common/images/clara.svg\" class=\"btn-icon\" /></object></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\" title=\"Palma sorda\"><object><embed src=\"common/images/sorda.svg\" class=\"btn-icon\" /></object></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\" title=\"Cajón\"><object><embed src=\"common/images/cajon.svg\" class=\"btn-icon\" /></object></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\" title=\"Udu\"><object><embed src=\"common/images/udu.svg\" class=\"btn-icon\" /></object></button>";
+    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\" title=\"Click\"><object><embed src=\"common/images/click.svg\" class=\"btn-icon\" /></object></button>";
     html += "</div>";
     html += "</div>"
 
     // Improvise
     html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button id=\"improvise\" class=\"btn btn-default btn-sm active\" >Improvise</button>";
+    html += "<button id=\"improvise\" class=\"btn btn-default btn-sm active\" title=\"Add some randomness to the rhythmic pattern\">Improvise</button>";
     html += "</div>";
 
     html += "</div>"; // End #palo-and-options
@@ -1300,15 +1298,19 @@ function buildUi() {
         play();
     });
 
-    $(".resolution").on("change", function(e) {
-        window.aCompas.noteResolution = parseInt($(this).data("value"));
-        // Track event in Piwik
+    $(".resolution").on("click", function(e) {
+        window.aCompas.noteResolution = $(this).hasClass("resolution-0") ? 0 : 1;
         var label = null;
         if (window.aCompas.noteResolution == 0) {
+            $(".resolution-0").addClass("active");
+            $(".resolution-1").removeClass("active")
             label = "Contratiempo";
         } else {
+            $(".resolution-1").addClass("active");
+            $(".resolution-0").removeClass("active")
             label = "Tiempo";
         }
+        // Track event in Piwik
         _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
 

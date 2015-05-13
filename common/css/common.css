@@ -24,6 +24,20 @@ footer {
 
 /* ! Make footer stick at the bottom*/
 
+/* Center the whole content verticaly */
+
+body {
+    display: table;
+    width: 100%;
+}
+
+#wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* ! Center the whole content verticaly */
+
 a {
     color: tomato;
     text-decoration: none;
@@ -35,7 +49,11 @@ a:hover {
 }
 
 .btn {
-    padding: 2px 4px;
+    padding: 1px;
+}
+
+.btn:focus {
+    outline: none !important;
 }
 
 .btn-default:focus {
@@ -44,6 +62,10 @@ a:hover {
 
 .btn-default.active {
     background-color: #e6e6e6;
+}
+
+.btn-default:not(.active) {
+    background-color: white;
 }
 
 .btn-group {
@@ -67,6 +89,10 @@ a:hover {
     padding-right: 0px;
 }
 
+header {
+    text-align: center;
+}
+
 #title,
 #baseline {
     display: inline;
@@ -88,13 +114,10 @@ a:hover {
     font-size: 16px;
 }
 
-#main {
-    vertical-align: middle;
-}
-
 #visualizer-row {
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 1px;
 }
 
 #visualizer-row > div {
@@ -125,11 +148,17 @@ a:hover {
     background-color: tomato;
 }
 
+#visualizer .row-2,
+#visualizer .beat-label {
+    height: 16px;
+}
+
 #visualizer .beat-label {
     font-weight: bold;
     font-family: sans-serif;
     font-size: 13px;
     text-align: center;
+    vertical-align: top;
 }
 
 .beat-label.beat-label-strong {
@@ -179,6 +208,11 @@ a:hover {
 #palo {
     margin-bottom: 2px;
     cursor: pointer;
+}
+
+.toggle-instrument > object,
+.btn-icon {
+    width: 16px;
 }
 
 .play {
@@ -272,21 +306,21 @@ footer {
     margin-top: 10px;
 }
 
-/* 992px is the limit width from medium to large with bootstrap */
-@media all and (min-width: 992px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
+/* Landscape mode rules */
+@media all and (min-width: 574px) and (orientation: landscape) {
 
-    .btn {
-        padding: 5px 10px;
+    #baseline {
+        margin-left: 6px;
     }
 
-    .btn-group {
-        margin-bottom: 10px;
+    .toggle-instrument > object,
+   .btn-icon {
+        width: 18px;
     }
 
-    header {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
+}
+
+@media all and (min-width: 768px) and (orientation: landscape) {
 
     #title {
         font-size: 60px;
@@ -296,13 +330,18 @@ footer {
         font-size: 30px;
     }
 
-    #visualizer-row {
-        margin-top: 20px;
-        margin-bottom: 20px;
+    .btn {
+        padding: 3px 5px;
     }
 
-    #palo {
+    #palo,
+    .btn-group {
         margin-bottom: 10px;
+    }
+
+    .toggle-instrument > object,
+   .btn-icon {
+        width: 32px;
     }
 
     .slider.slider-vertical {
@@ -311,14 +350,39 @@ footer {
 
 }
 
+/* 992px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 992px) and (orientation: landscape) {
 
+    #palo,
     .btn-group {
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 5px 10px;
+    }
+
+    header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #title {
+        font-size: 80px;
+    }
+
+    #baseline {
+        font-size: 45px;
+    }
+
+    #visualizer-row {
+        margin-top: 20px;
         margin-bottom: 20px;
     }
 
-    #right-col label.label {
-        padding: 5px;
+    .toggle-instrument > object,
+   .btn-icon {
+        width: 32px;
     }
 
     .play,
@@ -336,18 +400,232 @@ footer {
         display: block;
     }
 
+    #right-col label.label {
+        padding: 5px;
+    }
+
+    .slider.slider-vertical {
+        height: 250px;
+    }
+
 }
 
 /* 1200px is the limit width from medium to large with bootstrap */
-@media all and (min-width: 1200px) and (orientation: landscape), (min-height: 500px) and (orientation:portrait) {
+@media all and (min-width: 1200px) and (orientation: landscape) {
 
     #visualizer-row {
         margin-top: 50px;
         margin-bottom: 50px;
     }
 
+    #palo,
+    .btn-group {
+        margin-bottom: 45px;
+    }
+
+}
+
+/* Portrait mode rules */
+
+@media all and (min-height: 480px) and (orientation: portrait) {
+
+    header {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    #title,
+    #baseline {
+        display: block;
+    }
+
+    #wrapper > .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .btn-group {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 2px 3px;
+    }
+
+    #visualizer-row {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
     #palo {
+        margin-bottom: 10px;
+    }
+
+    .slider.slider-vertical {
+        height: 200px;
+    }
+
+}
+
+@media all and (min-height: 574px) and (orientation: portrait) {
+
+    #wrapper > .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #visualizer-row {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 2px 5px;
+    }
+
+    #palo,
+    .btn-group {
         margin-bottom: 20px;
+    }
+
+}
+
+
+@media all and (min-height: 768px) and (orientation: portrait) {
+
+    #wrapper > .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #title {
+        font-size: 60px;
+    }
+
+    #baseline {
+        font-size: 30px;
+    }
+
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #visualizer-row {
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+
+    #left-col > .row,
+    #right-col > .row {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .toggle-instrument > object,
+   .btn-icon {
+        width: 32px;
+    }
+
+    .slider.slider-vertical {
+        height: 300px;
+    }
+
+    .play {
+        width: 80px;
+        height: 80px;
+    }
+
+    #info {
+        height: 80px;
+    }
+
+}
+
+@media all and (min-height: 992px) and (orientation: portrait) {
+
+    #wrapper > .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    header {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    #visualizer-row {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    .btn {
+        padding: 4px 7px;
+    }
+
+    .toggle-instrument > object,
+   .btn-icon {
+        width: 48px;
+    }
+
+    .slider.slider-vertical {
+        height: 380px;
+    }
+
+    #palo,
+    .btn-group {
+        margin-bottom: 30px;
+    }
+
+    .play {
+        width: 100px;
+        height: 100px;
+    }
+
+    #info {
+        height: 100px;
+    }
+
+}
+
+@media all and (min-height: 1200px) and (orientation: portrait) {
+
+    #wrapper > .container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    header {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #title {
+        font-size: 80px;
+    }
+
+    #baseline {
+        font-size: 45px;
+    }
+
+    #visualizer-row {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    #palo,
+    .btn-group {
+        margin-bottom: 40px;
+    }
+
+    .slider.slider-vertical {
+        height: 450px;
     }
 
 }
