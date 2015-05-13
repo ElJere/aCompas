@@ -953,8 +953,9 @@ function scheduleClick(beatNumber, time, paloData) {
 }
 
 function scheduleNote( beatNumber, time ) {
-    // Don't schedule anything if the browser is lagging
-    if (time < window.aCompas.audioContext.currentTime) {
+    // Don't schedule anything if the browser is lagging too much
+    var maximumLag = 2; // Seconds
+    if (window.aCompas.audioContext.currentTime - time > maximumLag) {
         return ;
     }
     // If option "times only" selected, don't play counter times
