@@ -90,15 +90,16 @@ window.aCompas = {
 //
 // Tempo = number of quarter notes per minute
 // Nb beats in pattern : number of beats in a pattern (counting an eighth note as a beat)
-// Nb cells in a pattern : number of times the palo's basic rhythmic cell is repeated in the pattern
 window.aCompas.palos = [
     {
         slug: "buleria-6",
-        label: "Buleria (6)",
-        minTempo: 40,
-        maxTempo: 340,
-        defaultTempo: 200,
+        label: "Bulería (6)",
+        minTempo: 25,
+        maxTempo: 230,
+        defaultTempo: 135,
         nbBeatsInPattern: 12,
+        timeSignatureTop: 6,
+        timeSignatureBottom: 8,
         clara: {
             1: 3,
             2: 2,
@@ -160,9 +161,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 270 ) {
+            if (tempo >= 180) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 100 ) {
+            } else if (tempo <= 65) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -171,11 +172,13 @@ window.aCompas.palos = [
     },
     {
         slug: "buleria-12",
-        label: "Buleria (12)",
-        minTempo: 30,
-        maxTempo: 340,
-        defaultTempo: 200,
+        label: "Bulería (12)",
+        minTempo: 20,
+        maxTempo: 230,
+        defaultTempo: 135,
         nbBeatsInPattern: 24,
+        timeSignatureTop: 12,
+        timeSignatureBottom: 8,
         clara: {
             0: 1,
             2: 3,
@@ -282,11 +285,11 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 230 ) {
+            if (tempo >= 155) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo >= 1200 && tempo <= 180 ) {
+            } else if (tempo <= 120 && tempo > 40) {
                 setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( tempo <= 60 ) {
+            } else if (tempo <= 40) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -296,10 +299,12 @@ window.aCompas.palos = [
     {
         slug: "fandangos",
         label: "Fandangos",
-        minTempo: 30,
-        maxTempo: 270,
-        defaultTempo: 150,
+        minTempo: 20,
+        maxTempo: 180,
+        defaultTempo: 100,
         nbBeatsInPattern: 24,
+        timeSignatureTop: 12,
+        timeSignatureBottom: 8,
         clara: {
             0: 1,
             1: 2,
@@ -411,9 +416,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 200 ) {
+            if (tempo >= 135) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 80 ) {
+            } else if (tempo <= 55) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -427,6 +432,8 @@ window.aCompas.palos = [
         maxTempo: 340,
         defaultTempo: 200,
         nbBeatsInPattern: 16,
+        timeSignatureTop: 4,
+        timeSignatureBottom: 4,
         clara: {
             0: 1,
             1: 1,
@@ -508,9 +515,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 240 ) {
+            if (tempo >= 240) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 90 ) {
+            } else if (tempo <= 90) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -520,10 +527,12 @@ window.aCompas.palos = [
     {
         slug: "siguiriya",
         label: "Siguiriya",
-        minTempo: 20,
-        maxTempo: 180,
-        defaultTempo: 80,
+        minTempo: 15,
+        maxTempo: 120,
+        defaultTempo: 60,
         nbBeatsInPattern: 24,
+        timeSignatureTop: 12,
+        timeSignatureBottom: 8,
         clara: {
             0: 1,
             1: 3,
@@ -636,9 +645,9 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 160 ) {
+            if (tempo >= 105) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo <= 60 ) {
+            } else if (tempo <= 40) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -648,10 +657,12 @@ window.aCompas.palos = [
     {
         slug: "solea",
         label: "Soleá",
-        minTempo: 50,
-        maxTempo: 260,
-        defaultTempo: 100,
+        minTempo: 30,
+        maxTempo: 130,
+        defaultTempo: 65,
         nbBeatsInPattern: 24,
+        timeSignatureTop: 12,
+        timeSignatureBottom: 8,
         clara: {
             0: 1,
             2: 3,
@@ -758,11 +769,11 @@ window.aCompas.palos = [
         },
         setTempoInfo: function() {
             var tempo = getTempo();
-            if ( tempo >= 180 ) {
+            if (tempo >= 120) {
                 setInfoMessage("Your rhythm is very fast");
-            } else if ( tempo >= 120 && tempo <= 180 ) {
+            } else if (tempo >= 80 && tempo > 40) {
                 setInfoMessage("Your tempo is solea por buleria or alegria");
-            } else if ( tempo <= 60 ) {
+            } else if ( tempo <= 40 ) {
                 setInfoMessage("Your rhythm is very slow");
             } else {
                 setInfoMessage(null);
@@ -776,6 +787,8 @@ window.aCompas.palos = [
         maxTempo: 340,
         defaultTempo: 170,
         nbBeatsInPattern: 16,
+        timeSignatureTop: 4,
+        timeSignatureBottom: 4,
         clara: {
             0: 3,
             1: 3,
@@ -892,11 +905,25 @@ function getTempo() {
 }
 
 function nextNote() {
-    // Calculate current beat length
-    var secondsPerBeat = 60.0 / getTempo();
+    var paloData = null;
+    $.each(window.aCompas.palos, function(paloIndex, paloData2) {
+        if (paloData2.slug === window.aCompas.palo) {
+            paloData = paloData2;
+        }
+    });
     // Add beat length to last beat time
-    window.aCompas.nextNoteTime += 0.5 * secondsPerBeat;
-    // Advance the beat number, back to zero when loop finished
+    // Remark : here, a beat is actualy an eighth note
+    var beatLength = null;
+    var secondsPerQuarterNote = 60.0 / getTempo();
+    if (paloData.timeSignatureBottom === 4) {
+        beatLength = secondsPerQuarterNote / 2;
+    } else { // paloData.timeSignatureBottom === 8
+        // Remark : this short rule only applies to flamenco palos
+        // where all x/8 time signatures are basicaly ternary
+        beatLength = secondsPerQuarterNote / 3;
+    }
+    window.aCompas.nextNoteTime += beatLength;
+    // Advance the beat number, going back to zero when the loop is finished
     window.aCompas.currentNote++;
     if (window.aCompas.currentNote === window.aCompas.nbBeatsInPattern) {
         window.aCompas.currentNote = 0;
