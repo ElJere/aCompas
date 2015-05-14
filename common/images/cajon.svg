@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 120 120" enable-background="new 0 0 120 120" xml:space="preserve">
+<svg version="1.1" id="cajon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="120px" height="120px" viewBox="0 0 120 120" enable-background="new 0 0 120 120" xml:space="preserve">
 <g>
 	<g id="XMLID_1_">
 		<g>
 			<polygon fill="#FFFFFF" points="96.758,14.628 96.658,14.925 45.145,17.897 23.35,9.972 73.874,7 			"/>
-			<polygon fill="#FFFFFF" points="45.145,17.897 45.145,113 23.35,94.178 23.35,9.972 			"/>
 			<polygon fill="#666666" points="96.658,14.925 96.658,103.093 45.145,113 45.145,17.897 			"/>
+			<polygon fill="#FFFFFF" points="45.145,17.897 45.145,113 23.35,94.178 23.35,9.972 			"/>
 		</g>
 		<g>
-			<polygon fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="96.658,14.925 96.658,103.093 
+			<polygon fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="96.658,14.925 96.658,103.093 
 				45.145,113 45.145,17.897 			"/>
-			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="45.145" y1="17.897" x2="23.35" y2="9.972"/>
-			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="23.35" y1="9.972" x2="73.874" y2="7"/>
-			<polyline fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="73.874,7 96.758,14.628 97.649,14.925 
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="45.145" y1="17.897" x2="23.35" y2="9.972"/>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="23.35" y1="9.972" x2="73.874" y2="7"/>
+			<polyline fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="73.874,7 96.758,14.628 97.649,14.925 
 							"/>
-			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="23.35" y1="9.972" x2="23.35" y2="94.178"/>
-			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="23.35" y1="94.178" x2="45.145" y2="113"/>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="23.35" y1="9.972" x2="23.35" y2="94.178"/>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="23.35" y1="94.178" x2="45.145" y2="113"/>
 		</g>
 	</g>
 </g>
