@@ -84,6 +84,22 @@ a:hover {
     border-color: tomato;
 }
 
+.btn-circle.btn-lg {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 9px;
+    border-radius: 25px;
+}
+
+.btn-icon {
+    width: 16px;
+}
+
+.btn-instrument {
+    width: 32px;
+}
+
 #wrapper > .container {
     padding-left: 0px;
     padding-right: 0px;
@@ -210,9 +226,10 @@ header {
     cursor: pointer;
 }
 
-.toggle-instrument > img,
-.btn-icon {
-    width: 16px;
+.toggle-instrument {
+    display: none;
+    position: absolute;
+    z-index: 3;
 }
 
 .play {
@@ -313,7 +330,6 @@ footer {
         margin-left: 6px;
     }
 
-    .toggle-instrument > img,
    .btn-icon {
         width: 18px;
     }
@@ -339,7 +355,6 @@ footer {
         margin-bottom: 10px;
     }
 
-    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -380,7 +395,6 @@ footer {
         margin-bottom: 20px;
     }
 
-    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -528,7 +542,6 @@ footer {
         padding-right: 2px;
     }
 
-    .toggle-instrument > img,
    .btn-icon {
         width: 32px;
     }
@@ -569,7 +582,6 @@ footer {
         padding: 4px 7px;
     }
 
-    .toggle-instrument > img,
    .btn-icon {
         width: 48px;
     }

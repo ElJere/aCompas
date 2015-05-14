@@ -1214,26 +1214,29 @@ function buildUi() {
 
     // Resolution
     html += "<div>";
-    html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
-    html += "<button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
-    html += "</div>";
+    html += "    <div class=\"btn-group\" role=\"group\">";
+    html += "        <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "        <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "    </div>";
     html += "</div>";
 
     // Instruments
     html += "<div>";
-    html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-icon\" /></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-icon\" /></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-icon\" /></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-icon\" /></button>";
-    html += "<button class=\"toggle-instrument btn btn-default btn-sm\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-icon\" /></button>";
+    html += "    <div class=\"btn-group\" role=\"group\">";
+    html += "        <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
+    html += "    </div>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
     html += "</div>";
-    html += "</div>"
 
     // Improvise
-    html += "<div class=\"btn-group\" role=\"group\">";
-    html += "<button id=\"improvise\" class=\"btn btn-default btn-sm active\" title=\"Add some randomness to the rhythmic pattern\">Improvise</button>";
+    html += "<div>";
+    html += "    <div class=\"btn-group\" role=\"group\">";
+    html += "        <button id=\"improvise\" class=\"btn btn-default btn-lg active\" title=\"Add some randomness to the rhythmic pattern\"><i class=\"glyphicon glyphicon-random\"></i> Improvise</button>";
+    html += "    </div>";
     html += "</div>";
 
     html += "</div>"; // End #palo-and-options
@@ -1342,6 +1345,20 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
 
+    $("#toggle-instruments").on("click", function() {
+        var $this = $(this);
+        if ($this.hasClass("open")) {
+            $(".toggle-instrument").fadeOut(function() {
+                $this.removeClass("open");
+            });
+        }
+        else {
+            $(".toggle-instrument").fadeIn(function() {
+                $this.addClass("open");
+            });
+        }
+    });
+
     $(".toggle-instrument").on("click", function(e) {
         e.preventDefault();
         var instrument = $(this).data("instrument");
@@ -1373,16 +1390,38 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', "Improvisation", label]);
     });
 
-    adaptToFooterHeight();
-
     $(window).on("resize", function(e) {
         draw();
         adaptToFooterHeight();
+        adaptInstrumentsMenu();
         // Track event in Piwik
         trackDeviceOrientation();
     });
 
+    adaptToFooterHeight();
+    adaptInstrumentsMenu();
     trackDeviceOrientation();
+}
+
+function adaptInstrumentsMenu() {
+    // Display instruments buttons
+    var radius = 70;
+    var fields = $('.toggle-instrument');
+    var instruButton = $('#toggle-instruments');
+    var centerX = instruButton.position().left + $("#palo-and-options").width() / 2;
+    var centerY = instruButton.offset().top - $("#palo-and-options").offset().top;
+    var angle = - Math.PI / 2,
+        step = (2 * Math.PI) / fields.length;
+
+    fields.each(function() {
+        var x = centerX + radius * Math.cos(angle) - $(this).width() / 2 - parseFloat($(this).css("padding-left").replace("px", ""));
+        var y = centerY + radius * Math.sin(angle);
+        $(this).css({
+            left: x + 'px',
+            top: y + 'px'
+        });
+        angle += step;
+    });
 }
 
 function trackDeviceOrientation() {
