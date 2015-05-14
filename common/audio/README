@@ -1,0 +1,3 @@
+* MP4 conversion (required for some Android devices)
+
+ffmpeg -i cajon_1.wav -strict -2 cajon_1.mp4

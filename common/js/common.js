@@ -1433,10 +1433,14 @@ function initAudio() {
             // Detect the audio format to use for playing
             if (new Audio().canPlayType("audio/ogg")) {
                 window.aCompas.audioFormat = "ogg";
-            } else if (new Audio().canPlayType("audio/mp3")) {
+            } else if (new Audio().canPlayType("audio/mpeg")) {
                 window.aCompas.audioFormat = "mp3";
-            } else {
+            } else if (new Audio().canPlayType("audio/wav")) {
                 window.aCompas.audioFormat = "wav";
+            } else if (new Audio().canPlayType("audio/mp4")) {
+                window.aCompas.audioFormat = "mp4";
+            } else {
+                throw new Error("None of the available audio formats can be played");
             }
             // Load sounds
             loadSounds();
