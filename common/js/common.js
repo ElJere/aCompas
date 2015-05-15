@@ -11,6 +11,7 @@ window.aCompas = {
     scheduleAheadTime: 0.3,         // How far ahead to schedule audio (sec)
                                     // This is calculated from lookahead, and overlaps
                                     // with next interval (in case the timer is late)
+    masterGainNode: null,           // GainNode used for the master volume
     nextNoteTime: 0.0,              // When the next note is due ?
     noteResolution: 0,              // 0 = times + counter times, 1 = times only
     clara: true,                    // Is the palma clara track on ?
@@ -884,20 +885,27 @@ function playSound(name, start, vol) {
     if (vol === null) {
         vol = window.aCompas.sounds[name].volume;
     }
-    // Create source, sounds gain and master gain
-    var source = window.aCompas.audioContext.createBufferSource();
+    // Disconnect the sound's bufferSource if it was previously connected
+    if (window.aCompas.sounds[name].bufferSource) {
+        window.aCompas.sounds[name].bufferSource.disconnect();
+    }
+    window.aCompas.sounds[name].bufferSource = window.aCompas.audioContext.createBufferSource();
+    window.aCompas.sounds[name].bufferSource.buffer = window.aCompas.sounds[name].buffer;
+    // Lazy-load the master gain node
+    if (window.aCompas.masterGainNode === null) {
+        window.aCompas.masterGainNode = window.aCompas.audioContext.createGain();
+        window.aCompas.masterGainNode.connect( window.aCompas.audioContext.destination );
+    }
+    // Create a gainNode
     var gainNode = window.aCompas.audioContext.createGain();
-    var masterGainNode = window.aCompas.audioContext.createGain();
-    // Set sounds and master gain nodes
+    // Set gain values
+    window.aCompas.masterGainNode.gain.value = window.aCompas.masterVolume / 100;
     gainNode.gain.value = vol;
-    masterGainNode.gain.value = window.aCompas.masterVolume / 100;
-    source.buffer = window.aCompas.sounds[name].buffer;
     // Connect everything
-    source.connect(gainNode);
-    gainNode.connect(masterGainNode);
-    masterGainNode.connect( window.aCompas.audioContext.destination );
+    window.aCompas.sounds[name].bufferSource.connect(gainNode);
+    gainNode.connect(window.aCompas.masterGainNode);
     // Play
-    source.start(start);
+    window.aCompas.sounds[name].bufferSource.start(start);
 }
 
 function getTempo() {
@@ -981,7 +989,7 @@ function scheduleClick(beatNumber, time, paloData) {
 
 function scheduleNote( beatNumber, time ) {
     // Don't schedule anything if the browser is lagging too much
-    var maximumLag = 2; // Seconds
+    var maximumLag = 1; // Seconds
     if (window.aCompas.audioContext.currentTime - time > maximumLag) {
         return ;
     }
