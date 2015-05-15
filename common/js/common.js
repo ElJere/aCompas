@@ -3,7 +3,7 @@ window.aCompas = {
     audioContext: null,
     isPlaying: false,               // Are we currently playing ?
     currentNote: null,              // What note is currently last scheduled ?
-    defaultPaloSlug: "tangos",      // Slug of the default palo
+    defaultPaloSlug: "buleria-12",  // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
     lookahead: 30,                  // How frequently to call scheduling function ?
@@ -44,11 +44,15 @@ window.aCompas = {
         },
         sorda_1: {
             src: 'sorda_1',
-            volume : 0.8
+            volume : 0.3
         },
         sorda_2: {
             src: 'sorda_2',
-            volume : 0.2
+            volume : 0.3
+        },
+        sorda_3: {
+            src: "sorda_3",
+            volume: 0.3
         },
         cajon_1: {
             src: 'cajon_1',
@@ -81,7 +85,7 @@ window.aCompas = {
     },
     soundCounts: {
         clara: 3,
-        sorda: 2,
+        sorda: 3,
         cajon: 3,
         udu: 2
     }
@@ -112,15 +116,12 @@ window.aCompas.palos = [
             10: 3
         },
         sorda: {
-            0: { nb: 2, volume: 0.3 },
-            1: { nb: 2, volume: 0.3 },
-            2: 2,
-            3: { nb: 2, volume: 0.3 },
-            4: { nb: 2, volume: 0.3 },
+            0: 3,
+            2: 1,
+            4: 3,
             6: 1,
-            7: { nb: 2, volume: 0.3 },
-            8: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 }
+            8: 3,
+            10: 2
         },
         cajon: {
             0: 3,
@@ -201,18 +202,18 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             2: 2,
-            4: 2,
+            4: 3,
             6: 1,
             8: 2,
-            10: 2,
-            12: 2,
+            10: 3,
+            12: 3,
             14: 1,
-            15: 2,
+            15: 3,
             16: 1,
-            18: 2,
+            18: 3,
             19: 1,
-            20: 2,
-            22: 2
+            20: 3,
+            22: 3
         },
         cajon: {
             0: 3,
@@ -329,22 +330,22 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             1: 2,
-            2: { nb: 2, volume: 0.3 },
+            2: 3,
             3: 2,
-            4: { nb: 2, volume: 0.3 },
+            4: 3,
             6: 1,
             7: 2,
-            8: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 },
+            8: 3,
+            10: 3,
             12: 1,
             13: 2,
-            14: { nb: 2, volume: 0.3 },
+            14: 3,
             15: 2,
-            16: { nb: 2, volume: 0.3 },
+            16: 3,
             18: 1,
             19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -452,16 +453,16 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             1: 1,
-            2: { nb: 2, volume: 0.3 },
-            3: { nb: 2, volume: 0.3 },
+            2: 2,
+            3: 3,
             4: 1,
-            6: { nb: 2, volume: 0.3 },
+            6: 3,
             8: 1,
             9: 1,
-            10: { nb: 2, volume: 0.3 },
-            11: { nb: 2, volume: 0.3 },
+            10: 2,
+            11: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 }
+            14: 3
         },
         cajon: {
             0: 3,
@@ -559,27 +560,27 @@ window.aCompas.palos = [
         },
         sorda: {
             0: 1,
-            1: { nb: 2, volume: 0.3 },
+            1: 3,
             2: 2,
-            3: { nb: 2, volume: 0.3 },
+            3: 3,
             4: 1,
-            5: { nb: 2, volume: 0.3 },
+            5: 3,
             6: 2,
-            7: { nb: 2, volume: 0.3 },
+            7: 2,
             8: 1,
-            9: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 },
-            11: 2,
-            12: { nb: 2, volume: 0.3 },
-            13: { nb: 2, volume: 0.3 },
+            9: 3,
+            10: 3,
+            11: 3,
+            12: 3,
+            13: 2,
             14: 1,
-            15: { nb: 2, volume: 0.3 },
-            16: { nb: 2, volume: 0.3 },
-            17: 2,
-            18: { nb: 2, volume: 0.3 },
-            19: { nb: 2, volume: 0.3 },
+            15: 3,
+            16: 3,
+            17: 3,
+            18: 3,
+            19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -684,21 +685,21 @@ window.aCompas.palos = [
         },
         sorda: {
             0: 1,
-            2: { nb: 2, volume: 0.3 },
+            2: 3,
             3: 2,
-            4: { nb: 2, volume: 0.3 },
+            4: 3,
             6: 1,
-            8: { nb: 2, volume: 0.3 },
+            8: 3,
             9: 2,
-            10: 2,
+            10: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 },
+            14: 3,
             15: 2,
             16: 1,
-            18: { nb: 2, volume: 0.3 },
+            18: 3,
             19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -805,18 +806,18 @@ window.aCompas.palos = [
             14: 1
         },
         sorda: {
-            0: { nb: 2, volume: 0.3 },
-            1: { nb: 2, volume: 0.3 },
+            0: 3,
+            1: 3,
             2: 1,
-            3: 2,
-            4: { nb: 2, volume: 0.3 },
+            3: 3,
+            4: 3,
             6: 1,
-            8: { nb: 2, volume: 0.3 },
-            9: { nb: 2, volume: 0.3 },
+            8: 3,
+            9: 3,
             10: 1,
-            11: { nb: 2, volume: 0.3 },
+            11: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 }
+            14: 3
         },
         cajon: {
             0: 3,
@@ -1058,24 +1059,26 @@ function callAtGivenTime(time, callback) {
 
 function reduceBar(i, stepTime, stepHeight) {
     var bar = document.getElementById("bar-" + i);
-    var currentHeight = parseFloat(bar.style.height.replace("px", ""));
-    // When the function is called for the first time in the recursion,
-    // compute the height to remove at each step
-    if (stepHeight === null) {
-        stepHeight = currentHeight * .20;
-    }
-    if (currentHeight > window.aCompas.defaultBarHeight) {
-        window.setTimeout(function() {
-            var newHeight = currentHeight - stepHeight;
-            if (newHeight >= window.aCompas.defaultBarHeight) {
-                bar.style.height = newHeight + "px";
-                // Recursive call with the stepHeight parameter set
-                reduceBar(i, stepTime, stepHeight);
-            } else {
-                bar.style.height = window.aCompas.defaultBarHeight + "px";
-                return ;
-            }
-        }, stepTime);
+    if (bar) {
+        var currentHeight = parseFloat(bar.style.height.replace("px", ""));
+        // When the function is called for the first time in the recursion,
+        // compute the height to remove at each step
+        if (stepHeight === null) {
+            stepHeight = currentHeight * .20;
+        }
+        if (currentHeight > window.aCompas.defaultBarHeight) {
+            window.setTimeout(function() {
+                var newHeight = currentHeight - stepHeight;
+                if (newHeight >= window.aCompas.defaultBarHeight) {
+                    bar.style.height = newHeight + "px";
+                    // Recursive call with the stepHeight parameter set
+                    reduceBar(i, stepTime, stepHeight);
+                } else {
+                    bar.style.height = window.aCompas.defaultBarHeight + "px";
+                    return ;
+                }
+            }, stepTime);
+        }
     }
 }
 
@@ -1089,9 +1092,11 @@ function animateBar(i, time, beatType) {
             maxHeight *= 1/3;
         }
         var bar = document.getElementById("bar-" + i);
-        bar.style.height = maxHeight + "px";
-        var stepTime = 50; // milliseconds
-        reduceBar(i, stepTime, null);
+        if (bar) {
+            bar.style.height = maxHeight + "px";
+            var stepTime = 50; // milliseconds
+            reduceBar(i, stepTime, null);
+        }
     });
 }
 
@@ -1493,14 +1498,16 @@ function initAudio() {
         if (window.AudioContext != undefined) {
             window.aCompas.audioContext = new AudioContext();
             // Detect the audio format to use for playing
-            if (new Audio().canPlayType("audio/ogg")) {
+            if (new Audio().canPlayType("audio/flac")) {
+                window.aCompas.audioFormat = "flac";
+            } else if (new Audio().canPlayType("audio/ogg")) {
                 window.aCompas.audioFormat = "ogg";
             } else if (new Audio().canPlayType("audio/mpeg")) {
                 window.aCompas.audioFormat = "mp3";
-            } else if (new Audio().canPlayType("audio/wav")) {
-                window.aCompas.audioFormat = "wav";
             } else if (new Audio().canPlayType("audio/mp4")) {
                 window.aCompas.audioFormat = "mp4";
+            } else if (new Audio().canPlayType("audio/wav")) {
+                window.aCompas.audioFormat = "wav";
             } else {
                 throw new Error("None of the available audio formats can be played");
             }
