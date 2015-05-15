@@ -6,7 +6,7 @@ window.aCompas = {
     defaultPaloSlug: "tangos",      // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
-    lookahead: 50.0,                // How frequently to call scheduling function ?
+    lookahead: 30,                  // How frequently to call scheduling function ?
                                     // (in milliseconds)
     scheduleAheadTime: 0.3,         // How far ahead to schedule audio (sec)
                                     // This is calculated from lookahead, and overlaps
@@ -885,12 +885,6 @@ function playSound(name, start, vol) {
     if (vol === null) {
         vol = window.aCompas.sounds[name].volume;
     }
-    // Disconnect the sound's bufferSource if it was previously connected
-    if (window.aCompas.sounds[name].bufferSource) {
-        window.aCompas.sounds[name].bufferSource.disconnect();
-    }
-    window.aCompas.sounds[name].bufferSource = window.aCompas.audioContext.createBufferSource();
-    window.aCompas.sounds[name].bufferSource.buffer = window.aCompas.sounds[name].buffer;
     // Lazy-load the master gain node
     if (window.aCompas.masterGainNode === null) {
         window.aCompas.masterGainNode = window.aCompas.audioContext.createGain();
@@ -901,11 +895,14 @@ function playSound(name, start, vol) {
     // Set gain values
     window.aCompas.masterGainNode.gain.value = window.aCompas.masterVolume / 100;
     gainNode.gain.value = vol;
+    // Create bufferSource
+    var bufferSource = window.aCompas.audioContext.createBufferSource();
+    bufferSource.buffer = window.aCompas.sounds[name].buffer;
     // Connect everything
-    window.aCompas.sounds[name].bufferSource.connect(gainNode);
+    bufferSource.connect(gainNode);
     gainNode.connect(window.aCompas.masterGainNode);
     // Play
-    window.aCompas.sounds[name].bufferSource.start(start);
+    bufferSource.start(start);
 }
 
 function getTempo() {
@@ -1059,6 +1056,29 @@ function callAtGivenTime(time, callback) {
     window.setTimeout(callback, Math.round((time - window.aCompas.audioContext.currentTime) * 1000));
 }
 
+function reduceBar(i, stepTime, stepHeight) {
+    var bar = document.getElementById("bar-" + i);
+    var currentHeight = parseFloat(bar.style.height.replace("px", ""));
+    // When the function is called for the first time in the recursion,
+    // compute the height to remove at each step
+    if (stepHeight === null) {
+        stepHeight = currentHeight * .20;
+    }
+    if (currentHeight > window.aCompas.defaultBarHeight) {
+        window.setTimeout(function() {
+            var newHeight = currentHeight - stepHeight;
+            if (newHeight >= window.aCompas.defaultBarHeight) {
+                bar.style.height = newHeight + "px";
+                // Recursive call with the stepHeight parameter set
+                reduceBar(i, stepTime, stepHeight);
+            } else {
+                bar.style.height = window.aCompas.defaultBarHeight + "px";
+                return ;
+            }
+        }, stepTime);
+    }
+}
+
 function animateBar(i, time, beatType) {
     callAtGivenTime(time, function() {
         var maxHeight = window.aCompas.barMaxHeight;
@@ -1068,15 +1088,10 @@ function animateBar(i, time, beatType) {
         if (beatType === "down") {
             maxHeight *= 1/3;
         }
-        $("#bar-" + i).css("height", maxHeight + "px");
-        $.Velocity(document.getElementById("bar-" + i),
-            {
-                height: window.aCompas.defaultBarHeight
-            },
-            {
-                duration: 220,
-                easing: "linear"
-            });
+        var bar = document.getElementById("bar-" + i);
+        bar.style.height = maxHeight + "px";
+        var stepTime = 50; // milliseconds
+        reduceBar(i, stepTime, null);
     });
 }
 
