@@ -143,26 +143,6 @@ window.aCompas = {
             src: "jaleo/jaleo_17",
             volume: 0.5
         },
-        jaleo_18: {
-            src: "jaleo/jaleo_18",
-            volume: 0.5
-        },
-        jaleo_19: {
-            src: "jaleo/jaleo_19",
-            volume: 0.5
-        },
-        jaleo_20: {
-            src: "jaleo/jaleo_20",
-            volume: 0.5
-        },
-        jaleo_21: {
-            src: "jaleo/jaleo_21",
-            volume: 0.5
-        },
-        jaleo_22: {
-            src: "jaleo/jaleo_22",
-            volume: 0.5
-        },
         click_1: {
             src: 'click/click_1',
             volume: 0.1
@@ -177,7 +157,7 @@ window.aCompas = {
         sorda: 3,
         cajon: 3,
         udu: 2,
-        jaleo: 22
+        jaleo: 17
     }
 }
 
@@ -1065,11 +1045,30 @@ function scheduleInstrument(instrument, beatNumber, time, paloData) {
     }
 }
 
-function scheduleJaleo(beatNumber, time) {
-    if (window.aCompas.jaleo && beatNumber === 0) {
-        // Pick a random jaleo sound
-        var nb = Math.round(Math.random() * (window.aCompas.soundCounts.jaleo - 1)) + 1;
-        playSound("jaleo_" + nb, time, null);
+function scheduleJaleo(beatNumber, time, paloData) {
+    if (window.aCompas.jaleo && paloData.beats[beatNumber] === "strong") {
+        var willPlay = null;
+        if (beatNumber === 0) {
+            willPlay = true;
+        } else {
+            // Randomly chose if a sound will be played
+            willPlay = Math.random() < .20;
+        }
+        if (willPlay) {
+            var maxNbVoices = 3;
+            var nbVoices = null;
+            if (beatNumber === 0) {
+                nbVoices = maxNbVoices;
+            } else {
+                // Pick the number of voices which will actualy be used
+                nbVoices = Math.round(Math.random() * maxNbVoices);
+            }
+            for (var i = 0; i < nbVoices; i++) {
+                // Pick a random jaleo sound
+                var nb = Math.round(Math.random() * (window.aCompas.soundCounts.jaleo - 1)) + 1;
+                playSound("jaleo_" + nb, time, null);
+            }
+        }
     }
 }
 
@@ -1083,7 +1082,7 @@ function scheduleClick(beatNumber, time, paloData) {
     }
 }
 
-function scheduleNote( beatNumber, time ) {
+function scheduleNote(beatNumber, time) {
     // Don't schedule anything if the browser is lagging too much
     var maximumLag = 1; // Seconds
     if (window.aCompas.audioContext.currentTime - time > maximumLag) {
@@ -1104,7 +1103,7 @@ function scheduleNote( beatNumber, time ) {
     scheduleInstrument("sorda", beatNumber, time, paloData);
     scheduleInstrument("cajon", beatNumber, time, paloData);
     scheduleInstrument("udu", beatNumber, time, paloData);
-    scheduleJaleo(beatNumber, time);
+    scheduleJaleo(beatNumber, time, paloData);
     scheduleClick(beatNumber, time, paloData);
     // Animate visualization
     animateBar(beatNumber, time, paloData.beats[beatNumber]);
