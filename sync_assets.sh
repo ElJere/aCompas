@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
 # This script copies the assets to both version of the app (web and cordova)
 
@@ -14,5 +14,13 @@ rsync -av --delete ./common ./web
 rsync -av --delete ./bower_components ./web
 
 # Crosswalk version
-rsync -av --delete ./common ./crosswalk
-rsync -av --delete ./bower_components ./crosswalk
+rsync -av --delete --delete-excluded --exclude="common/fonts/Playball/OFL.txt" --exclude="common/audio/README" ./common ./crosswalk
+mkdir -p ./crosswalk/bower_components/bootstrap/dist/{css,fonts,js}
+rsync -av ./bower_components/bootstrap/dist/css/bootstrap.min.css ./crosswalk/bower_components/bootstrap/dist/css
+rsync -av --delete ./bower_components/bootstrap/dist/fonts ./crosswalk/bower_components/bootstrap/dist
+rsync -av ./bower_components/bootstrap/dist/js/bootstrap.min.js ./crosswalk/bower_components/bootstrap/dist/js
+mkdir -p ./crosswalk/bower_components/jquery/dist
+rsync -av --delete ./bower_components/jquery/dist/jquery.min.js ./crosswalk/bower_components/jquery/dist
+mkdir -p ./crosswalk/bower_components/seiyria-bootstrap-slider/dist/css
+rsync -av ./bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js ./crosswalk/bower_components/seiyria-bootstrap-slider/dist
+rsync -av ./bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css ./crosswalk/bower_components/seiyria-bootstrap-slider/dist/css
