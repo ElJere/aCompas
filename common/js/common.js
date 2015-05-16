@@ -1182,10 +1182,10 @@ function setPalo(paloSlug) {
         value: paloData.defaultTempo,
         reversed: true
     }).on("slide", function(e) {
-        $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
+        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
         paloData.setTempoInfo();
     }).on("slideStop", function(e) {
-        $("#tempo-label").html("Tempo: " + getTempo() + " bpm");
+        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
         paloData.setTempoInfo();
     });
     // Force rendering of the slider's label
@@ -1208,108 +1208,114 @@ function buildUi() {
     var html = "";
 
     // Visualization
-    html += "<div id=\"visualizer-row\" class=\"row\">";
-    html += "<div class=\"col-xs-12\">";
-    html += "<div id=\"visualizer\">";
-    html += "</div>";
-    html += "</div>";
+    html += "<div id=\"visualizer-row\" class=\"container custom-row\">";
+    html += "    <div class=\"row\">";
+    html += "        <div id=\"visualizer\" class=\"col-xs-12\">";
+    html += "        </div>";
+    html += "    </div>";
     html += "</div>";
 
-    html += "<div id=\"controls-row\" class=\"row\">";
+    html += "<div id=\"controls-row\" class=\"container custom-row\">";
+    html += "    <div class=\"row\">";
 
     // Palo switcher + options (resolution and palmas) + play button
-    html += "<div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-8 col-lg-8\">";
-    html += "<div class=\"row\">";
+    html += "        <div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-8 col-lg-8\">";
+    html += "            <div class=\"row\">";
 
     // Palo switcher + options
-    html += "<div id=\"palo-and-options\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
+    html += "                <div id=\"palo-and-options\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 custom-row\">";
 
     // Palo switcher
-    html += "<select id=\"palo\" class=\"form-control\">";
+    html += "                    <select id=\"palo\" class=\"form-control custom-row\">";
     $.each(window.aCompas.palos, function(paloIndex, paloData) {
-        html += "<option value=\"" + paloData.slug + "\">";
+        html += "                    <option value=\"" + paloData.slug + "\">";
         html += paloData.label;
-        html += "</option>";
+        html += "                    </option>";
     });
-    html += "</select>";
+    html += "                    </select>";
 
     // Options
 
     // Resolution
-    html += "<div>";
-    html += "    <div class=\"btn-group\" role=\"group\">";
-    html += "        <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
-    html += "        <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
-    html += "    </div>";
-    html += "</div>";
+    html += "                    <div>";
+    html += "                        <div class=\"btn-group btn-group-justified custom-row\" role=\"group\">";
+    html += "                            <div class=\"btn-group\" role=\"group\">";
+    html += "                                <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "                             </div>";
+    html += "                             <div class=\"btn-group\" role=\"group\">";
+    html += "                                <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "                             </div>";
+    html += "                        </div>";
+    html += "                    </div>";
 
     // Instruments
-    html += "<div>";
-    html += "    <div class=\"btn-group\" role=\"group\">";
-    html += "        <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
-    html += "    </div>";
-    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
-    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
-    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
-    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
-    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
-    html += "</div>";
+    html += "                    <div>";
+    html += "                        <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block custom-row\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    </div>";
 
     // Improvise
-    html += "<div>";
-    html += "    <div class=\"btn-group\" role=\"group\">";
-    html += "        <button id=\"improvise\" class=\"btn btn-default btn-lg active\" title=\"Add some randomness to the rhythmic pattern\"><i class=\"glyphicon glyphicon-random\"></i> Improvise</button>";
-    html += "    </div>";
-    html += "</div>";
+    html += "                    <div>";
+    html += "                        <button id=\"improvise\" class=\"btn btn-default btn-lg btn-block custom-row active\" title=\"Add some randomness to the rhythmic pattern\"><i class=\"glyphicon glyphicon-random\"></i> Improvise</button>";
+    html += "                    </div>";
 
-    html += "</div>"; // End #palo-and-options
+    html += "                </div>"; // End #palo-and-options
 
     // Play button + info zone
-    html += "<div id=\"play-and-info-container\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">";
-    html += "<div class=\"row\">"
-    html += "<div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
+    html += "                <div id=\"play-and-info-container\" class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 custom-row text-center\">";
+    html += "                    <div class=\"row\">"
+    html += "                        <div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
 
     // Play button
-    html += "<button class=\"play\">";
-    html += "<span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span>";
-    html += "</button>";
+    html += "                            <button class=\"play\">";
+    html += "                                <span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span>";
+    html += "                            </button>";
 
-    html += "</div>";
-    html += "<div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
+    html += "                        </div>";
+    html += "                        <div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12\">";
 
     // Info area
-    html += "<div class=\"row\">"
-    html += "<p id=\"info\" class=\"text-danger text-center\"></p>";
-    html += "</div>";
+    html += "                            <div class=\"row\">"
+    html += "                                <p id=\"info\" class=\"text-danger text-center\"></p>";
+    html += "                            </div>";
 
-    html += "</div>";
-    html += "</div>"; // End .row
-    html += "</div>"; // End #play-and-info-container
+    html += "                        </div>";
+    html += "                    </div>"; // End .row
+    html += "                </div>"; // End #play-and-info-container
 
-    html += "</div>"; // End .row
-    html += "</div>"; // End Palo switcher + options (resolution and palmas) + play button
+    html += "            </div>"; // End .row
+    html += "        </div>"; // End Palo switcher + options (resolution and palmas) + play button
 
     // Sliders (tempo and volume)
-    html += "<div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
-    html += "<div class=\"row\">";
+    html += "        <div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center\">";
+    html += "            <div class=\"row\">";
 
     // Tempo
-    html += "<div id=\"tempo-slider-container\" class=\"col-xs-6\">";
-    html += "<label id=\"tempo-label\" class=\"label label-default\">Tempo:</label>";
-    html += "<div id=\"tempo\">";
-    html += "</div>"
-    html += "</div>";
+    html += "                <div id=\"tempo-slider-container\" class=\"col-xs-6\">";
+    html += "                    <div class=\"row\">";
+    html += "                        <label id=\"tempo-label\"><i class=\"glyphicon glyphicon-time\"></i> : </label>";
+    html += "                    </div>"
+    html += "                    <div id=\"tempo\">";
+    html += "                    </div>";
+    html += "                </div>";
     // Volume
-    html += "<div id=\"volume-slider-container\" class=\"col-xs-6\">";
-    html += "<label id=\"volume-label\" class=\"label label-default\">Volume: " + window.aCompas.masterVolume + " %</label>";
-    html += "<div id=\"volume\">";
-    html += "</div>";
-    html += "</div>";
+    html += "                <div id=\"volume-slider-container\" class=\"col-xs-6\">";
+    html += "                    <div class=\"row\">";
+    html += "                        <label id=\"volume-label\"><i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %</label>";
+    html += "                    </div>"
+    html += "                    <div id=\"volume\">";
+    html += "                    </div>";
+    html += "                </div>";
 
-    html += "</div>";
-    html += "</div>"; // End #right-col
+    html += "            </div>";
+    html += "        </div>"; // End #right-col
 
-    html += "</div>"; // End .row
+    html += "    </div>"; // End .row
+    html += "</div>"; // End #controls-row
 
     $("#main").html(html);
 
@@ -1342,10 +1348,10 @@ function buildUi() {
         reversed: true,
     }).on("slide", function(e) {
         window.aCompas.masterVolume = e.value;
-        $("#volume-label").html("Volume: " + window.aCompas.masterVolume + " %");
+        $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
     }).on("slideStop", function(e) {
         window.aCompas.masterVolume = e.value;
-        $("#volume-label").html("Volume: " + window.aCompas.masterVolume + " %");
+        $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
     });
 
     $('.play').on('click', function() {
