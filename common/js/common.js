@@ -3,7 +3,7 @@ window.aCompas = {
     audioContext: null,
     isPlaying: false,               // Are we currently playing ?
     currentNote: null,              // What note is currently last scheduled ?
-    defaultPaloSlug: "tangos",      // Slug of the default palo
+    defaultPaloSlug: "buleria-12",  // Slug of the default palo
     palo: null,                     // Current palo's slug
     masterVolume: 90,               // Default master volume
     lookahead: 30,                  // How frequently to call scheduling function ?
@@ -18,6 +18,7 @@ window.aCompas = {
     sorda: true,                    // Is the palma sorda track on ?
     cajon: true,                    // Is the cajón track on ?
     udu: true,                      // Is the udu track on ?
+    jaleo: false,                   // Is the jaleo track on ?
     click: false,                   // Is the click track on ?
     improvise: true,                // Is improvisation mode on ?
     timerWorker: null,              // The Web Worker used to fire timer messages
@@ -31,59 +32,132 @@ window.aCompas = {
     audioFormat: null,              // Audio format to use for playing
     sounds: {                       // Sounds used by the application
         clara_1: {
-            src: 'clara_1',
+            src: 'clara/clara_1',
             volume : 1
         },
         clara_2: {
-            src: 'clara_2',
+            src: 'clara/clara_2',
             volume : 1
         },
         clara_3: {
-            src: 'clara_3',
+            src: 'clara/clara_3',
             volume : 0.5
         },
         sorda_1: {
-            src: 'sorda_1',
-            volume : 0.8
+            src: 'sorda/sorda_1',
+            volume : 0.3
         },
         sorda_2: {
-            src: 'sorda_2',
-            volume : 0.2
+            src: 'sorda/sorda_2',
+            volume : 0.3
+        },
+        sorda_3: {
+            src: "sorda/sorda_3",
+            volume: 0.3
         },
         cajon_1: {
-            src: 'cajon_1',
+            src: 'cajon/cajon_1',
             volume: 0.6
         },
         cajon_2: {
-            src: 'cajon_2',
+            src: 'cajon/cajon_2',
             volume: 0.6
         },
         cajon_3: {
-            src: 'cajon_3',
+            src: 'cajon/cajon_3',
             volume: 0.6
         },
         udu_1: {
-            src: 'udu_1',
+            src: 'udu/udu_1',
             volume : 1
         },
         udu_2: {
-            src: 'udu_2',
+            src: 'udu/udu_2',
             volume : 0.5
         },
+        jaleo_1: {
+            src: "jaleo/jaleo_1",
+            volume: 0.5
+        },
+        jaleo_2: {
+            src: "jaleo/jaleo_2",
+            volume: 0.5
+        },
+        jaleo_3: {
+            src: "jaleo/jaleo_3",
+            volume: 0.5
+        },
+        jaleo_4: {
+            src: "jaleo/jaleo_4",
+            volume: 0.5
+        },
+        jaleo_5: {
+            src: "jaleo/jaleo_5",
+            volume: 0.5
+        },
+        jaleo_6: {
+            src: "jaleo/jaleo_6",
+            volume: 0.5
+        },
+        jaleo_7: {
+            src: "jaleo/jaleo_7",
+            volume: 0.5
+        },
+        jaleo_8: {
+            src: "jaleo/jaleo_8",
+            volume: 0.5
+        },
+        jaleo_9: {
+            src: "jaleo/jaleo_9",
+            volume: 0.5
+        },
+        jaleo_10: {
+            src: "jaleo/jaleo_10",
+            volume: 0.5
+        },
+        jaleo_11: {
+            src: "jaleo/jaleo_11",
+            volume: 0.5
+        },
+        jaleo_12: {
+            src: "jaleo/jaleo_12",
+            volume: 0.5
+        },
+        jaleo_13: {
+            src: "jaleo/jaleo_13",
+            volume: 0.5
+        },
+        jaleo_14: {
+            src: "jaleo/jaleo_14",
+            volume: 0.5
+        },
+        jaleo_15: {
+            src: "jaleo/jaleo_15",
+            volume: 0.5
+        },
+        jaleo_16: {
+            src: "jaleo/jaleo_16",
+            volume: 0.5
+        },
+        jaleo_17: {
+            src: "jaleo/jaleo_17",
+            volume: 0.5
+        },
         click_1: {
-            src: 'click_1',
+            src: 'click/click_1',
             volume: 0.1
         },
         click_2: {
-            src: 'click_2',
+            src: 'click/click_2',
             volume: 0.1
         }
     },
     soundCounts: {
         clara: 3,
-        sorda: 2,
+        sorda: 3,
         cajon: 3,
-        udu: 2
+        udu: 2,
+        jaleo: 17
     }
 }
 
@@ -112,15 +186,12 @@ window.aCompas.palos = [
             10: 3
         },
         sorda: {
-            0: { nb: 2, volume: 0.3 },
-            1: { nb: 2, volume: 0.3 },
-            2: 2,
-            3: { nb: 2, volume: 0.3 },
-            4: { nb: 2, volume: 0.3 },
+            0: 3,
+            2: 1,
+            4: 3,
             6: 1,
-            7: { nb: 2, volume: 0.3 },
-            8: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 }
+            8: 3,
+            10: 2
         },
         cajon: {
             0: 3,
@@ -201,18 +272,18 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             2: 2,
-            4: 2,
+            4: 3,
             6: 1,
             8: 2,
-            10: 2,
-            12: 2,
+            10: 3,
+            12: 3,
             14: 1,
-            15: 2,
+            15: 3,
             16: 1,
-            18: 2,
+            18: 3,
             19: 1,
-            20: 2,
-            22: 2
+            20: 3,
+            22: 3
         },
         cajon: {
             0: 3,
@@ -329,22 +400,22 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             1: 2,
-            2: { nb: 2, volume: 0.3 },
+            2: 3,
             3: 2,
-            4: { nb: 2, volume: 0.3 },
+            4: 3,
             6: 1,
             7: 2,
-            8: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 },
+            8: 3,
+            10: 3,
             12: 1,
             13: 2,
-            14: { nb: 2, volume: 0.3 },
+            14: 3,
             15: 2,
-            16: { nb: 2, volume: 0.3 },
+            16: 3,
             18: 1,
             19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -452,16 +523,16 @@ window.aCompas.palos = [
         sorda: {
             0: 1,
             1: 1,
-            2: { nb: 2, volume: 0.3 },
-            3: { nb: 2, volume: 0.3 },
+            2: 2,
+            3: 3,
             4: 1,
-            6: { nb: 2, volume: 0.3 },
+            6: 3,
             8: 1,
             9: 1,
-            10: { nb: 2, volume: 0.3 },
-            11: { nb: 2, volume: 0.3 },
+            10: 2,
+            11: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 }
+            14: 3
         },
         cajon: {
             0: 3,
@@ -559,27 +630,27 @@ window.aCompas.palos = [
         },
         sorda: {
             0: 1,
-            1: { nb: 2, volume: 0.3 },
+            1: 3,
             2: 2,
-            3: { nb: 2, volume: 0.3 },
+            3: 3,
             4: 1,
-            5: { nb: 2, volume: 0.3 },
+            5: 3,
             6: 2,
-            7: { nb: 2, volume: 0.3 },
+            7: 2,
             8: 1,
-            9: { nb: 2, volume: 0.3 },
-            10: { nb: 2, volume: 0.3 },
-            11: 2,
-            12: { nb: 2, volume: 0.3 },
-            13: { nb: 2, volume: 0.3 },
+            9: 3,
+            10: 3,
+            11: 3,
+            12: 3,
+            13: 2,
             14: 1,
-            15: { nb: 2, volume: 0.3 },
-            16: { nb: 2, volume: 0.3 },
-            17: 2,
-            18: { nb: 2, volume: 0.3 },
-            19: { nb: 2, volume: 0.3 },
+            15: 3,
+            16: 3,
+            17: 3,
+            18: 3,
+            19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -684,21 +755,21 @@ window.aCompas.palos = [
         },
         sorda: {
             0: 1,
-            2: { nb: 2, volume: 0.3 },
+            2: 3,
             3: 2,
-            4: { nb: 2, volume: 0.3 },
+            4: 3,
             6: 1,
-            8: { nb: 2, volume: 0.3 },
+            8: 3,
             9: 2,
-            10: 2,
+            10: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 },
+            14: 3,
             15: 2,
             16: 1,
-            18: { nb: 2, volume: 0.3 },
+            18: 3,
             19: 2,
             20: 1,
-            22: { nb: 2, volume: 0.3 }
+            22: 3
         },
         cajon: {
             0: 1,
@@ -805,18 +876,18 @@ window.aCompas.palos = [
             14: 1
         },
         sorda: {
-            0: { nb: 2, volume: 0.3 },
-            1: { nb: 2, volume: 0.3 },
+            0: 3,
+            1: 3,
             2: 1,
-            3: 2,
-            4: { nb: 2, volume: 0.3 },
+            3: 3,
+            4: 3,
             6: 1,
-            8: { nb: 2, volume: 0.3 },
-            9: { nb: 2, volume: 0.3 },
+            8: 3,
+            9: 3,
             10: 1,
-            11: { nb: 2, volume: 0.3 },
+            11: 3,
             12: 1,
-            14: { nb: 2, volume: 0.3 }
+            14: 3
         },
         cajon: {
             0: 3,
@@ -974,6 +1045,33 @@ function scheduleInstrument(instrument, beatNumber, time, paloData) {
     }
 }
 
+function scheduleJaleo(beatNumber, time, paloData) {
+    if (window.aCompas.jaleo && paloData.beats[beatNumber] === "strong") {
+        var willPlay = null;
+        if (beatNumber === 0) {
+            willPlay = true;
+        } else {
+            // Randomly chose if a sound will be played
+            willPlay = Math.random() < .20;
+        }
+        if (willPlay) {
+            var maxNbVoices = 3;
+            var nbVoices = null;
+            if (beatNumber === 0) {
+                nbVoices = maxNbVoices;
+            } else {
+                // Pick the number of voices which will actualy be used
+                nbVoices = Math.round(Math.random() * maxNbVoices);
+            }
+            for (var i = 0; i < nbVoices; i++) {
+                // Pick a random jaleo sound
+                var nb = Math.round(Math.random() * (window.aCompas.soundCounts.jaleo - 1)) + 1;
+                playSound("jaleo_" + nb, time, null);
+            }
+        }
+    }
+}
+
 function scheduleClick(beatNumber, time, paloData) {
     if (window.aCompas.click && beatNumber % 2 === 0) {
         if (paloData.beats[beatNumber] === "strong") {
@@ -984,7 +1082,7 @@ function scheduleClick(beatNumber, time, paloData) {
     }
 }
 
-function scheduleNote( beatNumber, time ) {
+function scheduleNote(beatNumber, time) {
     // Don't schedule anything if the browser is lagging too much
     var maximumLag = 1; // Seconds
     if (window.aCompas.audioContext.currentTime - time > maximumLag) {
@@ -1005,6 +1103,7 @@ function scheduleNote( beatNumber, time ) {
     scheduleInstrument("sorda", beatNumber, time, paloData);
     scheduleInstrument("cajon", beatNumber, time, paloData);
     scheduleInstrument("udu", beatNumber, time, paloData);
+    scheduleJaleo(beatNumber, time, paloData);
     scheduleClick(beatNumber, time, paloData);
     // Animate visualization
     animateBar(beatNumber, time, paloData.beats[beatNumber]);
@@ -1058,24 +1157,26 @@ function callAtGivenTime(time, callback) {
 
 function reduceBar(i, stepTime, stepHeight) {
     var bar = document.getElementById("bar-" + i);
-    var currentHeight = parseFloat(bar.style.height.replace("px", ""));
-    // When the function is called for the first time in the recursion,
-    // compute the height to remove at each step
-    if (stepHeight === null) {
-        stepHeight = currentHeight * .20;
-    }
-    if (currentHeight > window.aCompas.defaultBarHeight) {
-        window.setTimeout(function() {
-            var newHeight = currentHeight - stepHeight;
-            if (newHeight >= window.aCompas.defaultBarHeight) {
-                bar.style.height = newHeight + "px";
-                // Recursive call with the stepHeight parameter set
-                reduceBar(i, stepTime, stepHeight);
-            } else {
-                bar.style.height = window.aCompas.defaultBarHeight + "px";
-                return ;
-            }
-        }, stepTime);
+    if (bar) {
+        var currentHeight = parseFloat(bar.style.height.replace("px", ""));
+        // When the function is called for the first time in the recursion,
+        // compute the height to remove at each step
+        if (stepHeight === null) {
+            stepHeight = currentHeight * .20;
+        }
+        if (currentHeight > window.aCompas.defaultBarHeight) {
+            window.setTimeout(function() {
+                var newHeight = currentHeight - stepHeight;
+                if (newHeight >= window.aCompas.defaultBarHeight) {
+                    bar.style.height = newHeight + "px";
+                    // Recursive call with the stepHeight parameter set
+                    reduceBar(i, stepTime, stepHeight);
+                } else {
+                    bar.style.height = window.aCompas.defaultBarHeight + "px";
+                    return ;
+                }
+            }, stepTime);
+        }
     }
 }
 
@@ -1089,9 +1190,11 @@ function animateBar(i, time, beatType) {
             maxHeight *= 1/3;
         }
         var bar = document.getElementById("bar-" + i);
-        bar.style.height = maxHeight + "px";
-        var stepTime = 50; // milliseconds
-        reduceBar(i, stepTime, null);
+        if (bar) {
+            bar.style.height = maxHeight + "px";
+            var stepTime = 50; // milliseconds
+            reduceBar(i, stepTime, null);
+        }
     });
 }
 
@@ -1249,6 +1352,7 @@ function buildUi() {
     html += "                    </div>";
 
     // Instruments
+<<<<<<< HEAD
     html += "                    <div>";
     html += "                        <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block custom-row\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
@@ -1257,6 +1361,19 @@ function buildUi() {
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
     html += "                    </div>";
+=======
+    html += "<div>";
+    html += "    <div class=\"btn-group\" role=\"group\">";
+    html += "        <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
+    html += "    </div>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"jaleo\" title=\"Jaleo\"><img src=\"common/images/jaleo.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
+    html += "</div>";
+>>>>>>> origin/master
 
     // Improvise
     html += "                    <div>";
@@ -1499,14 +1616,16 @@ function initAudio() {
         if (window.AudioContext != undefined) {
             window.aCompas.audioContext = new AudioContext();
             // Detect the audio format to use for playing
-            if (new Audio().canPlayType("audio/ogg")) {
+            if (new Audio().canPlayType("audio/flac")) {
+                window.aCompas.audioFormat = "flac";
+            } else if (new Audio().canPlayType("audio/ogg")) {
                 window.aCompas.audioFormat = "ogg";
             } else if (new Audio().canPlayType("audio/mpeg")) {
                 window.aCompas.audioFormat = "mp3";
-            } else if (new Audio().canPlayType("audio/wav")) {
-                window.aCompas.audioFormat = "wav";
             } else if (new Audio().canPlayType("audio/mp4")) {
                 window.aCompas.audioFormat = "mp4";
+            } else if (new Audio().canPlayType("audio/wav")) {
+                window.aCompas.audioFormat = "wav";
             } else {
                 throw new Error("None of the available audio formats can be played");
             }
