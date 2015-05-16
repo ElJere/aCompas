@@ -1359,6 +1359,7 @@ function buildUi() {
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
     html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
+    html += "                        <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"jaleo\" title=\"Jaleo\"><img src=\"common/images/jaleo.svg\" class=\"btn-instrument\" /></button>";
     html += "                    </div>";
 
     // Improvise
