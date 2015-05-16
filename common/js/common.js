@@ -18,6 +18,7 @@ window.aCompas = {
     sorda: true,                    // Is the palma sorda track on ?
     cajon: true,                    // Is the cajón track on ?
     udu: true,                      // Is the udu track on ?
+    jaleo: false,                   // Is the jaleo track on ?
     click: false,                   // Is the click track on ?
     improvise: true,                // Is improvisation mode on ?
     timerWorker: null,              // The Web Worker used to fire timer messages
@@ -31,55 +32,143 @@ window.aCompas = {
     audioFormat: null,              // Audio format to use for playing
     sounds: {                       // Sounds used by the application
         clara_1: {
-            src: 'clara_1',
+            src: 'clara/clara_1',
             volume : 1
         },
         clara_2: {
-            src: 'clara_2',
+            src: 'clara/clara_2',
             volume : 1
         },
         clara_3: {
-            src: 'clara_3',
+            src: 'clara/clara_3',
             volume : 0.5
         },
         sorda_1: {
-            src: 'sorda_1',
+            src: 'sorda/sorda_1',
             volume : 0.3
         },
         sorda_2: {
-            src: 'sorda_2',
+            src: 'sorda/sorda_2',
             volume : 0.3
         },
         sorda_3: {
-            src: "sorda_3",
+            src: "sorda/sorda_3",
             volume: 0.3
         },
         cajon_1: {
-            src: 'cajon_1',
+            src: 'cajon/cajon_1',
             volume: 0.6
         },
         cajon_2: {
-            src: 'cajon_2',
+            src: 'cajon/cajon_2',
             volume: 0.6
         },
         cajon_3: {
-            src: 'cajon_3',
+            src: 'cajon/cajon_3',
             volume: 0.6
         },
         udu_1: {
-            src: 'udu_1',
+            src: 'udu/udu_1',
             volume : 1
         },
         udu_2: {
-            src: 'udu_2',
+            src: 'udu/udu_2',
             volume : 0.5
         },
+        jaleo_1: {
+            src: "jaleo/jaleo_1",
+            volume: 0.5
+        },
+        jaleo_2: {
+            src: "jaleo/jaleo_2",
+            volume: 0.5
+        },
+        jaleo_3: {
+            src: "jaleo/jaleo_3",
+            volume: 0.5
+        },
+        jaleo_4: {
+            src: "jaleo/jaleo_4",
+            volume: 0.5
+        },
+        jaleo_5: {
+            src: "jaleo/jaleo_5",
+            volume: 0.5
+        },
+        jaleo_6: {
+            src: "jaleo/jaleo_6",
+            volume: 0.5
+        },
+        jaleo_7: {
+            src: "jaleo/jaleo_7",
+            volume: 0.5
+        },
+        jaleo_8: {
+            src: "jaleo/jaleo_8",
+            volume: 0.5
+        },
+        jaleo_9: {
+            src: "jaleo/jaleo_9",
+            volume: 0.5
+        },
+        jaleo_10: {
+            src: "jaleo/jaleo_10",
+            volume: 0.5
+        },
+        jaleo_11: {
+            src: "jaleo/jaleo_11",
+            volume: 0.5
+        },
+        jaleo_12: {
+            src: "jaleo/jaleo_12",
+            volume: 0.5
+        },
+        jaleo_13: {
+            src: "jaleo/jaleo_13",
+            volume: 0.5
+        },
+        jaleo_14: {
+            src: "jaleo/jaleo_14",
+            volume: 0.5
+        },
+        jaleo_15: {
+            src: "jaleo/jaleo_15",
+            volume: 0.5
+        },
+        jaleo_16: {
+            src: "jaleo/jaleo_16",
+            volume: 0.5
+        },
+        jaleo_17: {
+            src: "jaleo/jaleo_17",
+            volume: 0.5
+        },
+        jaleo_18: {
+            src: "jaleo/jaleo_18",
+            volume: 0.5
+        },
+        jaleo_19: {
+            src: "jaleo/jaleo_19",
+            volume: 0.5
+        },
+        jaleo_20: {
+            src: "jaleo/jaleo_20",
+            volume: 0.5
+        },
+        jaleo_21: {
+            src: "jaleo/jaleo_21",
+            volume: 0.5
+        },
+        jaleo_22: {
+            src: "jaleo/jaleo_22",
+            volume: 0.5
+        },
         click_1: {
-            src: 'click_1',
+            src: 'click/click_1',
             volume: 0.1
         },
         click_2: {
-            src: 'click_2',
+            src: 'click/click_2',
             volume: 0.1
         }
     },
@@ -87,7 +176,8 @@ window.aCompas = {
         clara: 3,
         sorda: 3,
         cajon: 3,
-        udu: 2
+        udu: 2,
+        jaleo: 22
     }
 }
 
@@ -975,6 +1065,14 @@ function scheduleInstrument(instrument, beatNumber, time, paloData) {
     }
 }
 
+function scheduleJaleo(beatNumber, time) {
+    if (window.aCompas.jaleo && beatNumber === 0) {
+        // Pick a random jaleo sound
+        var nb = Math.round(Math.random() * (window.aCompas.soundCounts.jaleo - 1)) + 1;
+        playSound("jaleo_" + nb, time, null);
+    }
+}
+
 function scheduleClick(beatNumber, time, paloData) {
     if (window.aCompas.click && beatNumber % 2 === 0) {
         if (paloData.beats[beatNumber] === "strong") {
@@ -1006,6 +1104,7 @@ function scheduleNote( beatNumber, time ) {
     scheduleInstrument("sorda", beatNumber, time, paloData);
     scheduleInstrument("cajon", beatNumber, time, paloData);
     scheduleInstrument("udu", beatNumber, time, paloData);
+    scheduleJaleo(beatNumber, time);
     scheduleClick(beatNumber, time, paloData);
     // Animate visualization
     animateBar(beatNumber, time, paloData.beats[beatNumber]);
@@ -1257,6 +1356,7 @@ function buildUi() {
     html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
     html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
     html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
+    html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"jaleo\" title=\"Jaleo\"><img src=\"common/images/jaleo.svg\" class=\"btn-instrument\" /></button>";
     html += "    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
     html += "</div>";
 
