@@ -275,9 +275,8 @@ a:hover {
 
 #info {
     opacity: 0;
-    vertical-align: middle;
-    display: table-cell;
-    height: 60px;
+    height: 14px;
+    line-height: 14px;
 }
 
 footer {
@@ -353,19 +352,13 @@ footer {
         width: 32px;
     }
 
-    .play,
-    #info {
+    .play {
         height: 100px;
     }
 
     .play {
         border-width: 10px;
         width: 100px;
-    }
-
-    #info {
-        margin-top: 40px;
-        display: block;
     }
 
     .slider.slider-vertical {
@@ -479,10 +472,6 @@ footer {
         height: 80px;
     }
 
-    #info {
-        height: 80px;
-    }
-
 }
 
 @media all and (min-height: 992px) and (orientation: portrait) {
@@ -513,10 +502,6 @@ footer {
 
     .play {
         width: 100px;
-        height: 100px;
-    }
-
-    #info {
         height: 100px;
     }
 
