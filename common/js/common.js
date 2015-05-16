@@ -1332,7 +1332,7 @@ function buildUi() {
     html += "                    <select id=\"palo\" class=\"form-control custom-row\">";
     $.each(window.aCompas.palos, function(paloIndex, paloData) {
         html += "                    <option value=\"" + paloData.slug + "\">";
-        html += paloData.label;
+        html +=                          paloData.label;
         html += "                    </option>";
     });
     html += "                    </select>";

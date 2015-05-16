@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Playball';
-    src: url('../fonts/Playball/Playball-Regular.ttf');
+    src: url('Playball/Playball-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -48,7 +48,9 @@ a:hover {
     text-decoration: none;
 }
 
-.btn {}
+.btn {
+    padding: 1px;
+}
 
 .btn:focus {
     outline: none !important;
@@ -83,10 +85,12 @@ a:hover {
 }
 
 .btn-circle.btn-lg {
-    padding: 5%;
-    border-radius: 50%;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .125);
-            box-shadow: 0 0 5px rgba(0, 0, 0, .125);}
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 9px;
+    border-radius: 25px;
+}
 
 .btn-icon {
     width: 16px;
@@ -160,6 +164,7 @@ a:hover {
     font-weight: bold;
     font-family: sans-serif;
     font-size: 13px;
+    text-align: center;
     vertical-align: top;
 }
 
@@ -175,6 +180,16 @@ a:hover {
 #controls-row {}
 
 #controls-row > div {}
+
+#left-col,
+#right-col {
+    text-align: center;
+}
+
+#left-col > .row,
+#right-col > .row {}
+
+#palo-and-options {}
 
 #palo {
     cursor: pointer;
@@ -268,6 +283,7 @@ a:hover {
 footer {
     border-top: 1px solid #e5e5e5;
     padding: 20px 0;
+    text-align: center;
     margin-top: 10px;
 }
 
@@ -294,7 +310,9 @@ footer {
         font-size: 30px;
     }
 
-    .btn {}
+    .btn {
+        padding: 3px 5px;
+    }
 
     #palo,
     .btn-group {}
@@ -315,7 +333,9 @@ footer {
     #palo,
     .btn-group {}
 
-    .btn {}
+    .btn {
+        padding: 5px 10px;
+    }
 
     #title {
         font-size: 80px;
@@ -384,7 +404,9 @@ footer {
         margin-bottom: 10px;
     }
 
-    .btn {}
+    .btn {
+        padding: 2px 3px;
+    }
 
     .custom-row {
         margin-bottom: 15px;
