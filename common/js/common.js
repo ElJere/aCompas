@@ -1505,11 +1505,13 @@ function buildUi() {
     $("#toggle-instruments").on("click", function() {
         var $this = $(this);
         if ($this.hasClass("open")) {
+            $this.removeClass("active");
             $(".toggle-instrument").fadeOut(function() {
                 $this.removeClass("open");
             });
         }
         else {
+            $this.addClass("active");
             $(".toggle-instrument").fadeIn(function() {
                 $this.addClass("open");
             });
