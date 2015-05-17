@@ -63,7 +63,7 @@ bower install
 # Synchronize assets to the web/ and crosswalk/ folders
 ./sync_assets.sh
 # Build the app
-python /path/to/crosswalk/make_apk.py --package=audio.acompas.app --manifest=crosswalk/manifest.json --enable-remote-debugging
+python /path/to/crosswalk/make_apk.py --package=audio.acompas.app --manifest=crosswalk/manifest.json --enable-remote-debugging --compressor=js --compressor=css
 ```
 
 ## Credits

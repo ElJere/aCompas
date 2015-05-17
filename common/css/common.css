@@ -52,6 +52,10 @@ a:hover {
     padding: 1px;
 }
 
+.btn-lg {
+    font-size: 14px;
+}
+
 .btn:focus {
     outline: none !important;
 }
@@ -81,14 +85,6 @@ a:hover {
     border-color: tomato;
 }
 
-.btn-group {
-    margin-bottom: 2px;
-}
-
-.btn-text {
-    display: none;
-}
-
 .btn-circle.btn-lg {
     text-align: center;
     width: 50px;
@@ -98,7 +94,7 @@ a:hover {
 }
 
 .btn-icon {
-    width: 16px;
+    width: 14px;
 }
 
 .btn-instrument {
@@ -121,7 +117,6 @@ a:hover {
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-right: 8px;
     font-size: 26px;
 }
 
@@ -129,10 +124,6 @@ a:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 16px;
-}
-
-.custom-row {
-    margin-bottom: 10px;
 }
 
 #visualizer .bar,
@@ -166,7 +157,7 @@ a:hover {
 #visualizer .beat-label {
     font-weight: bold;
     font-family: sans-serif;
-    font-size: 10px;
+    font-size: 5px;
     text-align: center;
     vertical-align: top;
 }
@@ -180,22 +171,16 @@ a:hover {
     color: lightgray;
 }
 
-#controls-row {}
-
-#controls-row > div {}
-
 #left-col,
 #right-col {
     text-align: center;
 }
 
-#left-col > .row,
-#right-col > .row {}
-
-#palo-and-options {}
-
 #palo {
     cursor: pointer;
+    padding: 1px;
+    font-size: 11px;
+    height: 22px;
 }
 
 .toggle-instrument {
@@ -210,18 +195,15 @@ a:hover {
     -o-transition: all 1s ease 0s;
     transition: all 1s ease 0s;
     background: #ffffff;
-    border: 6px solid tomato;
+    border: 5px solid tomato;
     border-radius: 50%;
     color: #777;
     cursor: pointer;
-    display: inline-block;
-    font-size: 20px;
-    width: 60px;
-    height: 60px;
+    font-size: 14px;
+    width: 50px;
+    height: 50px;
     outline: none;
-    vertical-align: top;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin-top: 4px;
 }
 
 .play:hover {
@@ -243,22 +225,16 @@ a:hover {
     font-weight: 700;
 }
 
-#tempo-slider-container {}
-
-#volume-slider-container {}
-
 .slider.slider-vertical {
-    height: 144px;
+    height: 80px;
 }
 
 .slider-handle {
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
-    margin-left: -15px !important;
-    margin-top: -15px !important;
-    height: 40px;
-    width: 40px; 
+    height: 20px;
+    width: 20px;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .125);
             box-shadow: 0 0 5px rgba(0, 0, 0, .125);
 }
@@ -279,8 +255,10 @@ a:hover {
 
 #info {
     opacity: 0;
-    height: 14px;
-    line-height: 14px;
+    line-height: 12px;
+    font-size: 11px;
+    margin: 0px;
+    height: 24px;
 }
 
 footer {
@@ -290,19 +268,12 @@ footer {
     margin-top: 10px;
 }
 
-@media all and (max-height: 380px) {
-
-    #visualizer-row {
-        display: none !important;
-    }
-
-}
-
 /* Landscape mode rules */
 @media all and (min-width: 574px) and (orientation: landscape) {
 
     #title {
         font-size: 34px;
+        margin-right: 8px;
     }
 
     #baseline {
@@ -313,18 +284,42 @@ footer {
         font-size: 13px;
     }
 
+    .btn-lg {
+        font-size: 14px;
+    }
+
+
    .btn-icon {
         width: 18px;
     }
 
-    .btn-text {
-        display: inline;
+    #palo {
+        padding: 6px 12px;
+        font-size: 14px;
+        height: 34px;
     }
 
     #tempo-label,
     #volume-label {
         margin-bottom: 17px;
         font-size: 85%;
+    }
+
+    .slider.slider-vertical {
+        height: 92px;
+    }
+
+    #info {
+        line-height: 15px;
+        font-size: 14px;
+        height: 30px;
+    }
+
+    .play {
+        border-width: 6px;
+        font-size: 20px;
+        width: 60px;
+        height: 60px;
     }
 
 }
@@ -343,24 +338,29 @@ footer {
         padding: 3px 5px;
     }
 
-    #palo,
-    .btn-group {}
-
    .btn-icon {
         width: 32px;
+    }
+
+    #palo-and-options > * {
+        margin-bottom: 15px;
     }
 
     .slider.slider-vertical {
         height: 200px;
     }
 
+    .slider-handle {
+        width: 40px;
+        height: 40px;
+        margin-left: -15px !important;
+        margin-top: -15px !important;
+    }
+
 }
 
 /* 992px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 992px) and (orientation: landscape) {
-
-    #palo,
-    .btn-group {}
 
     .btn {
         padding: 5px 10px;
@@ -374,21 +374,18 @@ footer {
         font-size: 45px;
     }
 
-    .custom-row {
-        margin-bottom: 20px;
-    }
-
    .btn-icon {
         width: 32px;
     }
 
     .play {
         height: 100px;
-    }
-
-    .play {
         border-width: 10px;
         width: 100px;
+    }
+
+    #palo-and-options > * {
+        margin-bottom: 22px;
     }
 
     .slider.slider-vertical {
@@ -399,17 +396,21 @@ footer {
 
 /* 1200px is the limit width from medium to large with bootstrap */
 @media all and (min-width: 1200px) and (orientation: landscape) {
-
-    .custom-row {
-        margin-bottom: 50px;
-    }
-
-    #palo,
-    .btn-group {}
-
 }
 
 /* Portrait mode rules */
+
+@media all and (orientation: portrait) {
+
+    #palo-and-options > * {
+        margin-bottom: 13px;
+    }
+
+    .slider.slider-vertical {
+        height: 150px;
+    }
+
+}
 
 @media all and (min-height: 480px) and (orientation: portrait) {
 
@@ -431,14 +432,42 @@ footer {
         padding: 2px 3px;
     }
 
-    .custom-row {
-        margin-bottom: 15px;
+    .btn-lg {
+        font-size: 18px;
     }
 
-    #palo {}
+    #visualizer .beat-label {
+        font-size: 10px;
+    }
+
+    #palo {
+        padding: 6px 12px;
+        font-size: 14px;
+        height: 34px;
+    }
 
     .slider.slider-vertical {
         height: 200px;
+    }
+
+    .slider-handle {
+        width: 40px;
+        height: 40px;
+        margin-left: -15px !important;
+        margin-top: -15px !important;
+    }
+
+    #info {
+        line-height: 15px;
+        font-size: 14px;
+        height: 30px;
+    }
+
+    .play {
+        border-width: 6px;
+        font-size: 20px;
+        width: 60px;
+        height: 60px;
     }
 
 }
@@ -450,16 +479,9 @@ footer {
         padding-right: 10px;
     }
 
-    .custom-row {
-        margin-bottom: 30px;
-    }
-
     .btn {
         padding: 2px 5px;
     }
-
-    #palo,
-    .btn-group {}
 
 }
 
@@ -479,10 +501,6 @@ footer {
         font-size: 30px;
     }
 
-    .custom-row {
-        margin-bottom: 45px;
-    }
-
     #left-col > .row,
     #right-col > .row {
         padding-left: 2px;
@@ -494,12 +512,16 @@ footer {
     }
 
     .slider.slider-vertical {
-        height: 300px;
+        height: 340px;
     }
 
     .play {
         width: 80px;
         height: 80px;
+    }
+
+    #palo-and-options > * {
+        margin-bottom: 40px;
     }
 
 }
@@ -509,10 +531,6 @@ footer {
     #wrapper > .container {
         padding-left: 20px;
         padding-right: 20px;
-    }
-
-    .custom-row {
-        margin-bottom: 60px;
     }
 
     .btn {
@@ -527,12 +545,13 @@ footer {
         height: 380px;
     }
 
-    #palo,
-    .btn-group {}
-
     .play {
         width: 100px;
         height: 100px;
+    }
+
+    #palo-and-options > * {
+        margin-bottom: 44px;
     }
 
 }
@@ -552,15 +571,12 @@ footer {
         font-size: 45px;
     }
 
-    .custom-row {
-        margin-bottom: 80px;
-    }
-
-    #palo,
-    .btn-group {}
-
     .slider.slider-vertical {
         height: 450px;
+    }
+
+    #palo-and-options > * {
+        margin-bottom: 56px;
     }
 
 }

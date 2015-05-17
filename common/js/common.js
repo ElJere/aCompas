@@ -1339,24 +1339,24 @@ function buildUi() {
     var html = "";
 
     // Visualization
-    html += "<div id=\"visualizer-row\" class=\"container custom-row\">";
+    html += "<div id=\"visualizer-container\" class=\"container\">";
     html += "    <div class=\"row\">";
     html += "        <div id=\"visualizer\" class=\"col-xs-12\">";
     html += "        </div>";
     html += "    </div>";
     html += "</div>";
 
-    html += "<div id=\"controls-row\" class=\"container custom-row\">";
+    html += "<div id=\"controls-container\" class=\"container\">";
     html += "    <div class=\"row\">";
 
     // Palo switcher + options (resolution and palmas) + play button
-    html += "        <div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4 custom-row\">";
+    html += "        <div id=\"left-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">";
 
     // Palo switcher + options
     html += "            <div id=\"palo-and-options\">";
 
     // Palo switcher
-    html += "                <select id=\"palo\" class=\"form-control custom-row\">";
+    html += "                <select id=\"palo\" class=\"form-control\">";
     $.each(window.aCompas.palos, function(paloIndex, paloData) {
         html += "                <option value=\"" + paloData.slug + "\">";
         html +=                      paloData.label;
@@ -1367,7 +1367,7 @@ function buildUi() {
     // Options
 
     // Resolution
-    html += "                <div class=\"custom-row\">";
+    html += "                <div>";
     html += "                    <div class=\"btn-group btn-group-justified\" role=\"group\">";
     html += "                        <div class=\"btn-group\" role=\"group\">";
     html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\" data-resolution=\"0\">";
@@ -1383,9 +1383,9 @@ function buildUi() {
     html += "                </div>";
 
     // Instruments
-    html += "                <div class=\"custom-row\">";
+    html += "                <div>";
     html += "                    <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block\" title=\"Toggle instruments\">";
-    html += "                        <i class=\"glyphicon glyphicon-th-list\"></i><span class=\"btn-text\"> Instruments</span>";
+    html += "                        <i class=\"glyphicon glyphicon-th-list\"></i> Instruments";
     html += "                    </button>";
     html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
     html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
@@ -1396,20 +1396,20 @@ function buildUi() {
     html += "                </div>";
 
     // Improvise
-    html += "                <div class=\"custom-row\">";
+    html += "                <div>";
     html += "                    <button id=\"improvise\" class=\"btn btn-default btn-lg btn-block active\" title=\"Add some randomness to the rhythmic pattern\">";
-    html += "                        <i class=\"glyphicon glyphicon-random\"></i><span class=\"btn-text\"> Improvise</span>";
+    html += "                        <i class=\"glyphicon glyphicon-random\"></i> Improvise";
     html += "                    </button>";
     html += "                </div>";
 
     // Info area
-    html += "                <p id=\"info\" class=\"custom-row text-danger text-center\"></p>";
+    html += "                <p id=\"info\" class=\"text-danger text-center\"></p>";
 
     html += "            </div>"; // End #palo-and-options
     html += "        </div>"; // End Palo switcher + options (resolution and palmas)
 
     // Sliders (tempo and volume)
-    html += "        <div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-md-push-4 col-lg-4 col-lg-push-4 custom-row text-center\">";
+    html += "        <div id=\"right-col\" class=\"col-xs-6 col-sm-6 col-md-4 col-md-push-4 col-lg-4 col-lg-push-4 text-center\">";
     html += "            <div class=\"row\">";
 
     // Tempo
@@ -1434,7 +1434,7 @@ function buildUi() {
     html += "        </div>"; // End #right-col
 
     // Play button + info zone
-    html += "        <div id=\"play-container\" class=\"col-xs-12 col-sm-12 col-md-4 col-md-pull-4 col-lg-4 col-lg-pull-4 custom-row text-center\">";
+    html += "        <div id=\"play-container\" class=\"col-xs-12 col-sm-12 col-md-4 col-md-pull-4 col-lg-4 col-lg-pull-4 text-center\">";
 
     // Play button
     html += "            <button class=\"play\">";
@@ -1444,7 +1444,7 @@ function buildUi() {
     html += "        </div>"; // End #play-container
 
     html += "    </div>"; // End .row
-    html += "</div>"; // End #controls-row
+    html += "</div>"; // End #controls-container
 
     $("#main").html(html);
 
@@ -1593,7 +1593,7 @@ function restoreValuesFromLocalStorage() {
 
 function adaptInstrumentsMenu() {
     // Display instruments buttons
-    var radius = 60;
+    var radius = 55;
     var fields = $('.toggle-instrument');
     var instruButton = $('#toggle-instruments');
     var centerX = instruButton.position().left + $("#palo-and-options").width() / 2;
