@@ -1322,9 +1322,11 @@ function setPalo(paloSlug) {
 function adaptToFooterHeight() {
     var footer = $("footer");
     if (footer.length > 0) {
-        var mainPaddingBottom = footer.height() + parseInt(footer.css("margin-top").replace("px", ""))
+        var mainPaddingBottom = footer.height() 
+            + parseInt(footer.css("margin-top").replace("px", ""))
             + parseInt(footer.css("padding-top").replace("px", ""))
-            + parseInt(footer.css("padding-bottom").replace("px", "")) + parseInt($(".slider-handle").css("height").replace("px", "")) / 2;
+            + parseInt(footer.css("padding-bottom").replace("px", "")) 
+            + parseInt($(".slider-handle").css("height").replace("px", "")) / 2;
         $("#main").css("padding-bottom", mainPaddingBottom);
     }
 }
@@ -1368,17 +1370,23 @@ function buildUi() {
     html += "                <div class=\"custom-row\">";
     html += "                    <div class=\"btn-group btn-group-justified\" role=\"group\">";
     html += "                        <div class=\"btn-group\" role=\"group\">";
-    html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\" data-resolution=\"0\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\" data-resolution=\"0\">";
+    html += "                                <img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "                            </button>";
     html += "                        </div>";
     html += "                        <div class=\"btn-group\" role=\"group\">";
-    html += "                            <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\" data-resolution=\"1\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "                            <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\" data-resolution=\"1\">";
+    html += "                                <img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "                            </button>";
     html += "                        </div>";
     html += "                    </div>";
     html += "                </div>";
 
     // Instruments
     html += "                <div class=\"custom-row\">";
-    html += "                    <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block\" title=\"Toggle instruments\"><i class=\"glyphicon glyphicon-th-list\"></i> Instruments</button>";
+    html += "                    <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block\" title=\"Toggle instruments\">";
+    html += "                        <i class=\"glyphicon glyphicon-th-list\"></i><span class=\"btn-text\"> Instruments</span>";
+    html += "                    </button>";
     html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
     html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
     html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
@@ -1389,7 +1397,9 @@ function buildUi() {
 
     // Improvise
     html += "                <div class=\"custom-row\">";
-    html += "                    <button id=\"improvise\" class=\"btn btn-default btn-lg btn-block active\" title=\"Add some randomness to the rhythmic pattern\"><i class=\"glyphicon glyphicon-random\"></i> Improvise</button>";
+    html += "                    <button id=\"improvise\" class=\"btn btn-default btn-lg btn-block active\" title=\"Add some randomness to the rhythmic pattern\">";
+    html += "                        <i class=\"glyphicon glyphicon-random\"></i><span class=\"btn-text\"> Improvise</span>";
+    html += "                    </button>";
     html += "                </div>";
 
     // Info area
@@ -1405,7 +1415,7 @@ function buildUi() {
     // Tempo
     html += "                <div id=\"tempo-slider-container\" class=\"col-xs-6\">";
     html += "                    <div class=\"row\">";
-    html += "                        <label id=\"tempo-label\"><i class=\"glyphicon glyphicon-time\"></i> : </label>";
+    html += "                        <div id=\"tempo-label\"><i class=\"glyphicon glyphicon-time\"></i> : </div>";
     html += "                    </div>"
     html += "                    <div id=\"tempo\">";
     html += "                    </div>";
@@ -1414,7 +1424,7 @@ function buildUi() {
     // Volume
     html += "                <div id=\"volume-slider-container\" class=\"col-xs-6\">";
     html += "                    <div class=\"row\">";
-    html += "                        <label id=\"volume-label\"><i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %</label>";
+    html += "                        <div id=\"volume-label\"><i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %</div>";
     html += "                    </div>"
     html += "                    <div id=\"volume\">";
     html += "                    </div>";
@@ -1583,7 +1593,7 @@ function restoreValuesFromLocalStorage() {
 
 function adaptInstrumentsMenu() {
     // Display instruments buttons
-    var radius = 70;
+    var radius = 60;
     var fields = $('.toggle-instrument');
     var instruButton = $('#toggle-instruments');
     var centerX = instruButton.position().left + $("#palo-and-options").width() / 2;

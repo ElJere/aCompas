@@ -72,16 +72,8 @@ a:hover {
     margin-bottom: 2px;
 }
 
-.btn-primary {
-    background-image: linear-gradient(to bottom, tomato 0px, firebrick 100%);
-    border-color: firebrick;
-    background-color: tomato
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    background-color: firebrick;
-    border-color: tomato;
+.btn-text {
+    display: none;
 }
 
 .btn-circle.btn-lg {
@@ -117,7 +109,7 @@ a:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-right: 8px;
-    font-size: 34px;
+    font-size: 26px;
 }
 
 #baseline {
@@ -129,8 +121,6 @@ a:hover {
 .custom-row {
     margin-bottom: 10px;
 }
-
-#visualizer-row > div {}
 
 #visualizer .bar,
 #visualizer .beat-label {
@@ -163,7 +153,7 @@ a:hover {
 #visualizer .beat-label {
     font-weight: bold;
     font-family: sans-serif;
-    font-size: 13px;
+    font-size: 10px;
     text-align: center;
     vertical-align: top;
 }
@@ -236,7 +226,8 @@ a:hover {
 #tempo-label,
 #volume-label {
     margin-bottom: 17px;
-    font-size: 85%;
+    font-size: 70%;
+    font-weight: 700;
 }
 
 #tempo-slider-container {}
@@ -289,12 +280,30 @@ footer {
 /* Landscape mode rules */
 @media all and (min-width: 574px) and (orientation: landscape) {
 
+    #title {
+        font-size: 34px;
+    }
+
     #baseline {
         margin-left: 6px;
     }
 
+    #visualizer .beat-label {
+        font-size: 13px;
+    }
+
    .btn-icon {
         width: 18px;
+    }
+
+    .btn-text {
+        display: inline;
+    }
+
+    #tempo-label,
+    #volume-label {
+        margin-bottom: 17px;
+        font-size: 85%;
     }
 
 }
@@ -376,6 +385,14 @@ footer {
 
     #palo,
     .btn-group {}
+
+}
+
+@media all and (max-height: 380px) {
+
+    #visualizer-row {
+        display: none !important;
+    }
 
 }
 
