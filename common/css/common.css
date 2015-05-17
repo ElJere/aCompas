@@ -233,8 +233,10 @@ a:hover {
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
+    margin-left: -10px !important;
+    margin-top: -10px !important;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .125);
             box-shadow: 0 0 5px rgba(0, 0, 0, .125);
 }
@@ -278,6 +280,10 @@ footer {
 
     #baseline {
         margin-left: 6px;
+    }
+
+    #visualizer {
+        margin-bottom: 10px;
     }
 
     #visualizer .beat-label {
@@ -372,6 +378,10 @@ footer {
 
     #baseline {
         font-size: 45px;
+    }
+
+    #visualizer {
+        margin-bottom: 20px;
     }
 
    .btn-icon {
@@ -483,6 +493,10 @@ footer {
         padding: 2px 5px;
     }
 
+    #visualizer {
+        margin-bottom: 10px;
+    }
+
 }
 
 
@@ -499,6 +513,10 @@ footer {
 
     #baseline {
         font-size: 30px;
+    }
+
+    #visualizer {
+        margin-bottom: 20px;
     }
 
     #left-col > .row,
