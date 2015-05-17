@@ -1148,7 +1148,7 @@ function play() {
         window.aCompas.playStartTime = window.aCompas.audioContext.currentTime;
         // change play button
         playButton.removeClass('glyphicon-play').addClass('glyphicon-stop');
-        $('.play').addClass('active');
+        $('.play').css("border-color", "firebrick").addClass('active');
         // Send message to worker
         window.aCompas.timerWorker.postMessage("start");
         window.aCompas.isPlaying = true;
@@ -1157,7 +1157,7 @@ function play() {
     } else {
         // change play button
         playButton.removeClass('glyphicon-stop').addClass('glyphicon-play');
-        $('.play').removeClass('active');
+        $('.play').css("border-color", "tomato").removeClass('active');
         // Send message to worker
         window.aCompas.timerWorker.postMessage("stop");
         window.aCompas.isPlaying = false;
