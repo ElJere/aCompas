@@ -68,6 +68,19 @@ a:hover {
     background-color: white;
 }
 
+.btn-primary {
+    background-image: linear-gradient(to bottom, tomato 0px, firebrick 100%);
+    border-color: firebrick;
+    background-color: tomato;
+    padding: 6px 12px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: firebrick;
+    border-color: tomato;
+}
+
 .btn-group {
     margin-bottom: 2px;
 }
@@ -277,6 +290,14 @@ footer {
     margin-top: 10px;
 }
 
+@media all and (max-height: 380px) {
+
+    #visualizer-row {
+        display: none !important;
+    }
+
+}
+
 /* Landscape mode rules */
 @media all and (min-width: 574px) and (orientation: landscape) {
 
@@ -385,14 +406,6 @@ footer {
 
     #palo,
     .btn-group {}
-
-}
-
-@media all and (max-height: 380px) {
-
-    #visualizer-row {
-        display: none !important;
-    }
 
 }
 
