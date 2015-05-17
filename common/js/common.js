@@ -958,12 +958,12 @@ window.aCompas.palos = [
     }
 ];
 
-function setCookie(name, value) {
-    Cookies.set(name, value, { expires: 30 });
+function localStorageSet(name, value) {
+    window.localStorage.setItem(name, value);
 }
 
-function getCookie(name) {
-    return Cookies.get(name);
+function localStorageGet(name) {
+    return window.localStorage.getItem(name);
 }
 
 // Set functions
@@ -1280,7 +1280,7 @@ function setPalo(paloSlug) {
         play();
     }
     window.aCompas.palo = paloSlug;
-    setCookie("palo", paloSlug);
+    localStorageSet("palo", paloSlug);
     var paloData = null;
     $.each(window.aCompas.palos, function(paloIndex, paloData2) {
         if (window.aCompas.palo === paloData2.slug) {
@@ -1293,13 +1293,17 @@ function setPalo(paloSlug) {
     if ($("#tempo").data("slider")) {
         $("#tempo").data("slider").destroy();
     }
+    var tempoValue = paloData.defaultTempo;
+    if (localStorageGet("tempo-" + window.aCompas.palo)) {
+        tempoValue = parseInt(localStorageGet("tempo-" + window.aCompas.palo));
+    }
     // Build tempo slider
     $("#tempo").slider({
         orientation: "vertical",
         min: paloData.minTempo,
         max: paloData.maxTempo,
         tooltip: "hide",
-        value: paloData.defaultTempo,
+        value: tempoValue,
         reversed: true
     }).on("slide", function(e) {
         $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
@@ -1307,6 +1311,7 @@ function setPalo(paloSlug) {
     }).on("slideStop", function(e) {
         $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
         paloData.setTempoInfo();
+        localStorageSet("tempo-" + window.aCompas.palo, getTempo());
     });
     // Force rendering of the slider's label
     $("#tempo").trigger("slideStop");
@@ -1463,7 +1468,7 @@ function buildUi() {
     }).on("slideStop", function(e) {
         window.aCompas.masterVolume = e.value;
         setVolumeLabel();
-        setCookie("volume", window.aCompas.masterVolume);
+        localStorageSet("volume", window.aCompas.masterVolume);
     });
 
     $('.play').on('click', function() {
@@ -1472,7 +1477,7 @@ function buildUi() {
 
     $(".resolution").on("click", function(e) {
         window.aCompas.noteResolution = $(this).hasClass("resolution-0") ? 0 : 1;
-        setCookie("resolution", window.aCompas.noteResolution);
+        localStorageSet("resolution", window.aCompas.noteResolution);
         var label = null;
         if (window.aCompas.noteResolution == 0) {
             $(".resolution-0").addClass("active");
@@ -1514,7 +1519,7 @@ function buildUi() {
             $(this).addClass("active");
             label = "On";
         }
-        setCookie("instrument-" + instrument, window.aCompas[instrument]);
+        localStorageSet("instrument-" + instrument, window.aCompas[instrument]);
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
     });
 
@@ -1530,7 +1535,7 @@ function buildUi() {
             window.aCompas.improvise = true;
             label = "On";
         }
-        setCookie("improvise", window.aCompas.improvise);
+        localStorageSet("improvise", window.aCompas.improvise);
         _paq.push(['trackEvent', 'Options', "Improvisation", label]);
     });
 
@@ -1542,34 +1547,34 @@ function buildUi() {
         trackDeviceOrientation();
     });
 
-    restoreValuesFromCookie();
+    restoreValuesFromLocalStorage();
     adaptToFooterHeight();
     adaptInstrumentsMenu();
     trackDeviceOrientation();
 }
 
-function restoreValuesFromCookie() {
+function restoreValuesFromLocalStorage() {
     // Palo
-    var paloSlug = (getCookie("palo") !== undefined) ? getCookie("palo"): window.aCompas.defaultPaloSlug;
+    var paloSlug = (localStorageGet("palo") !== null) ? localStorageGet("palo"): window.aCompas.defaultPaloSlug;
     setPalo(paloSlug);
     $("#palo").val(paloSlug);
     // Resolution
-    if (getCookie("resolution") !== undefined && parseInt(getCookie("resolution")) !== window.aCompas.noteResolution) {
-        $(".resolution[data-resolution=" + parseInt(getCookie("resolution")) + "]").click();
+    if (localStorageGet("resolution") !== null && parseInt(localStorageGet("resolution")) !== window.aCompas.noteResolution) {
+        $(".resolution[data-resolution=" + parseInt(localStorageGet("resolution")) + "]").click();
     }
     // Instruments
     $.each(window.aCompas.instruments, function(index, instrumentSlug) {
-        if (getCookie("instrument-" + instrumentSlug) !== undefined && JSON.parse(getCookie("instrument-" + instrumentSlug)) !== window.aCompas[instrumentSlug]) {
+        if (localStorageGet("instrument-" + instrumentSlug) !== null && JSON.parse(localStorageGet("instrument-" + instrumentSlug)) !== window.aCompas[instrumentSlug]) {
             $(".toggle-instrument[data-instrument=" + instrumentSlug + "]").click();
         }
     });
     // Improvise
-    if (getCookie("improvise") !== undefined && JSON.parse(getCookie("improvise")) !== window.aCompas.improvise) {
+    if (localStorageGet("improvise") !== null && JSON.parse(localStorageGet("improvise")) !== window.aCompas.improvise) {
         $("#improvise").click();
     }
     // Volume
-    if (getCookie("volume") !== undefined && parseInt(getCookie("volume")) !== window.aCompas.masterVolume) {
-        var volume = parseInt(getCookie("volume"));
+    if (localStorageGet("volume") !== null && parseInt(localStorageGet("volume")) !== window.aCompas.masterVolume) {
+        var volume = parseInt(localStorageGet("volume"));
         window.aCompas.masterVolume = volume
         $("#volume").data("slider").setValue(volume);
         setVolumeLabel();

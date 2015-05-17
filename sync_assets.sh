@@ -26,9 +26,6 @@ rsync -av ./bower_components/bootstrap/dist/js/bootstrap.min.js ./crosswalk/bowe
 # jQuery
 mkdir -p ./crosswalk/bower_components/jquery/dist
 rsync -av ./bower_components/jquery/dist/jquery.min.js ./crosswalk/bower_components/jquery/dist
-# js-cookie
-mkdir -p ./crosswalk/bower_components/js-cookie/src
-rsync -av ./bower_components/js-cookie/src/js.cookie.js ./crosswalk/bower_components/js-cookie/src
 # seiyria-bootstrap-slider
 mkdir -p ./crosswalk/bower_components/seiyria-bootstrap-slider/dist/css
 rsync -av ./bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js ./crosswalk/bower_components/seiyria-bootstrap-slider/dist
