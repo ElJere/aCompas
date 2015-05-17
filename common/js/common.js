@@ -158,7 +158,15 @@ window.aCompas = {
         cajon: 3,
         udu: 2,
         jaleo: 17
-    }
+    },
+    instruments: [
+        "clara",
+        "sorda",
+        "cajon",
+        "udu",
+        "jaleo",
+        "click"
+    ]
 }
 
 // Palos data
@@ -950,6 +958,14 @@ window.aCompas.palos = [
     }
 ];
 
+function setCookie(name, value) {
+    Cookies.set(name, value, { expires: 30 });
+}
+
+function getCookie(name) {
+    return Cookies.get(name);
+}
+
 // Set functions
 function playSound(name, start, vol) {
     // If vol is null, use the sound's default volume
@@ -1058,10 +1074,10 @@ function scheduleJaleo(beatNumber, time, paloData) {
             var maxNbVoices = 3;
             var nbVoices = null;
             if (beatNumber === 0) {
-                nbVoices = maxNbVoices;
-            } else {
                 // Pick the number of voices which will actualy be used
-                nbVoices = Math.round(Math.random() * maxNbVoices);
+                nbVoices = Math.ceil(Math.random() * maxNbVoices);
+            } else {
+                nbVoices = 1;
             }
             for (var i = 0; i < nbVoices; i++) {
                 // Pick a random jaleo sound
@@ -1264,6 +1280,7 @@ function setPalo(paloSlug) {
         play();
     }
     window.aCompas.palo = paloSlug;
+    setCookie("palo", paloSlug);
     var paloData = null;
     $.each(window.aCompas.palos, function(paloIndex, paloData2) {
         if (window.aCompas.palo === paloData2.slug) {
@@ -1271,7 +1288,7 @@ function setPalo(paloSlug) {
         }
     });
     // Update window.aCompas.nbBeatsInPattern
-     window.aCompas.nbBeatsInPattern = paloData.nbBeatsInPattern;
+    window.aCompas.nbBeatsInPattern = paloData.nbBeatsInPattern;
     // Destroy the tempo slider if needed
     if ($("#tempo").data("slider")) {
         $("#tempo").data("slider").destroy();
@@ -1305,6 +1322,10 @@ function adaptToFooterHeight() {
             + parseInt(footer.css("padding-bottom").replace("px", "")) + parseInt($(".slider-handle").css("height").replace("px", "")) / 2;
         $("#main").css("padding-bottom", mainPaddingBottom);
     }
+}
+
+function setVolumeLabel() {
+    $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
 }
 
 function buildUi() {
@@ -1342,10 +1363,10 @@ function buildUi() {
     html += "                <div class=\"custom-row\">";
     html += "                    <div class=\"btn-group btn-group-justified\" role=\"group\">";
     html += "                        <div class=\"btn-group\" role=\"group\">";
-    html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\" data-resolution=\"0\"><img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
     html += "                        </div>";
     html += "                        <div class=\"btn-group\" role=\"group\">";
-    html += "                            <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "                            <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\" data-resolution=\"1\"><img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
     html += "                        </div>";
     html += "                    </div>";
     html += "                </div>";
@@ -1412,9 +1433,6 @@ function buildUi() {
 
     $("#main").html(html);
 
-    // Set default palo
-    setPalo(window.aCompas.defaultPaloSlug);
-    $("#palo").val(window.aCompas.defaultPaloSlug);
     // On palo change
     $("#palo").change(function(e) {
         // Set rhythm style
@@ -1441,10 +1459,11 @@ function buildUi() {
         reversed: true,
     }).on("slide", function(e) {
         window.aCompas.masterVolume = e.value;
-        $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
+        setVolumeLabel();
     }).on("slideStop", function(e) {
         window.aCompas.masterVolume = e.value;
-        $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
+        setVolumeLabel();
+        setCookie("volume", window.aCompas.masterVolume);
     });
 
     $('.play').on('click', function() {
@@ -1453,6 +1472,7 @@ function buildUi() {
 
     $(".resolution").on("click", function(e) {
         window.aCompas.noteResolution = $(this).hasClass("resolution-0") ? 0 : 1;
+        setCookie("resolution", window.aCompas.noteResolution);
         var label = null;
         if (window.aCompas.noteResolution == 0) {
             $(".resolution-0").addClass("active");
@@ -1494,6 +1514,7 @@ function buildUi() {
             $(this).addClass("active");
             label = "On";
         }
+        setCookie("instrument-" + instrument, window.aCompas[instrument]);
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
     });
 
@@ -1509,6 +1530,7 @@ function buildUi() {
             window.aCompas.improvise = true;
             label = "On";
         }
+        setCookie("improvise", window.aCompas.improvise);
         _paq.push(['trackEvent', 'Options', "Improvisation", label]);
     });
 
@@ -1520,9 +1542,38 @@ function buildUi() {
         trackDeviceOrientation();
     });
 
+    restoreValuesFromCookie();
     adaptToFooterHeight();
     adaptInstrumentsMenu();
     trackDeviceOrientation();
+}
+
+function restoreValuesFromCookie() {
+    // Palo
+    var paloSlug = (getCookie("palo") !== undefined) ? getCookie("palo"): window.aCompas.defaultPaloSlug;
+    setPalo(paloSlug);
+    $("#palo").val(paloSlug);
+    // Resolution
+    if (getCookie("resolution") !== undefined && parseInt(getCookie("resolution")) !== window.aCompas.noteResolution) {
+        $(".resolution[data-resolution=" + parseInt(getCookie("resolution")) + "]").click();
+    }
+    // Instruments
+    $.each(window.aCompas.instruments, function(index, instrumentSlug) {
+        if (getCookie("instrument-" + instrumentSlug) !== undefined && JSON.parse(getCookie("instrument-" + instrumentSlug)) !== window.aCompas[instrumentSlug]) {
+            $(".toggle-instrument[data-instrument=" + instrumentSlug + "]").click();
+        }
+    });
+    // Improvise
+    if (getCookie("improvise") !== undefined && JSON.parse(getCookie("improvise")) !== window.aCompas.improvise) {
+        $("#improvise").click();
+    }
+    // Volume
+    if (getCookie("volume") !== undefined && parseInt(getCookie("volume")) !== window.aCompas.masterVolume) {
+        var volume = parseInt(getCookie("volume"));
+        window.aCompas.masterVolume = volume
+        $("#volume").data("slider").setValue(volume);
+        setVolumeLabel();
+    }
 }
 
 function adaptInstrumentsMenu() {

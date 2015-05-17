@@ -10,17 +10,26 @@ if [ ! -d "common" ]; then
 fi
 
 # Web version
+
 rsync -av --delete ./common ./web
 rsync -av --delete ./bower_components ./web
 
 # Crosswalk version
+
+# Fonts
 rsync -av --delete --delete-excluded --exclude="common/fonts/Playball/OFL.txt" --exclude="common/audio/README" ./common ./crosswalk
+# Bootstrap
 mkdir -p ./crosswalk/bower_components/bootstrap/dist/{css,fonts,js}
 rsync -av ./bower_components/bootstrap/dist/css/bootstrap.min.css ./crosswalk/bower_components/bootstrap/dist/css
 rsync -av --delete ./bower_components/bootstrap/dist/fonts ./crosswalk/bower_components/bootstrap/dist
 rsync -av ./bower_components/bootstrap/dist/js/bootstrap.min.js ./crosswalk/bower_components/bootstrap/dist/js
+# jQuery
 mkdir -p ./crosswalk/bower_components/jquery/dist
-rsync -av --delete ./bower_components/jquery/dist/jquery.min.js ./crosswalk/bower_components/jquery/dist
+rsync -av ./bower_components/jquery/dist/jquery.min.js ./crosswalk/bower_components/jquery/dist
+# js-cookie
+mkdir -p ./crosswalk/bower_components/js-cookie/src
+rsync -av ./bower_components/js-cookie/src/js.cookie.js ./crosswalk/bower_components/js-cookie/src
+# seiyria-bootstrap-slider
 mkdir -p ./crosswalk/bower_components/seiyria-bootstrap-slider/dist/css
 rsync -av ./bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js ./crosswalk/bower_components/seiyria-bootstrap-slider/dist
 rsync -av ./bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css ./crosswalk/bower_components/seiyria-bootstrap-slider/dist/css
