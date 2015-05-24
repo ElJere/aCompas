@@ -223,9 +223,18 @@ a:hover {
     margin-bottom: 17px;
     font-size: 70%;
     font-weight: 700;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.slider.slider-vertical {
+#right-col .slider-container,
+#right-col .buttons {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.slider.slider-vertical,
+#right-col .buttons {
     height: 80px;
 }
 
@@ -253,6 +262,23 @@ a:hover {
     border-color: #adadad;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .5);
             box-shadow: inset 0 3px 5px rgba(0, 0, 0, .5);
+}
+
+#right-col .buttons button {
+    padding: 0px 3px;
+    background-color: white;
+    border-color: #ADADAD;
+    font-weight: bold;
+    font-size: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#right-col .buttons .bottom {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 #info {
@@ -311,7 +337,8 @@ footer {
         font-size: 85%;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 92px;
     }
 
@@ -352,8 +379,17 @@ footer {
         margin-bottom: 15px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 200px;
+    }
+
+    #right-col .buttons button {
+        padding: 2px 5px;
+    }
+
+    #right-col .buttons button:nth-of-type(1) {
+        margin-bottom: 4px;
     }
 
     .slider-handle {
@@ -398,7 +434,8 @@ footer {
         margin-bottom: 22px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 250px;
     }
 
@@ -416,7 +453,8 @@ footer {
         margin-bottom: 13px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 150px;
     }
 
@@ -456,7 +494,8 @@ footer {
         height: 34px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 200px;
     }
 
@@ -465,6 +504,14 @@ footer {
         height: 40px;
         margin-left: -15px !important;
         margin-top: -15px !important;
+    }
+
+    #right-col .buttons button:nth-of-type(1) {
+        margin-bottom: 4px;
+    }
+
+    #right-col .buttons button {
+        padding: 2px 5px;
     }
 
     #info {
@@ -529,7 +576,8 @@ footer {
         width: 32px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 340px;
     }
 
@@ -559,7 +607,8 @@ footer {
         width: 48px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 380px;
     }
 
@@ -589,7 +638,8 @@ footer {
         font-size: 45px;
     }
 
-    .slider.slider-vertical {
+    .slider.slider-vertical,
+    #right-col .buttons  {
         height: 450px;
     }
 

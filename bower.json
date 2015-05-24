@@ -24,6 +24,7 @@
   "dependencies": {
     "bootstrap": "~3.3.4",
     "jquery": "~2.1.4",
-    "seiyria-bootstrap-slider": "~4.8.3"
+    "seiyria-bootstrap-slider": "~4.8.3",
+    "jquery-mousewheel": "~3.1.12"
   }
 }

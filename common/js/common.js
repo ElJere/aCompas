@@ -1306,12 +1306,22 @@ function setPalo(paloSlug) {
         value: tempoValue,
         reversed: true
     }).on("slide", function(e) {
-        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
-        paloData.setTempoInfo();
-    }).on("slideStop", function(e) {
-        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> : " + getTempo() + " bpm");
+        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> " + getTempo() + " bpm");
         paloData.setTempoInfo();
         localStorageSet("tempo-" + window.aCompas.palo, getTempo());
+    }).on("slideStop", function(e) {
+        $("#tempo-label").html("<i class=\"glyphicon glyphicon-time\"></i> " + getTempo() + " bpm");
+        paloData.setTempoInfo();
+        localStorageSet("tempo-" + window.aCompas.palo, getTempo());
+    });
+    // Mouse wheel behavior
+    $("#tempo").parent().off("mousewheel").on("mousewheel", function(e) {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+            $("#tempo").data("slider").setValue($("#tempo").data("slider").getValue() + 1, true, false);
+        } else {
+            $("#tempo").data("slider").setValue($("#tempo").data("slider").getValue() - 1, true, false);
+        }
     });
     // Force rendering of the slider's label
     $("#tempo").trigger("slideStop");
@@ -1332,7 +1342,7 @@ function adaptToFooterHeight() {
 }
 
 function setVolumeLabel() {
-    $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %");
+    $("#volume-label").html("<i class=\"glyphicon glyphicon-volume-up\"></i> " + window.aCompas.masterVolume + " %");
 }
 
 function buildUi() {
@@ -1415,18 +1425,46 @@ function buildUi() {
     // Tempo
     html += "                <div id=\"tempo-slider-container\" class=\"col-xs-6\">";
     html += "                    <div class=\"row\">";
-    html += "                        <div id=\"tempo-label\"><i class=\"glyphicon glyphicon-time\"></i> : </div>";
-    html += "                    </div>"
-    html += "                    <div id=\"tempo\">";
+    html += "                        <div id=\"tempo-label\" class=\"col-xs-12\"><i class=\"glyphicon glyphicon-time\"></i> </div>";
+    html += "                    </div>";
+    html += "                    <div class=\"row\">";
+    html += "                        <div class=\"slider-container col-xs-6\">";
+    html += "                            <div id=\"tempo\">";
+    html += "                            </div>";
+    html += "                        </div>";
+    html += "                        <div class=\"col-xs-6 buttons\">";
+    html += "                             <div>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"tempo\" data-sign=\"plus\" data-offset=\"5\"><span class=\"glyphicon glyphicon-plus\"></span>5</button>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"tempo\" data-sign=\"plus\" data-offset=\"1\"><span class=\"glyphicon glyphicon-plus\"></span>1</button>";
+    html += "                             </div>";
+    html += "                             <div class=\"bottom\">";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"tempo\" data-sign=\"minus\" data-offset=\"1\"><span class=\"glyphicon glyphicon-minus\"></span>1</button>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"tempo\" data-sign=\"minus\" data-offset=\"5\"><span class=\"glyphicon glyphicon-minus\"></span>5</button>";
+    html += "                            </div>";
+    html += "                        </div>";
     html += "                    </div>";
     html += "                </div>";
 
     // Volume
     html += "                <div id=\"volume-slider-container\" class=\"col-xs-6\">";
     html += "                    <div class=\"row\">";
-    html += "                        <div id=\"volume-label\"><i class=\"glyphicon glyphicon-volume-up\"></i> : " + window.aCompas.masterVolume + " %</div>";
-    html += "                    </div>"
-    html += "                    <div id=\"volume\">";
+    html += "                        <div id=\"volume-label\" class=\"col-xs-12\"><i class=\"glyphicon glyphicon-volume-up\"></i> " + window.aCompas.masterVolume + " %</div>";
+    html += "                    </div>";
+    html += "                    <div class=\"row\">";
+    html += "                        <div class=\"slider-container col-xs-6\">";
+    html += "                            <div id=\"volume\">";
+    html += "                            </div>";
+    html += "                        </div>";
+    html += "                        <div class=\"col-xs-6 buttons\">";
+    html += "                            <div>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"volume\" data-sign=\"plus\" data-offset=\"5\"><span class=\"glyphicon glyphicon-plus\"></span>5</button>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"volume\" data-sign=\"plus\" data-offset=\"1\"><span class=\"glyphicon glyphicon-plus\"></span>1</button>";
+    html += "                            </div>";
+    html += "                            <div class=\"bottom\">";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"volume\" data-sign=\"minus\" data-offset=\"1\"><span class=\"glyphicon glyphicon-minus\"></span>1</button>";
+    html += "                                <button class=\"btn bth-default btn-lg\" data-target=\"volume\" data-sign=\"minus\" data-offset=\"5\"><span class=\"glyphicon glyphicon-minus\"></span>5</button>";
+    html += "                            </div>";
+    html += "                        </div>";
     html += "                    </div>";
     html += "                </div>";
 
@@ -1452,7 +1490,7 @@ function buildUi() {
     $("#palo").change(function(e) {
         // Set rhythm style
         setPalo($(this).val());
-        // Trick to force rendering the newly selected value on Cordova
+        // Trick to force rendering the newly selected value on mobile
         $(this).blur();
         // Track event in Piwik
         var paloData = null;
@@ -1475,16 +1513,39 @@ function buildUi() {
     }).on("slide", function(e) {
         window.aCompas.masterVolume = e.value;
         setVolumeLabel();
+        localStorageSet("volume", window.aCompas.masterVolume);
     }).on("slideStop", function(e) {
         window.aCompas.masterVolume = e.value;
         setVolumeLabel();
         localStorageSet("volume", window.aCompas.masterVolume);
     });
 
+    $("#volume").parent().on("mousewheel", function(e) {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+            $("#volume").data("slider").setValue($("#volume").data("slider").getValue() + 1, true, false);
+        } else {
+            $("#volume").data("slider").setValue($("#volume").data("slider").getValue() - 1, true, false);
+        }
+    });
+
+    // Buttons which are connected to the sliders (tempo and volume)
+    $("#right-col .buttons button").click(function (e) {
+        e.preventDefault();
+        var target = $(this).data("target");
+        var number = parseInt($(this).data("offset"));
+        var sign = ($(this).data("sign") === "plus") ? 1 : -1;
+        var offset = (sign >= 0) ? number : -number;
+        $("#" + target).data("slider")
+            .setValue($("#" + target).data("slider").getValue() + offset, true, false);
+    });
+
+    // Play button
     $('.play').on('click', function() {
         play();
     });
 
+    // Resolution
     $(".resolution").on("click", function(e) {
         window.aCompas.noteResolution = $(this).hasClass("resolution-0") ? 0 : 1;
         localStorageSet("resolution", window.aCompas.noteResolution);
@@ -1502,6 +1563,7 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', 'Resolution', label]);
     });
 
+    // Instruments menu
     $("#toggle-instruments").on("click", function() {
         var $this = $(this);
         if ($this.hasClass("open")) {
@@ -1518,6 +1580,7 @@ function buildUi() {
         }
     });
 
+    // Instrument On/Off buttons
     $(".toggle-instrument").on("click", function(e) {
         e.preventDefault();
         var instrument = $(this).data("instrument");
@@ -1535,6 +1598,7 @@ function buildUi() {
         _paq.push(['trackEvent', 'Instrument', instrument.charAt(0).toUpperCase() + instrument.slice(1), label]);
     });
 
+    // Improvisation
     $("#improvise").on("click", function(e) {
         e.preventDefault();
         var label = null;
@@ -1551,6 +1615,15 @@ function buildUi() {
         _paq.push(['trackEvent', 'Options', "Improvisation", label]);
     });
 
+    // Play/Stop when the space bar is pressed
+    $("body").on("keypress", function(e) {
+        if (e.which === 32) {
+            e.preventDefault();
+            play();
+        }
+    });
+
+    // On window resize and/or orientation change
     $(window).on("resize", function(e) {
         draw();
         adaptToFooterHeight();
@@ -1559,6 +1632,7 @@ function buildUi() {
         trackDeviceOrientation();
     });
 
+    // Initialization
     restoreValuesFromLocalStorage();
     adaptToFooterHeight();
     adaptInstrumentsMenu();
