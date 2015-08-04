@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-
         <title>A Compás - Flamenco metronome</title>
 
+        <meta charset="utf-8">
+        <meta http-equiv="content-language" content="en">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="A Compás is a web-based flamenco metronome." />
+        <meta name="description" content="A Compás is a web-based flamenco metronome, also available as an Android application. It will let you play various flamenco rhythms and change the tempo, and features a graphical visualization and some options." />
+        <meta name="google-site-verification" content="eAk9WqewTUXR8axL9HotVs7j9hmQ85wGgt6i1OARKzY" />
 
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" />
@@ -48,7 +49,7 @@
         </div>
 
         <!-- Modal which is shown if user's browser can't run the application -->
-        <div id="will-not-work-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div id="will-not-work-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="will-not-work-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -74,7 +75,7 @@
         </div>
 
         <!-- Modal which is shown if user's browser can't run the application -->
-        <div id="ios-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div id="ios-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ios-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -128,5 +129,18 @@
            </script>
            <noscript><p><img src="//piwik.acompas.audio/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
            <!-- End Piwik Code -->
+           <script type="application/ld+json">
+                {
+                  "@context": "http://schema.org/",
+                  "@type": "WebApplication",
+                  "name": "A Compás",
+                  "browserRequirements": "Requires both HTML5 and Web Audio API support",
+                  "applicationCategory": "Music",
+                  "url": "http://acompas.audio",
+                  "image": "http://acompas.audio/images/icon_512x512.png",
+                  "description": "A Compás is a web-based flamenco metronome, also available as an Android application. It will let you play various flamenco rhythms and change the tempo, and features a graphical visualization and some options."
+                }
+            </script>
+
 	</body>
 </html>

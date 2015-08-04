@@ -2,6 +2,7 @@ bower_components
 .vagrant
 web/common
 web/bower_components
+web/images/icon_512x512.png
 cordova/platforms/android/.gradle
 cordova/platforms/android/CordovaLib/build
 cordova/platforms/android/res/xml/config.xml

@@ -13,6 +13,7 @@ fi
 
 rsync -av --delete ./common ./web
 rsync -av --delete ./bower_components ./web
+rsync -av ./images/icon_512x512.png ./web/images
 
 # Crosswalk version
 
