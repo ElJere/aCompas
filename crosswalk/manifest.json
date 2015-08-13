@@ -1,6 +1,6 @@
 {
   "name": "A Compás",
-  "xwalk_version": "1.0.25",
+  "xwalk_version": "1.0.26",
   "start_url": "index.html",
   "icons": [
     {
