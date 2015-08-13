@@ -651,10 +651,6 @@ footer {
 
 /* Website-only rules */
 
-.social-sharers {
-    padding: 15px;
-}
-
 .social-sharers > a {
     display: inline-block;
 }

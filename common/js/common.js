@@ -175,6 +175,135 @@ window.aCompas = {
 // Nb beats in pattern : number of beats in a pattern (counting an eighth note as a beat)
 window.aCompas.palos = [
     {
+        slug: "alegria",
+        label: "Alegría",
+        minTempo: 10,
+        maxTempo: 115,
+        defaultTempo: 50,
+        nbBeatsInPattern: 24,
+        timeSignatureTop: 12,
+        timeSignatureBottom: 8,
+        clara: {
+            0: 1,
+            2: 2,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 2,
+            10: 3,
+            12: 3,
+            14: 1,
+            15: 1,
+            16: 1,
+            18: 1,
+            19: 1,
+            20: 1,
+            22: 3
+        },
+        sorda: {
+            0: 1,
+            2: 2,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 2,
+            10: 3,
+            12: 3,
+            14: 1,
+            15: 1,
+            16: 1,
+            18: 1,
+            19: 1,
+            20: 1,
+            22: 3
+        },
+        cajon: {
+            0: 1,
+            2: 2,
+            3: 2,
+            4: 3,
+            6: 1,
+            8: 2,
+            10: 2,
+            12: 3,
+            14: 1,
+            15: 1,
+            16: 1,
+            18: 1,
+            19: 1,
+            20: 1,
+            22: 3
+        },
+        udu: {
+            0: 1,
+            2: 2,
+            4: 2,
+            6: 1,
+            8: 2,
+            10: 2,
+            12: 2,
+            14: 1,
+            15: 1,
+            16: 1,
+            18: 1,
+            19: 1,
+            20: 1,
+            22: 2
+        },
+        beats: {
+            0: "strong",
+            1: "down",
+            2: "up",
+            3: "down",
+            4: "up",
+            5: "down",
+            6: "strong",
+            7: "down",
+            8: "up",
+            9: "down",
+            10: "up",
+            11: "down",
+            12: "strong",
+            13: "down",
+            14: "up",
+            15: "down",
+            16: "strong",
+            17: "down",
+            18: "up",
+            19: "down",
+            20: "strong",
+            21: "down",
+            22: "up",
+            23: "down"
+        },
+        beatLabels: {
+            0: 12,
+            2: 1,
+            4: 2,
+            6: 3,
+            8: 4,
+            10: 5,
+            12: 6,
+            14: 7,
+            16: 8,
+            18: 9,
+            20: 10,
+            22: 11
+        },
+        setTempoInfo: function() {
+            var tempo = getTempo();
+            if (tempo >= 80) {
+                setInfoMessage("Your rhythm is very fast");
+            } else if (tempo >= 60 && tempo > 20) {
+                setInfoMessage("Your tempo is por buleria");
+            } else if (tempo <= 20) {
+                setInfoMessage("Your rhythm is very slow");
+            } else {
+                setInfoMessage(null);
+            }
+        }
+    },
+    {
         slug: "buleria-6",
         label: "Bulería (6)",
         minTempo: 15,
