@@ -13,3 +13,4 @@ crosswalk/common
 crosswalk/bower_components
 *.apk
 .project
+nbproject
