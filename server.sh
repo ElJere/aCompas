@@ -10,5 +10,4 @@ if [ ! -d "common" ]; then
     exit 1
 fi
 
-( cd web && python -m SimpleHTTPServer 8000 )
-
+meteor
