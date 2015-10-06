@@ -1548,12 +1548,12 @@ function buildUi() {
     html += "                    <div class=\"btn-group btn-group-justified\" role=\"group\">";
     html += "                        <div class=\"btn-group\" role=\"group\">";
     html += "                            <button class=\"resolution resolution-0 btn btn-default btn-sm active\" title=\"Up beats and down beats\" data-resolution=\"0\">";
-    html += "                                <img src=\"common/images/croche.svg\" class=\"btn-icon\" />";
+    html += "                                <img src=\"images/croche.svg\" class=\"btn-icon\" />";
     html += "                            </button>";
     html += "                        </div>";
     html += "                        <div class=\"btn-group\" role=\"group\">";
     html += "                            <button class=\"resolution resolution-1 btn btn-default btn-sm\" title=\"Up beats only\" data-resolution=\"1\">";
-    html += "                                <img src=\"common/images/noire.svg\" class=\"btn-icon\" />";
+    html += "                                <img src=\"images/noire.svg\" class=\"btn-icon\" />";
     html += "                            </button>";
     html += "                        </div>";
     html += "                    </div>";
@@ -1564,12 +1564,12 @@ function buildUi() {
     html += "                    <button id=\"toggle-instruments\" class=\"btn btn-default btn-lg btn-block\" title=\"Toggle instruments\">";
     html += "                        <i class=\"glyphicon glyphicon-th-list\"></i> Instruments";
     html += "                    </button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"common/images/clara.svg\" class=\"btn-instrument\" /></button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"common/images/sorda.svg\" class=\"btn-instrument\" /></button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"common/images/cajon.svg\" class=\"btn-instrument\" /></button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"common/images/udu.svg\" class=\"btn-instrument\" /></button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"common/images/click.svg\" class=\"btn-instrument\" /></button>";
-    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"jaleo\" title=\"Jaleo\"><img src=\"common/images/jaleo.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"clara\" title=\"Palma clara\"><img src=\"images/clara.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"sorda\" title=\"Palma sorda\"><img src=\"images/sorda.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"cajon\" title=\"Cajón\"><img src=\"images/cajon.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle active\" data-instrument=\"udu\" title=\"Udu\"><img src=\"images/udu.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"click\" title=\"Click\"><img src=\"images/click.svg\" class=\"btn-instrument\" /></button>";
+    html += "                    <button class=\"toggle-instrument btn btn-default btn-lg btn-circle\" data-instrument=\"jaleo\" title=\"Jaleo\"><img src=\"images/jaleo.svg\" class=\"btn-instrument\" /></button>";
     html += "                </div>";
 
     // Improvise
@@ -1875,14 +1875,14 @@ function trackDeviceOrientation() {
 
 function loadSoundObj(obj, callback) {
     var request = new XMLHttpRequest();
-    request.open('GET', "common/audio/" + obj.src + "." + window.aCompas.audioFormat, true);
+    request.open('GET', "audio/" + obj.src + "." + window.aCompas.audioFormat, true);
     request.responseType = 'arraybuffer';
     request.onload = function() {
         // request.response is encoded... so decode it now
         window.aCompas.audioContext.decodeAudioData(request.response, function(buffer) {
             obj.buffer = buffer;
             }, function() {
-                message.call($wrapper, 'error', 'Error loading ' + obj.src);
+                console.log("Error loading " + obj.src);
             });
     };
 
@@ -1922,7 +1922,7 @@ function initAudio() {
             // Load sounds
             loadSounds();
             // Set the message worker
-            window.aCompas.timerWorker = new Worker("common/js/metronomeworker.js");
+            window.aCompas.timerWorker = new Worker("metronomeworker.js");
             window.aCompas.timerWorker.onmessage = function(e) {
                 if (e.data === "tick") {
                     // console.log("tick!");
@@ -1954,3 +1954,5 @@ function initMetronome() {
     }
     initAudio();
 }
+
+initMetronome();
