@@ -1273,7 +1273,7 @@ function scheduleNote(beatNumber, time) {
     }
     // If option "times only" selected, don't play counter times
     if ( (window.aCompas.noteResolution === 1) && (beatNumber % 2 === 1) ) {
-        return; 
+        return;
     }
     var paloData = null;
     $.each(window.aCompas.palos, function(paloIndex, paloData2) {
@@ -1499,10 +1499,10 @@ function setPalo(paloSlug) {
 function adaptToFooterHeight() {
     var footer = $("footer");
     if (footer.length > 0) {
-        var mainPaddingBottom = footer.height() 
+        var mainPaddingBottom = footer.height()
             + parseInt(footer.css("margin-top").replace("px", ""))
             + parseInt(footer.css("padding-top").replace("px", ""))
-            + parseInt(footer.css("padding-bottom").replace("px", "")) 
+            + parseInt(footer.css("padding-bottom").replace("px", ""))
             + parseInt($(".slider-handle").css("height").replace("px", "")) / 2;
         $("#main").css("padding-bottom", mainPaddingBottom);
     }

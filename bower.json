@@ -1,6 +1,6 @@
 {
   "name": "acompas",
-  "version": "0.0.1",
+  "version": "1.0.27",
   "homepage": "http://acompas.audio",
   "description": "A flamenco metronome web and mobile application",
   "main": "web/index.html",
@@ -13,7 +13,7 @@
     "El Jere",
     "Olivier Ricordeau"
   ],
-  "license": "MIT",
+  "license": "GPL v3",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -22,9 +22,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5",
-    "jquery": "~2.1.4",
-    "seiyria-bootstrap-slider": "~4.10.1",
-    "jquery-mousewheel": "~3.1.12"
-  }
+    "seiyria-bootstrap-slider": "~5.2.1",
+    "jquery-mousewheel": "~3.1.13"
+  },
+  "private": true
 }
