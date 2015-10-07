@@ -3,7 +3,7 @@
   "version": "1.0.27",
   "homepage": "http://acompas.audio",
   "description": "A flamenco metronome web and mobile application",
-  "main": "web/index.html",
+  "main": "client/body.html",
   "keywords": [
     "flamenco",
     "web-audio-api",

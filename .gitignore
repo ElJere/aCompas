@@ -1,4 +1,5 @@
 public/bower_components
+mup
 .vagrant
 *.apk
 .project
