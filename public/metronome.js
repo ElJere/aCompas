@@ -1441,6 +1441,10 @@ function setInfoMessage(txt) {
     }
 }
 
+function openMainIconModal() {
+    $("#main-icon-modal").modal("show");
+}
+
 function setPalo(paloSlug) {
     // Stop playing if needed
     if (window.aCompas.isPlaying) {
@@ -1652,6 +1656,12 @@ function buildUi() {
     html += "</div>"; // End #controls-container
 
     $("#main").html(html);
+
+    // On main icon click
+    $("body").on("click", "header .container .img-responsive", function(e) {
+        e.preventDefault();
+        openMainIconModal();
+    });
 
     // On palo change
     $("#palo").change(function(e) {

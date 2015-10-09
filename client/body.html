@@ -1,9 +1,15 @@
 <body>
   <div id="wrapper">
       <header>
-          <div class="container custom-row text-center">
-              <h1 id="title">A Compás</h1>
-              <h2 id="baseline"><small>A&nbsp;flamenco&nbsp;metronome&nbsp;for&nbsp;the&nbsp;Web</small></h2>
+          <div class="container custom-row">
+              <div class="column-1 col-xs-2 col-sm-2 col-md-2 col-lg-1 text-center">
+                  <img class="img-responsive" src="images/icon_512x512.png" />
+                  <input id="mode-input" type="hidden" value="home" />
+              </div>
+              <div class="column-2 col-xs-10 col-sm-10 col-md-10 col-lg-11 text-left">
+                  <h1 id="title">A Compás</h1>
+                  <h2 id="baseline"><small>A&nbsp;flamenco&nbsp;metronome&nbsp;for&nbsp;the&nbsp;Web</small></h2>
+              </div>
           </div>
       </header>
 
@@ -13,15 +19,15 @@
       <footer>
           <div class="container text-center">
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                  <p>
-                      This application is available in two flavors :
+                  <blockquote>
+                      <b><i>A Compás</i></b> is a <b>web-based flamenco metronome</b> application. It is <b>available in two flavors</b> :
                       <ul>
                           <li>
-                              As a mobile-compatiblle website : <a href="http://acompas.audio">http://acompas.audio</a>
+                              As a <b>mobile-compatiblle website</b> : <a href="http://acompas.audio"><b>http://acompas.audio</b></a>
                           </li>
                           <li>
                               <p>
-                                  As an Android application for tablets and
+                                  As an <b>Android application</b> for tablets and
                                   smartphones running the Android operating system
                               </p>
                               <a href="https://play.google.com/store/apps/details?id=audio.acompas.app"
@@ -30,45 +36,72 @@
                               </a>
                           </li>
                       </ul>
-                  </p>
+                  </blockquote>
               </div>
               <div class="social-sharers col-xs-12 col-sm-12 col-md-4 col-lg-4">
                   <div>
-                      <p>
-                          Share this page :
-                      </p>
+                      <blockquote>
+                          <p>
+                              <b>Spread the word !</b> Share this app on social networks :
+                          </p>
+                          <p>
+                              <a href="https://www.facebook.com/sharer/sharer.php?u=http://acompas.audio"
+                                 target="_blank">
+                                  <img src="/images/3D-Icons/facebook.png"
+                                      alt="Share this page on Facebook"
+                                      class="img-responsive" />
+                              </a>
+                              <a href="https://twitter.com/share?url=http://acompas.audio"
+                                 target="_blank">
+                                 <img src="/images/3D-Icons/Twitter-2.png"
+                                      alt="Share this page on Twitter"
+                                      class="img-responsive" />
+                              </a>
+                              <a href="https://plus.google.com/share?url=http://acompas.audio"
+                                 target="_blank">
+                                 <img src="/images/3D-Icons/Google+.png"
+                                      alt="Share this page on Google+"
+                                      class="img-responsive" />
+                              </a>
+                          </p>
+                      </blockquote>
                   </div>
-                  <a href="https://www.facebook.com/sharer/sharer.php?u=http://acompas.audio"
-                     target="_blank">
-                      <img src="/images/3D-Icons/facebook.png"
-                          alt="Share this page on Facebook"
-                          class="img-responsive" />
-                  </a>
-                  <a href="https://twitter.com/share?url=http://acompas.audio"
-                     target="_blank">
-                     <img src="/images/3D-Icons/Twitter-2.png"
-                          alt="Share this page on Twitter"
-                          class="img-responsive" />
-                  </a>
-                  <a href="https://plus.google.com/share?url=http://acompas.audio"
-                     target="_blank">
-                     <img src="/images/3D-Icons/Google+.png"
-                          alt="Share this page on Google+"
-                          class="img-responsive" />
-                  </a>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                  <p>
-                      Find this application's <a href="https://github.com/ElJere/aCompas" target="_blank">source code on Github</a>
-                  </p>
-                  <p>
-                      Found a bug or want to request for a new feature ?
-                      <br />
-                      <a href="https://github.com/ElJere/aCompas/issues" target="_blank">Let us know !</a>
-                  </p>
+                  <blockquote>
+                      <p>
+                          Find this application's <a href="https://github.com/ElJere/aCompas" target="_blank"><b>source code</b> on Github</a>
+                      </p>
+                      <p>
+                          Found a bug or want to request for a new feature ?
+                          <br />
+                          <a href="https://github.com/ElJere/aCompas/issues" target="_blank">Let us know !</a>
+                      </p>
+                  </blockquote>
               </div>
           </div>
       </footer>
+  </div>
+
+  <!-- Modal which is shown when the main icon is clicked -->
+  <div id="main-icon-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="main-icon-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"
+                      aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="main-icon-modal-label">Main menu</h4>
+              </div>
+              <div class="modal-body">
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+              </div>
+          </div>
+      </div>
   </div>
 
   <!-- Modal which is shown if user's browser can't run the application -->
