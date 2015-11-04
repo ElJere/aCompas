@@ -1,6 +1,6 @@
-public/bower_components
 mup
 .vagrant
 *.apk
 .project
 nbproject
+client/bower/.meteor

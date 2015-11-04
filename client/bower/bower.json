@@ -22,9 +22,18 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-mousewheel": "~3.1.13",
     "bootstrap": "~3.3.5",
-    "seiyria-bootstrap-slider": "~5.2.1",
-    "jquery-mousewheel": "~3.1.13"
+    "seiyria-bootstrap-slider": "~5.2.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+          "dist/css/bootstrap.css",
+          "dist/fonts/glyphicons-halflings-regular.woff2"
+      ]
+    }
   },
   "private": true
 }
