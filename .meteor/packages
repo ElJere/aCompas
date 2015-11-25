@@ -15,6 +15,17 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-autopublish             # Publish all data to the clients (for prototyping)
-mquandalle:bower
 crosswalk
+fourseven:scss
+accounts-password
+poetic:materialize-scss
+useraccounts:materialize
+jquery
+gildaspk:autoform-materialize
+ground:db
+aldeed:autoform
+kadira:flow-router
+kadira:blaze-layout
+arillo:flow-router-helpers
+sanjo:jasmine
+velocity:console-reporter

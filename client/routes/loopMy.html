@@ -1,0 +1,26 @@
+<template name="loopMy">
+    <h2>My loops</h2>
+    <ul class="collection">
+        {{#each myLoops}}
+            <li class="collection-item">
+                <div>
+                    {{#if title}}
+                        {{title}}
+                    {{else}}
+                        Unnamed loop
+                    {{/if}}
+                    <a href="{{pathFor "loopEdit" _id=_id}}"
+                        class="secondary-content waves-effect">
+                        <i class="material-icons">dialpad</i>
+                        Edit
+                    </a>
+                    <a href="{{pathFor "loopView" _id=_id}}"
+                        class="secondary-content waves-effect">
+                        <i class="material-icons">play_arrow</i>
+                        Use
+                    </a>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</template>
