@@ -8,8 +8,16 @@ window.aCompas.testing = {
     loadRoute: function(routeName) {
         this.loadPath(FlowRouter.path(routeName));
     },
-    // From https://meteor-testing.readme.io/docs/jasmine-template-testing
-    waitForElement: function(selector, successCallback) {
+    waitForElement: function(selector, done, successCallback) {
+        this.waitFor(function() {
+            if ($(selector).length > 0)
+                return true;
+            else
+                return false;
+        }, done, successCallback);
+    },
+    // Heavily inspired by https://meteor-testing.readme.io/docs/jasmine-template-testing
+    waitFor: function(conditionFunction, done, successCallback) {
         var checkInterval = 50;
         var timeoutInterval = jasmine.DEFAULT_TIMEOUT_INTERVAL;
         var startTime = Date.now();
@@ -17,9 +25,16 @@ window.aCompas.testing = {
             if (Date.now() > startTime + timeoutInterval) {
                 Meteor.clearInterval(intervalId);
                 // Jasmine will handle the test timeout error
-            } else if ($(selector).length > 0) {
+            } else if (conditionFunction()) {
                 Meteor.clearInterval(intervalId);
-                successCallback();
+                if (successCallback !== undefined) {
+                    try {
+                        successCallback();
+                    } catch (e) {
+                        console.error(e);
+                        done.fail(e);
+                    }
+                }
             }
         }, checkInterval);
     },
@@ -29,5 +44,43 @@ window.aCompas.testing = {
         var arr = new Uint8Array(len / 2);
         window.crypto.getRandomValues(arr);
         return [].map.call(arr, function(n) { return n.toString(16); }).join("");
+    },
+    registerUser: function(done, email, password) {
+        var testingEngine = this;
+        if (email === undefined) {
+            email = "test-" + testingEngine.generateRandomHash()
+                + "@acompas.audio";
+        }
+        if (password === undefined) {
+            password = testingEngine.generateRandomHash();
+        }
+
+        // Log out (in case we were previously logged in)
+        testingEngine.loadRoute("logout");
+        // Navigate to the authentication page
+        testingEngine.loadRoute("authentication");
+        testingEngine.waitForElement("#at-signUp", done, function() {
+            // Click the "Register" link
+            $("#at-signUp").click();
+            testingEngine.waitForElement("#at-field-password_again", done, function() {
+                $("#at-field-email").val(email);
+                $("#at-field-password").val(password);
+                $("#at-field-password_again").val(password);
+                $("#at-btn").click();
+                testingEngine.waitFor(function() {
+                    if (Meteor.userId()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }, done);
+            });
+        });
+        // Return the email and passord for later use
+        var res = {
+            email: email,
+            password: password
+        }
+        return res;
     }
 };

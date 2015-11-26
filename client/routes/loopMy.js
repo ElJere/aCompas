@@ -17,5 +17,9 @@ FlowRouter.route("/my-loops", {
 Template.loopMy.helpers({
     myLoops: function () {
         return Loops.find({owner: Meteor.userId()}, {sort: {createdAt: -1}});
+    },
+    noLoops: function () {
+        var count = Loops.find({owner: Meteor.userId()}, {sort: {createdAt: -1}}).count();
+        return (count === 0);
     }
 });

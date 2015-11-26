@@ -1,26 +1,37 @@
 <template name="loopMy">
     <h2>My loops</h2>
-    <ul class="collection">
-        {{#each myLoops}}
-            <li class="collection-item">
-                <div>
-                    {{#if title}}
-                        {{title}}
-                    {{else}}
-                        Unnamed loop
-                    {{/if}}
-                    <a href="{{pathFor "loopEdit" _id=_id}}"
-                        class="secondary-content waves-effect">
-                        <i class="material-icons">dialpad</i>
-                        Edit
-                    </a>
-                    <a href="{{pathFor "loopView" _id=_id}}"
-                        class="secondary-content waves-effect">
-                        <i class="material-icons">play_arrow</i>
-                        Use
-                    </a>
-                </div>
-            </li>
-        {{/each}}
-    </ul>
+    <a href="{{pathFor "loopCreate"}}" class="waves-effect waves-light btn">
+        <i class="material-icons left">dialpad</i>
+        Create a loop
+    </a>
+    {{#if noLoops}}
+        <blockquote>
+            You didn't create a loop yet. Use the "Create a loop" button in
+            order to start composing your first loop.
+        </blockquote>
+    {{else}}
+        <ul class="collection">
+            {{#each myLoops}}
+                <li class="collection-item">
+                    <div>
+                        {{#if title}}
+                            {{title}}
+                        {{else}}
+                            Unnamed loop
+                        {{/if}}
+                        <a href="{{pathFor "loopEdit" _id=_id}}"
+                            class="secondary-content waves-effect">
+                            <i class="material-icons">dialpad</i>
+                            Edit
+                        </a>
+                        <a href="{{pathFor "loopView" _id=_id}}"
+                            class="secondary-content waves-effect">
+                            <i class="material-icons">play_arrow</i>
+                            Use
+                        </a>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
 </template>
