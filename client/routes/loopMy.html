@@ -5,12 +5,12 @@
         Create a loop
     </a>
     {{#if noLoops}}
-        <blockquote>
+        <blockquote id="txt-empty">
             You didn't create a loop yet. Use the "Create a loop" button in
             order to start composing your first loop.
         </blockquote>
     {{else}}
-        <ul class="collection">
+        <ul id="my-loops-collection" class="collection">
             {{#each myLoops}}
                 <li class="collection-item">
                     <div>

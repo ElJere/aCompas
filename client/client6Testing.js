@@ -6,10 +6,16 @@ window.aCompas.testing = {
         FlowRouter.watchPathChange();
     },
     loadRoute: function(routeName) {
-        this.loadPath(FlowRouter.path(routeName));
+        var testingEngine = this;
+        testingEngine.loadPath(FlowRouter.path(routeName));
+        testingEngine.expectCurrentRouteToBe(routeName);
+    },
+    expectCurrentRouteToBe: function(routeName) {
+        expect(FlowRouter.getRouteName()).toEqual(routeName);
     },
     waitForElement: function(selector, done, successCallback) {
-        this.waitFor(function() {
+        var testingEngine = this;
+        testingEngine.waitFor(function() {
             if ($(selector).length > 0)
                 return true;
             else
@@ -82,5 +88,43 @@ window.aCompas.testing = {
             password: password
         }
         return res;
+    },
+    authenticateUser: function(email, password, done) {
+        var testingEngine = this;
+        // Log out (in case we were previously logged in)
+        testingEngine.loadRoute("logout");
+        // Navigate to the authentication page
+        testingEngine.loadRoute("authentication");
+        $("#at-field-email").val(email);
+        $("#at-field-password").val(password);
+        $("#at-btn").click();
+        testingEngine.waitFor(function() {
+            if (Meteor.userId()) {
+                return true;
+            } else {
+                return false;
+            }
+        }, done);
+    },
+    deAuthenticateUser: function(done) {
+        var testingEngine = this;
+        testingEngine.loadRoute("logout");
+        testingEngine.waitFor(function() {
+            if (! Meteor.userId()) {
+                return true;
+            } else {
+                return false;
+            }
+        }, done);
+    },
+    createLoop: function(done) {
+        var testingEngine = this;
+        $("#btn-menu-create-loop").click();
+        testingEngine.waitFor(function() {
+            if (FlowRouter.getRouteName() === "loopEdit")
+                return true;
+            else
+                return false;
+        }, done);
     }
 };
