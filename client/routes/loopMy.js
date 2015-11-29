@@ -1,16 +1,8 @@
 FlowRouter.route("/my-loops", {
     name: "loopMy",
+    triggersEnter: [AccountsTemplates.ensureSignedIn],
     action: function() {
-        if (Meteor.user()) {
-            BlazeLayout.render("mainLayout", { main: "loopMy" });
-            return ;
-        } else {
-            //TODO access denied page
-            FlowRouter.go("home");
-            return ;
-        }
-        // We shouldn't go further
-        throw new Meteor.Error("internal-error");
+        BlazeLayout.render("mainLayout", { main: "loopMy" });
     }
 });
 

@@ -8,7 +8,8 @@ window.aCompas.ui = {
             html += "<li><a id=\"btn-menu-create-loop\" href=\"" + FlowRouter.path("loopCreate") + "\">Create a loop</a></li>";
             html += "<li><a href=\"" + FlowRouter.path("logout") + "\">Log out</a></li>";
         } else {
-            html += "<li><a href=\"" + FlowRouter.path("authentication") + "\">Sign in / Register</a></li>";
+            html += "<li><a id=\"btn-menu-sign-in\" href=\"" + FlowRouter.path("atSignIn") + "\">Sign in</a></li>";
+            html += "<li><a id=\"btn-menu-register\" href=\"" + FlowRouter.path("atSignUp") + "\">Register</a></li>";
         }
         $("#main-menu-big").html(html);
         $("#main-menu-small").html(html);

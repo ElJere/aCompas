@@ -63,25 +63,19 @@ window.aCompas.testing = {
 
         // Log out (in case we were previously logged in)
         testingEngine.loadRoute("logout");
-        // Navigate to the authentication page
-        testingEngine.loadRoute("authentication");
-        testingEngine.waitForElement("#at-signUp", done, function() {
-            // Click the "Register" link
-            $("#at-signUp").click();
-            testingEngine.waitForElement("#at-field-password_again", done, function() {
-                $("#at-field-email").val(email);
-                $("#at-field-password").val(password);
-                $("#at-field-password_again").val(password);
-                $("#at-btn").click();
-                testingEngine.waitFor(function() {
-                    if (Meteor.userId()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }, done);
-            });
-        });
+        // Click "Register" in the main menu
+        $("#btn-menu-register").click();
+        $("#at-field-email").val(email);
+        $("#at-field-password").val(password);
+        $("#at-field-password_again").val(password);
+        $("#at-btn").click();
+        testingEngine.waitFor(function() {
+            if (Meteor.userId()) {
+                return true;
+            } else {
+                return false;
+            }
+        }, done);
         // Return the email and passord for later use
         var res = {
             email: email,
@@ -93,8 +87,8 @@ window.aCompas.testing = {
         var testingEngine = this;
         // Log out (in case we were previously logged in)
         testingEngine.loadRoute("logout");
-        // Navigate to the authentication page
-        testingEngine.loadRoute("authentication");
+        // Click "Sign in" in the main menu
+        $("#btn-menu-sign-in").click();
         $("#at-field-email").val(email);
         $("#at-field-password").val(password);
         $("#at-btn").click();

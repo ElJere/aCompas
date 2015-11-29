@@ -1,15 +1,7 @@
 FlowRouter.route("/my-favorite-loops", {
     name: "loopFavorites",
+    triggersEnter: [AccountsTemplates.ensureSignedIn],
     action: function() {
-        if (Meteor.user()) {
-            BlazeLayout.render("mainLayout", { main: "loopFavorites" });
-            return ;
-        } else {
-            //TODO access denied page
-            FlowRouter.go("home");
-            return ;
-        }
-        // We shouldn't go further
-        throw new Meteor.Error("internal-error");
+        BlazeLayout.render("mainLayout", { main: "loopFavorites" });
     }
 });
