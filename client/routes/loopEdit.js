@@ -9,6 +9,6 @@ FlowRouter.route("/edit-loop/:_id",{
     }
 });
 
-Template.mainLayout.onRendered(function() {
+Template.loopEdit.onRendered(function() {
     $('ul.tabs').tabs();
 });
