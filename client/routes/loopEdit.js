@@ -5,7 +5,7 @@ FlowRouter.route("/edit-loop/:_id",{
     action: function() {
         window.aCompas.audioEngine.initialize();
         var loop = Loops.findOne({_id: FlowRouter.getParam("_id")});
-        BlazeLayout.render("mainLayout", { main: "loopEdit" });
+        BlazeLayout.render("layout", { main: "loopEdit" });
     }
 });
 

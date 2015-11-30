@@ -3,6 +3,6 @@ FlowRouter.route("/loop/:_id", {
     action: function() {
         window.aCompas.audioEngine.initialize();
         var loop = Loops.findOne({_id: FlowRouter.getParam("_id")});
-        BlazeLayout.render("mainLayout", { main: "loopView" });
+        BlazeLayout.render("layout", { main: "loopView" });
     }
 });

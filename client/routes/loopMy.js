@@ -2,7 +2,7 @@ FlowRouter.route("/my-loops", {
     name: "loopMy",
     triggersEnter: [AccountsTemplates.ensureSignedIn],
     action: function() {
-        BlazeLayout.render("mainLayout", { main: "loopMy" });
+        BlazeLayout.render("layout", { main: "loopMy" });
     }
 });
 
