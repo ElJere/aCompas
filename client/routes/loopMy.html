@@ -15,20 +15,17 @@
                 <li class="collection-item">
                     <div>
                         {{#if title}}
-                            {{title}}
+                            <span class="title">{{title}}</span>
                         {{else}}
-                            Unnamed loop
+                            <span class="title">Unnamed loop</span>
                         {{/if}}
                         <a href="{{pathFor "loopEdit" _id=_id}}"
-                            class="secondary-content waves-effect">
-                            <i class="fa fa-pencil left"></i>
-                            Edit
+                           class="secondary-content">
+                           <i class="zmdi zmdi-edit zmdi-hc-lg"></i>
                         </a>
-                        <br />
                         <a href="{{pathFor "loopView" _id=_id}}"
-                            class="secondary-content waves-effect">
-                            <i class="fa fa-play left"></i>
-                            Use
+                           class="secondary-content">
+                            <i class="zmdi zmdi-play zmdi-hc-lg"></i>
                         </a>
                     </div>
                 </li>
