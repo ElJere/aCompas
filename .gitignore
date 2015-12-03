@@ -3,4 +3,4 @@ mup
 *.apk
 .project
 nbproject
-client/bower/.meteor
+public/fonts/bower

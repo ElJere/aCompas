@@ -22,8 +22,11 @@ $collection-active-color: lighten($secondary-color, 55%) !default;
 $collection-hover-bg-color: #ddd !default;
 $collection-link-color: color("grey", "lighten-4");
 
-// import main scss file
+// Import materialize main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+
+
+
 
 @font-face {
     font-family: "Playball";

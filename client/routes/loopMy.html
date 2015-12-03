@@ -1,12 +1,12 @@
 <template name="loopMy">
     <h2>My loops</h2>
     <a href="{{pathFor "loopCreate"}}" class="waves-effect waves-light btn">
-        <i class="fa fa-plus left"></i>
+        <i class="mdi mdi-plus-circle left"></i>
         Create a loop
     </a>
     {{#if noLoops}}
         <blockquote id="txt-empty">
-            <i class="fa fa-info-circle"></i> You didn't create a loop yet. Use the "Create a loop" button in
+            <i class="mdi mdi-information"></i> You didn't create a loop yet. Use the "Create a loop" button in
             order to start composing your first loop.
         </blockquote>
     {{else}}
@@ -21,11 +21,13 @@
                         {{/if}}
                         <a href="{{pathFor "loopEdit" _id=_id}}"
                            class="secondary-content">
-                           <i class="zmdi zmdi-edit zmdi-hc-lg"></i>
+                           <i class="mdi mdi-pencil mdi-24px"></i>
+                           Edit
                         </a>
                         <a href="{{pathFor "loopView" _id=_id}}"
                            class="secondary-content">
-                            <i class="zmdi zmdi-play zmdi-hc-lg"></i>
+                            <i class="mdi mdi-play mdi-24px"></i>
+                            Use
                         </a>
                     </div>
                 </li>
