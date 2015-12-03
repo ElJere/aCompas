@@ -29,7 +29,7 @@ $collection-link-color: color("grey", "lighten-4");
     font-family: "Playball";
     src:
         local(Playball),
-        url("./public/fonts/Playball-Regular.ttf") format("truetype");
+        url("/fonts/Playball/Playball-Regular.ttf") format("truetype");
 }
 
 /*
