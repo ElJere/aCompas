@@ -1,4 +1,4 @@
-// If you want to override materialize sass variables you can import components:
+// Override materialize sass variables
 @import "{poetic:materialize-scss}/sass/components/_color.scss";
 @import "{poetic:materialize-scss}/sass/components/_variables.scss";
 
@@ -52,11 +52,18 @@ main {
 
 /* End "Stick footer to the bottom" rules */
 
+
+body {
+    @extend .grey, .darken-4;
+}
+
 .brand-logo {
   font-family: "Playball";
   font-size: 1.5em;
 }
-#main {
+
+main {
+  color: color("grey", "lighten-5");
     a:hover {
         &:not(.btn) {
             color: $primary-color-light;
@@ -70,4 +77,12 @@ main {
   &:hover {
       color: $tabs-text-color;
   }
+}
+
+footer {
+    @extend .page-footer;
+    color: color("grey", "lighten-5");
+    a:not(.btn) {
+        color: color("grey", "lighten-3");
+    }
 }
