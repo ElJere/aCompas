@@ -81,8 +81,12 @@ main {
 
 footer {
     @extend .page-footer;
+    border-top: $primary-color 1px solid;
     color: color("grey", "lighten-5");
     a:not(.btn) {
         color: color("grey", "lighten-3");
+        &:hover {
+            color: $primary-color-light;
+        }
     }
 }
