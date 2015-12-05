@@ -1,33 +1,4 @@
-// Override materialize sass variables
-@import "{poetic:materialize-scss}/sass/components/_color.scss";
-@import "{poetic:materialize-scss}/sass/components/_variables.scss";
-
-$primary-color: tomato;
-$secondary-color: firebrick;
-$primary-color-light: lighten($primary-color, 5%);
-
-$link-color: $primary-color;
-$button-color: $primary-color;
-$input-focus-color: $primary-color;
-$footer-bg-color: color("grey", "darken-3");
-$tabs-bg-color: color("grey", "darken-3");
-$tabs-text-color: color("grey", "lighten-4");
-$tabs-underline-color: $primary-color;
-
-/*** Collections ***/
-$collection-border-color: color("grey", "darken-2");
-$collection-bg-color: color("grey", "darken-3");
-$collection-active-bg-color: $secondary-color;
-$collection-active-color: lighten($secondary-color, 55%) !default;
-$collection-hover-bg-color: #ddd !default;
-$collection-link-color: color("grey", "lighten-4");
-
-// Import materialize main scss file
-@import "{poetic:materialize-scss}/sass/materialize.scss";
-
-
-
-
+/* Fonts */
 @font-face {
     font-family: "Playball";
     src:

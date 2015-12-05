@@ -1,0 +1,25 @@
+$primary-color: tomato;
+$secondary-color: firebrick;
+$primary-color-light: lighten($primary-color, 5%);
+
+$link-color: $primary-color;
+$button-color: $primary-color;
+$input-focus-color: $primary-color;
+$footer-bg-color: color("grey", "darken-3");
+$tabs-bg-color: color("grey", "darken-3");
+$tabs-text-color: color("grey", "lighten-4");
+$tabs-underline-color: $primary-color;
+
+/*** Forms ***/
+
+// Switches
+$switch-bg-color: $primary-color;
+$switch-checked-lever-bg: desaturate(lighten($primary-color, 25%), 25%);
+
+/*** Collections ***/
+$collection-border-color: color("grey", "darken-2");
+$collection-bg-color: color("grey", "darken-3");
+$collection-active-bg-color: $secondary-color;
+$collection-active-color: lighten($secondary-color, 55%) !default;
+$collection-hover-bg-color: #ddd !default;
+$collection-link-color: color("grey", "lighten-4");
