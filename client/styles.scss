@@ -57,6 +57,10 @@ body {
     @extend .grey, .darken-4;
 }
 
+header {
+    border-bottom: color("grey", "lighten-5") 1px solid;
+}
+
 .brand-logo {
   font-family: "Playball";
   font-size: 1.5em;
@@ -88,5 +92,9 @@ footer {
         &:hover {
             color: $primary-color-light;
         }
+    }
+    .footer-copyright {
+        background-color: color("grey", "darken-4");
+        border-top: $primary-color 1px solid;
     }
 }
