@@ -1,6 +1,6 @@
 <template name="loopMy">
     <h1>My loops</h1>
-    <a href="{{pathFor "loopCreate"}}" class="waves-effect waves-light btn">
+    <a href="{{pathFor "loopCreate"}}" class="waves-effect waves-red btn">
         <i class="mdi mdi-plus-circle left"></i>
         Create a loop
     </a>
@@ -14,10 +14,10 @@
             {{#each myLoops}}
                 <li class="collection-item">
                     <div>
-                        {{#if title}}
-                            <span class="title">{{title}}</span>
+                        {{#if definition.name}}
+                            <span class="name">{{definition.name}}</span>
                         {{else}}
-                            <span class="title">Unnamed loop</span>
+                            <span class="name">Unnamed loop</span>
                         {{/if}}
                         <a href="{{pathFor "loopEdit" _id=_id}}"
                            class="secondary-content">

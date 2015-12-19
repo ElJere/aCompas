@@ -18,19 +18,63 @@
     </footer>
 
     {{! Modals }}
-    <div id="will-not-work-modal" class="modal modal-fixed-footer">
+
+    {{! Modal which is shown if the Web Audio API is not supported by the
+        user's browser or if sounds cannot be decoded }}
+    <div id="will-not-work-modal" class="modal">
         <div class="modal-content">
-            <h4>Unsupported web browser</h4>
-            The web browser you are currently using does not meet the minimal
-            requirements needed to use this application.
-            <br /><br />
-            Please use (for example) a recent version of
-            {{! TODO On the mobile app, those messages are irrelevant }}
-            <a href="http://www.google.com/chrome">Google Chrome</a>
-            or <a href="http://getfirefox.com">Mozilla Firefox</a>.
+            <h4>
+                <i class="mdi mdi-information"></i>
+                Unsupported web browser
+            </h4>
+            <p>
+                The web browser you are currently using does not meet the minimal
+                requirements needed to use this application.
+            </p>
+            <p>
+                Please use (for example) a recent version of
+                {{! TODO On the mobile app, those messages are irrelevant }}
+                <a href="http://www.google.com/chrome">Google Chrome</a>
+                or <a href="http://getfirefox.com">Mozilla Firefox</a>.
+            </p>
         </div>
         <div class="modal-footer">
-            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+            <a href="" class="modal-action modal-close waves-effect waves-red btn-flat">Ok</a>
+        </div>
+    </div>
+
+    {{! Generic help modal }}
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <h4>
+                <i class="mdi mdi-help-circle"></i>
+                <span class="title"></span>
+            </h4>
+            <div class="content"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="" class="modal-action modal-close waves-effect waves-red btn-flat">Ok</a>
+        </div>
+    </div>
+
+    {{! Generic confirmation modal }}
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h4>
+                <i class="mdi mdi-alert-circle"></i>
+                <span class="title"></span>
+            </h4>
+            <div class="content"></div>
+        </div>
+        <div class="modal-footer">
+            <a href=""
+                class="modal-action modal-close waves-effect waves-red btn-flat btn-confirm">
+                Confirm
+            </a>
+            <a href=""
+                class="modal-action modal-close waves-effect waves-red btn-flat btn-cancel">
+                Cancel
+            </a>
         </div>
     </div>
 

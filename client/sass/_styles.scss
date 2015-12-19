@@ -23,6 +23,33 @@ main {
 
 /* End "Stick footer to the bottom" rules */
 
+.btn {
+    padding: 0 .5rem;
+    i.left {
+        margin-right: 5px;
+    }
+}
+
+.btn-help {
+    @extend .waves-effect, .waves-red, .btn;
+    &:hover {
+        background-color: $primary-color-light;
+        color: color("grey", "lighten-5") !important;
+    }
+    .mdi {
+        margin-right: 0px !important;
+    }
+}
+
+.label-highlighted {
+    color: $primary-color !important;
+}
+
+.toast {
+    background-color: $primary-color;
+    color: white;
+    border: white 1px solid;
+}
 
 body {
     @extend .grey, .darken-4;
@@ -67,5 +94,22 @@ footer {
     .footer-copyright {
         background-color: color("grey", "darken-4");
         border-top: $primary-color 1px solid;
+    }
+}
+
+#loop-edit {
+    #rhythmic-structure .rhythmic-structure-item {
+        border: color("grey", "lighten-5") 1px solid;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        padding: 10px;
+    }
+}
+
+#faq {
+    #expanded {
+        a {
+            color: color("grey", "lighten-5");
+        }
     }
 }

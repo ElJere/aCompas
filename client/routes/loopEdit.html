@@ -1,51 +1,134 @@
 <template name="loopEdit">
-    <h1>Loop edition</h1>
-    <div class="row">
-        <div class="col s12">
-            <a href="#" class="waves-effect waves-light btn">
-                <i class="mdi mdi-content-save left"></i>
-                Save
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#settings">Settings</a></li>
-                <li class="tab col s4"><a href="#rhythm">Rhythm</a></li>
-                <li class="tab col s4"><a href="#sounds">Sounds</a></li>
-            </ul>
-        </div>
-        <div id="settings" class="col s12">
-            <div class="row">
-                <form id="settings-form" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="name" type="text" class="validate" placeholder="Please provide a name for this loop">
-                            <label for="name" class="active">Loop name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col s12">
-                            Make this loop publicly available ?
-                        </label>
-                        <div class="switch col s12">
-                            <label>
-                                Private
-                                <input type="checkbox">
-                                <span class="lever"></span>
-                                Public
-                            </label>
-                        </div>
-                    </div>
-                </form>
+
+    <div id="loop-edit">
+        <h1>Loop edition</h1>
+        <div class="row">
+            <div class="col s12">
+                <a id="btn-save" href="#" class="waves-effect waves-red btn">
+                    <i class="mdi mdi-content-save left"></i>
+                    Save
+                </a>
             </div>
         </div>
-        <div id="rhythm" class="col s12">
-            TODO : UI for setting the rhythmic structure
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s4"><a class="active" href="#settings">Settings</a></li>
+                    <li class="tab col s4"><a href="#rhythm">Rhythm</a></li>
+                    <li class="tab col s4"><a href="#sounds">Sounds</a></li>
+                </ul>
+            </div>
+            <div id="settings" class="col s12">
+                <div class="row">
+                    <form id="settings-form" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="name" type="text" class="validate"
+                                    placeholder="Not set">
+                                <label for="name" class="active label-highlighted">
+                                    1) Loop name
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" class="materialize-textarea validate"
+                                    placeholder="Not set"></textarea>
+                                <label for="description" class="active label-highlighted">
+                                    2) Loop description
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col s12 label-highlighted">
+                                3) Should this loop be publicly available ?
+                            </label>
+                            <div class="switch col s12">
+                                <label>
+                                    Private
+                                    <input id="is-public" type="checkbox" />
+                                    <span class="lever"></span>
+                                    Public
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="rhythm" class="col s12">
+                <div class="row">
+                    <form id="rhythm-form" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="palo" type="text" class="validate"
+                                    placeholder="Not set">
+                                <label for="palo" class="active label-highlighted">
+                                    1) Palo
+                                </label>
+                                <a href="#" class="btn-help" data-slug="palo">
+                                    <i class="mdi mdi-help-circle left"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="nb-beats" type="number" class="validate"
+                                    placeholder="Not set" min="1" />
+                                <label for="nb-beats" class="active label-highlighted">
+                                    2) Number of beats in the loop
+                                </label>
+                                <a href="#" class="btn-help" data-slug="nb-beats">
+                                    <i class="mdi mdi-help-circle left"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <a id="btn-update-rhythmic-structure" href="#"
+                                    class="btn">
+                                    <i class="mdi mdi-checkbox-marked-circle left"></i> Update rhythmic structure
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <label class="label-highlighted">
+                                    3) Rhythmic structure
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <a href="#" class="btn-help" data-slug="rhythmic-structure">
+                                    <i class="mdi mdi-help-circle left"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <div id="rhythmic-structure" class="row">
+                                    <div class="col s12">
+                                        <p>
+                                            <i class="mdi mdi-information"></i> <i>Empty rhythmic
+                                            structure</i>
+                                        </p>
+                                        <p>
+                                            Please set the number of beats
+                                            and use the button above to update the rhythmic
+                                            structure accordingly.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="sounds" class="col s12">
+                TODO : Sounds matrix
+            </div>
         </div>
-        <div id="sounds" class="col s12">
-            TODO : Sounds matrix
-        </div>
+
     </div>
+
 </template>

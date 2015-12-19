@@ -1,6 +1,6 @@
 accounts-base@1.2.2
 accounts-password@1.1.4
-arillo:flow-router-helpers@0.4.6
+arillo:flow-router-helpers@0.4.7
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -100,9 +100,9 @@ tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5
-useraccounts:core@1.12.4
-useraccounts:flow-routing@1.12.4
-useraccounts:materialize@1.12.4
+useraccounts:core@1.13.1
+useraccounts:flow-routing@1.13.1
+useraccounts:materialize@1.13.1
 velocity:chokidar@1.2.0_1
 velocity:console-reporter@0.1.4
 velocity:core@0.10.9

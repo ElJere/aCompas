@@ -2,7 +2,8 @@ FlowRouter.route('/create-loop', {
     name: "loopCreate",
     triggersEnter: [AccountsTemplates.ensureSignedIn],
     action: function () {
-        var loopId = Meteor.call("addLoop", function(error, result) {
+        Meteor.call("addLoop", function(error, result) {
+//TODO Error handling
             var loopId = result;
             FlowRouter.go("loopEdit", {_id: loopId});
         });
