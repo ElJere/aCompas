@@ -1,5 +1,40 @@
 window.aCompas.ui = {
 
+    // Modules
+    // Thanks to those function, it's possible to add per-module utility objects (i.e.
+    // UI utility functions).
+
+    // This attribute stores the modules data
+    _modules: [],
+    // Register a module
+    registerModule: function(moduleSlug, module) {
+        var ui = this;
+        var found = false;
+        $(ui._modules).each(function(index, moduleData) {
+            if (moduleData.slug === moduleSlug) {
+                found = true;
+                ui._modules[index].module = module;
+            }
+        });
+        if (! found) {
+            ui._modules.push({
+                slug: moduleSlug,
+                module: module
+            });
+        }
+    },
+    // Get a module given it slug
+    getModule(moduleSlug) {
+        var ui = this;
+        var result = undefined;
+        $(ui._modules).each(function(index, moduleData) {
+            if (moduleData.slug === moduleSlug) {
+                result = moduleData.module;
+            }
+        });
+        return result;
+    },
+
     // Menu
 
     fillMenu: function() {
@@ -20,13 +55,13 @@ window.aCompas.ui = {
 
     // Toast
 
-    toastDisplayDuration: 8000, // Milliseconds
+    _toastDisplayDuration: 8000, // Milliseconds
     toast: function(html) {
         var ui = this;
-        Materialize.toast("<i class=\"mdi mdi-information\"></i>&nbsp;" + html, ui.toastDisplayDuration);
+        Materialize.toast("<i class=\"mdi mdi-information\"></i>&nbsp;" + html, ui._toastDisplayDuration);
     },
     // This property stores the date when a toast was last displayed
-    toastDisplayDates: [],
+    _toastDisplayDates: [],
     // This function is a wrapper for Materialize.toast() which makes sure that
     // a toast is not displayed several times on the same screen.
     // For example, the following code will display only ONE toast. Not two.
@@ -36,13 +71,13 @@ window.aCompas.ui = {
         var ui = this;
         var now = Date.now();
         var foundInHistory = false;
-        $(ui.toastDisplayDates).each(function(index, data) {
+        $(ui._toastDisplayDates).each(function(index, data) {
             if (data.html === html) {
                 foundInHistory = true;
-                if (data.displayDate + ui.toastDisplayDuration < now) {
+                if (data.displayDate + ui._toastDisplayDuration < now) {
                     // Toast was already displayed but is no longer on screen.
                     // Display it.
-                    ui.toastDisplayDates[index].displayDate = now;
+                    ui._toastDisplayDates[index].displayDate = now;
                     ui.toast(html);
                 }
             }
@@ -52,7 +87,7 @@ window.aCompas.ui = {
         }
         // If this code is reached, it means it's the first time that this
         // function is called with this html
-        ui.toastDisplayDates.push({
+        ui._toastDisplayDates.push({
             html: html,
             displayDate: now
         });
@@ -79,6 +114,7 @@ window.aCompas.ui = {
             }
         });
     }
+
 };
 
 $(document).on("click", "#confirmation-modal .btn-cancel", function() {
