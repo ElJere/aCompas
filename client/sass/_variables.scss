@@ -6,11 +6,17 @@ $link-color: $primary-color;
 $button-color: $primary-color;
 $input-focus-color: $primary-color;
 $footer-bg-color: color("grey", "darken-3");
+
+/*** Tabs ***/
+
 $tabs-bg-color: color("grey", "darken-3");
 $tabs-text-color: color("grey", "lighten-4");
 $tabs-underline-color: $primary-color;
 
 /*** Forms ***/
+
+// Radio buttons & checkboxes
+$radio-fill-color: $primary-color;
 
 // Switches
 $switch-bg-color: $primary-color;
@@ -23,3 +29,7 @@ $collection-active-bg-color: $secondary-color;
 $collection-active-color: lighten($secondary-color, 55%) !default;
 $collection-hover-bg-color: #ddd !default;
 $collection-link-color: color("grey", "lighten-4");
+
+/*** Collapsible ***/
+$collapsible-header-color: color("grey", "darken-3");
+$collapsible-border-color: $primary-color;

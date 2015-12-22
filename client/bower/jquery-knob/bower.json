@@ -1,0 +1,10 @@
+{
+    "name": "acompas-jquery-knob",
+    "dependencies": {
+        "jquery-knob": "latest"
+    },
+    "ignoredDependencies": [
+        "jquery"
+    ],
+    "private": true
+}

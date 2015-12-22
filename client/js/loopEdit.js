@@ -11,7 +11,12 @@ FlowRouter.route("/edit-loop/:_id",{
 
 Template.loopEdit.onRendered(function() {
     var loopEditRhythmModule = window.aCompas.ui.getModule("loop-edit-rhythm");
-    $('#loop-edit ul.tabs').tabs();
+    var loopEditSoundsModule = window.aCompas.ui.getModule("loop-edit-sounds");
+    var controlsModule = window.aCompas.ui.getModule("controls");
+    // Initialize tabs
+    $("#loop-edit ul.tabs").tabs();
+    // Initialize instruments collapsible
+    loopEditSoundsModule.initializeInstrumentsCollapsible();
 
     // Load data from mongoDB in the UI
     var loopId = Session.get("currentLoopId");
@@ -66,54 +71,33 @@ Template.loopEdit.onRendered(function() {
         .each(function(index, elt) {
             window.validate_field($(elt));
         });
+
+    // Controls : play button
+    controlsModule.play.initialize("#loop-edit #btn-play-container");
+    // Controls : click
+    controlsModule.click.initialize("#loop-edit #click-container");
+    // Controls : resolution
+    controlsModule.resolution.initialize("#loop-edit #resolution-container");
+    // Controls : tempo
+    controlsModule.tempo.initialize("#loop-edit #tempo-container");
+    // Controls : volume
+    controlsModule.volume.initialize("#loop-edit #volume-container");
+    // Load sound occurrences
+    if (loop.definition !== undefined && loop.definition.soundOccurrences !== undefined) {
+        loopEditSoundsModule.loadSoundOccurrences(loop.definition.soundOccurrences);
+    }
+
+    // Prepare audio engine
+    if (loop.definition !== undefined) {
+        window.aCompas.audioEngine.setLoopDefinition(loop.definition);
+    }
 });
 
 $(document).on("click", "#loop-edit #btn-save", function(e) {
     e.preventDefault();
+    var loopEditSoundsModule = window.aCompas.ui.getModule("loop-edit-sounds");
     var currentLoopId = Session.get("currentLoopId");
-
-    // Extract values from the UI
-
-    // Name
-    var loopName = $.trim($("#loop-edit #name").val());
-    if (loopName.length === 0) {
-        loopName = null;
-    }
-    // Description
-    var loopDescription = $.trim($("#loop-edit #description").val());
-    if (loopDescription.length === 0) {
-        loopDescription = null;
-    }
-    // Public loop ?
-    var loopIsPublic = $("#loop-edit #is-public").is(":checked");
-    // Palo
-    var loopPalo = $.trim($("#loop-edit #palo").val());
-    if (loopPalo.length === 0) {
-        loopPalo = null;
-    }
-    // Rhythmic structure
-    var loopRhythmicStructure = new Array();
-    $("#loop-edit #rhythmic-structure .rhythmic-structure-item").each(function(index, elt) {
-        var beatLabelStr = $(elt).find(".beat-label").val();
-        var beatLabel = null;
-        if (beatLabelStr.length !== 0) {
-            beatLabel = parseInt(beatLabelStr);
-        }
-        var isStrong = $(elt).find(".is-strong").is(":checked");
-        loopRhythmicStructure.push({
-            label: beatLabel,
-            isStrong: isStrong
-        });
-    });
-
-    // Pack everything up
-    var loopDefinition = {
-        name: loopName,
-        description: loopDescription,
-        isPublic: loopIsPublic,
-        palo: loopPalo,
-        rhythmicStructure: loopRhythmicStructure
-    };
+    var loopDefinition = loopEditSoundsModule.getLoopDefinition();
     // Call server method
     Meteor.call("saveLoop", currentLoopId, loopDefinition, function(error, result) {
 //TODO Error handling

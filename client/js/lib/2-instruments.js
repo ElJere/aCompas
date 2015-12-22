@@ -1,10 +1,10 @@
 window.aCompas.instruments = [
     {
-        slug: "palmaClara",
+        slug: "palma-clara",
         label: "Palma clara"
     },
     {
-        slug: "palmaSorda",
+        slug: "palma-sorda",
         label: "Palma sorda"
     },
     {

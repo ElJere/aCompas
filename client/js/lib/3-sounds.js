@@ -2,7 +2,7 @@
 // but it could be anything. The only constraint is that it must be unique
 
 window.aCompas.sounds = {
-    "palmaClara": [
+    "palma-clara": [
         {
             id: "8b229357f06f4b5eb10a47e26e8d7fae",
             position: 1,
@@ -21,11 +21,11 @@ window.aCompas.sounds = {
             id: "045dc0682c94b6dfa9a707c468e34a86",
             position: 3,
             label: "Deep",
-            volume: .5,
+            volume: 1,
             filenamePart: "3"
         }
     ],
-    "palmaSorda": [
+    "palma-sorda": [
         {
             id: "d67bdac88809664ab2fa41eda7fc5a38",
             position: 1,
@@ -83,7 +83,7 @@ window.aCompas.sounds = {
             id: "1303b24650d8cb46d98ee1aa1f38cbad",
             position: 2,
             label: "Deep",
-            volume: .5,
+            volume: .8,
             filenamePart: "2"
         }
     ],
