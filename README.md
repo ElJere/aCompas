@@ -1,3 +1,8 @@
+## Warning!
+
+This repo has moved to other repo: https://gitlab.com/acompas/acompas
+
+
 # A Compás
 
 A flamenco metronome available in two versions :
