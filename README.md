@@ -1,7 +1,6 @@
 ## Warning!
 
-This project has moved to other repo: https://gitlab.com/acompas/acompas
-
+This project is now hosted on a different repository. You can find it [here](https://gitlab.com/acompas/acompas).
 
 # A Compás
 
